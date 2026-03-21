@@ -168,300 +168,976 @@ table.info-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13p
 <script>
 // ===================== MODULE CONTENT =====================
 const MODULES=[
+// ==================== MODULE 1: DATA MANAGEMENT ====================
 {id:'m1',title:'Data Management',chapter:'DAMA DMBOK Chapter 1',
 objectives:['Understand data, information, knowledge, wisdom (DIKW)','Know the DAMA Wheel and 11 knowledge areas','Understand data as an enterprise asset','Know data lifecycle stages','Understand data management principles and roles'],
 sections:[
-{title:'Что такое данные и DIKW-пирамида',content:`
-<p><span class="term">Данные / <span class="term-en">Data</span></span> — представление фактов в формализованном виде, пригодном для обработки. Сами по себе данные не несут смысла без контекста.</p>
-<div class="def-block"><strong>DIKW-пирамида:</strong><br>
-<strong>Data</strong> (данные) → <strong>Information</strong> (информация = данные + контекст) → <strong>Knowledge</strong> (знание = информация + опыт + анализ) → <strong>Wisdom</strong> (мудрость = применение знаний для решений)
-</div>
-<h4>Данные как актив / Data as an Asset</h4>
-<p>DAMA DMBOK рассматривает данные как <span class="term">корпоративный актив / <span class="term-en">enterprise asset</span></span>. Уникальные свойства:</p>
-<ul><li><strong>Неисчерпаемость</strong> — не расходуются при использовании</li>
-<li><strong>Мультипликативность</strong> — копируются без потери оригинала</li>
-<li><strong>Нематериальность / Intangible</strong> — не имеют физической формы</li>
-<li><strong>Обесценивание</strong> — устаревшие данные теряют актуальность</li></ul>
-<div class="warn-block"><strong>Типичная ошибка:</strong> Считать данные «заботой IT». Данные — бизнес-актив, IT обеспечивает инфраструктуру. Ответственность за качество и использование — на бизнесе.</div>`,
+{title:'1. Данные, информация, знания, мудрость — иерархия DIKW',content:`
+<p>Для эффективного управления данными необходимо чётко различать уровни абстракции информации. DAMA DMBOK использует модель <span class="term">DIKW</span> — иерархию, описывающую переход от сырых фактов к принятию решений.</p>
+
+<svg viewBox="0 0 500 320" style="width:100%;max-width:500px;display:block;margin:20px auto" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#4f46e5"/></linearGradient></defs>
+  <polygon points="250,20 450,280 50,280" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+  <rect x="100" y="230" width="300" height="45" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="250" y="258" text-anchor="middle" font-size="15" font-weight="700" fill="#4f46e5">DATA / Данные</text>
+  <rect x="135" y="175" width="230" height="45" rx="6" fill="#c7d2fe" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="250" y="203" text-anchor="middle" font-size="15" font-weight="700" fill="#4338ca">INFORMATION / Информация</text>
+  <rect x="170" y="120" width="160" height="45" rx="6" fill="#a5b4fc" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="250" y="148" text-anchor="middle" font-size="15" font-weight="700" fill="#3730a3">KNOWLEDGE / Знания</text>
+  <rect x="205" y="65" width="90" height="45" rx="6" fill="url(#g1)" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="250" y="93" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">WISDOM</text>
+  <text x="250" y="305" text-anchor="middle" font-size="11" fill="#64748b">Пирамида DIKW — от сырых фактов к мудрости</text>
+</svg>
+
+<div class="def-block"><strong>Данные / Data</strong> — представление фактов в формализованном виде, пригодном для передачи и обработки. Данные сами по себе не имеют значения: число «42» без контекста — просто число.</div>
+
+<div class="def-block"><strong>Информация / Information</strong> — данные, помещённые в контекст и наделённые смыслом. «42 заявки от клиентов за вчерашний день» — это уже информация, потому что мы знаем, ЧТО означает число, КОГДА и ОТКУДА оно получено.</div>
+
+<div class="def-block"><strong>Знание / Knowledge</strong> — информация, обогащённая опытом, анализом и пониманием закономерностей. «Количество заявок растёт на 20% каждый квартал и коррелирует с маркетинговыми кампаниями» — это знание, потому что здесь есть распознанный паттерн и причинно-следственная связь.</div>
+
+<div class="def-block"><strong>Мудрость / Wisdom</strong> — способность применять знания для принятия правильных решений в новых, ранее не встречавшихся ситуациях. Решение перераспределить бюджет маркетинга на основании выявленных закономерностей — это применение мудрости.</div>
+
+<div class="example-block"><strong>Пример прохождения по уровням DIKW:</strong><br>
+<strong>Data:</strong> 150, 200, 180, 220<br>
+<strong>Information:</strong> Продажи продукта А по кварталам за 2025 год составили 150, 200, 180, 220 тыс. руб.<br>
+<strong>Knowledge:</strong> Продажи растут в среднем на 12% год к году; падение в Q3 связано с сезонным фактором.<br>
+<strong>Wisdom:</strong> Заранее увеличить запасы перед Q4 и запланировать промо-акцию в Q3 для сглаживания сезонного спада.</div>
+
+<div class="info-block"><strong>Для бизнес-аналитика:</strong> Вы работаете преимущественно на уровнях Information и Knowledge. Ваша задача — превращать сырые данные в осмысленную информацию через анализ требований и помогать организации строить знания для принятия решений.</div>
+`,
 checkQuestions:[
 {type:'single',question:'Какой правильный порядок уровней DIKW снизу вверх?',options:['Knowledge → Information → Data → Wisdom','Data → Information → Knowledge → Wisdom','Information → Data → Wisdom → Knowledge','Data → Knowledge → Information → Wisdom'],correct:1,explanation:'DIKW: Data → Information → Knowledge → Wisdom.'},
-{type:'truefalse',question:'Данные расходуются при использовании, как физические активы.',options:['Верно','Неверно'],correct:1,explanation:'Неисчерпаемость — ключевое свойство данных. Они не расходуются при использовании.'}
+{type:'truefalse',question:'Данные расходуются при использовании, как физические активы.',options:['Верно','Неверно'],correct:1,explanation:'Неисчерпаемость — ключевое свойство данных. Они не расходуются при использовании.'},
+{type:'single',question:'Аналитик обнаружил, что продажи растут на 20% после каждой email-рассылки. Какой это уровень DIKW?',options:['Data','Information','Knowledge','Wisdom'],correct:2,explanation:'Распознанная закономерность (причина-следствие) = Knowledge.'}
 ]},
-{title:'Определение Data Management и жизненный цикл данных',content:`
-<div class="def-block"><strong>Управление данными / Data Management</strong> — разработка, выполнение и контроль планов, политик и процедур для управления данными на протяжении их жизненного цикла, обеспечивая защиту и повышая ценность данных.</div>
-<h4>Жизненный цикл данных / Data Lifecycle</h4>
-<ol><li><strong>Create</strong> — создание/получение данных</li>
-<li><strong>Store</strong> — сохранение в системах</li>
-<li><strong>Use</strong> — чтение, обработка, анализ</li>
-<li><strong>Share</strong> — передача между системами/людьми</li>
-<li><strong>Archive</strong> — перенос в долгосрочное хранилище</li>
-<li><strong>Purge</strong> — удаление по истечении срока</li></ol>
-<div class="info-block"><strong>Для бизнес-аналитика:</strong> При анализе требований спрашивайте: откуда берутся данные? кто использует? как долго хранить? когда можно удалить?</div>`,
+{title:'2. Данные как актив и определение Data Management',content:`
+<h4>Данные как корпоративный актив / Data as an Enterprise Asset</h4>
+<p>Одна из фундаментальных концепций DAMA DMBOK: <span class="term">данные — это актив организации / <span class="term-en">data is an asset</span></span>. Как и другие активы (здания, оборудование, интеллектуальная собственность), данные имеют ценность, требуют инвестиций в управление и могут создавать конкурентные преимущества.</p>
+
+<p>Однако данные обладают <strong>уникальными свойствами</strong>, отличающими их от физических активов:</p>
+
+<svg viewBox="0 0 560 200" style="width:100%;max-width:560px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="5" y="5" width="160" height="80" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="85" y="35" text-anchor="middle" font-size="12" font-weight="700" fill="#4f46e5">Неисчерпаемость</text>
+  <text x="85" y="52" text-anchor="middle" font-size="10" fill="#475569">Не расходуются</text>
+  <text x="85" y="66" text-anchor="middle" font-size="10" fill="#475569">при использовании</text>
+  <rect x="195" y="5" width="160" height="80" rx="10" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="275" y="35" text-anchor="middle" font-size="12" font-weight="700" fill="#0d9488">Мультипликативность</text>
+  <text x="275" y="52" text-anchor="middle" font-size="10" fill="#475569">Копируются без</text>
+  <text x="275" y="66" text-anchor="middle" font-size="10" fill="#475569">потери оригинала</text>
+  <rect x="385" y="5" width="160" height="80" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="465" y="35" text-anchor="middle" font-size="12" font-weight="700" fill="#d97706">Нематериальность</text>
+  <text x="465" y="52" text-anchor="middle" font-size="10" fill="#475569">Intangible — нет</text>
+  <text x="465" y="66" text-anchor="middle" font-size="10" fill="#475569">физической формы</text>
+  <rect x="100" y="110" width="160" height="80" rx="10" fill="#fce7f3" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="180" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="#db2777">Обесценивание</text>
+  <text x="180" y="157" text-anchor="middle" font-size="10" fill="#475569">Устаревшие данные</text>
+  <text x="180" y="171" text-anchor="middle" font-size="10" fill="#475569">теряют ценность</text>
+  <rect x="290" y="110" width="160" height="80" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="370" y="140" text-anchor="middle" font-size="12" font-weight="700" fill="#0284c7">Совместное использов.</text>
+  <text x="370" y="157" text-anchor="middle" font-size="10" fill="#475569">Множество людей</text>
+  <text x="370" y="171" text-anchor="middle" font-size="10" fill="#475569">используют одновременно</text>
+</svg>
+
+<div class="warn-block"><strong>Типичная ошибка:</strong> Считать данные «заботой IT-отдела». Данные — это <strong>бизнес-актив</strong>. IT обеспечивает инфраструктуру для их хранения и обработки, но ответственность за качество, достоверность и использование данных лежит на бизнесе. Точно так же, как здание принадлежит компании, а не строительной бригаде.</div>
+
+<h4>Определение Data Management</h4>
+<div class="def-block"><strong>Управление данными / Data Management</strong> — разработка, выполнение и контроль планов, программ, политик, практик и процедур, которые обеспечивают, контролируют, защищают, доставляют и повышают ценность данных и информационных активов на протяжении их жизненного цикла.</div>
+
+<p>Ключевые аспекты этого определения:</p>
+<ul>
+<li><strong>Планы и политики</strong> — управление данными начинается с планирования и стратегии, а не с технологий</li>
+<li><strong>Жизненный цикл</strong> — данные проходят стадии от создания до удаления</li>
+<li><strong>Повышение ценности</strong> — конечная цель — увеличить отдачу от данных для бизнеса</li>
+<li><strong>Контроль и защита</strong> — обеспечение качества, безопасности и соответствия требованиям</li>
+</ul>
+
+<h4>Стратегия управления данными / Data Strategy</h4>
+<p><span class="term">Стратегия управления данными / <span class="term-en">Data Management Strategy</span></span> должна быть <strong>производной от бизнес-стратегии</strong> организации. Она определяет: какие данные критичны для бизнеса, как ими управлять, какие инвестиции необходимы, и какие метрики покажут успех.</p>
+
+<div class="warn-block"><strong>Типичная ошибка:</strong> Начинать управление данными «снизу» — с технических решений (купить инструмент, настроить ETL). Правильный подход — начинать с <strong>бизнес-целей</strong> и строить стратегию данных как поддержку бизнес-стратегии.</div>
+`,
+checkQuestions:[
+{type:'single',question:'Стратегия управления данными должна быть основана на:',options:['Технических возможностях IT','Бизнес-стратегии организации','Доступных инструментах','Количестве серверов'],correct:1,explanation:'Data management strategy — производная от бизнес-стратегии организации.'},
+{type:'single',question:'Какое свойство данных как актива отличает их от физических активов?',options:['Данные требуют обслуживания','Данные не расходуются при использовании','Данные всегда стоят одинаково','Данные невозможно потерять'],correct:1,explanation:'Неисчерпаемость — ключевое свойство. Данные используются многими людьми одновременно без потребления.'}
+]},
+{title:'3. Жизненный цикл данных / Data Lifecycle',content:`
+<p>Данные проходят несколько стадий от момента создания до окончательного удаления. Понимание жизненного цикла помогает бизнес-аналитику правильно формулировать требования к системам.</p>
+
+<svg viewBox="0 0 600 120" style="width:100%;max-width:600px;display:block;margin:20px auto" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6366f1"/></marker></defs>
+  <rect x="5" y="30" width="80" height="50" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="45" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Create</text>
+  <text x="45" y="67" text-anchor="middle" font-size="9" fill="#475569">Создание</text>
+  <line x1="87" y1="55" x2="100" y2="55" stroke="#6366f1" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="102" y="30" width="80" height="50" rx="8" fill="#c7d2fe" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="142" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#4338ca">Store</text>
+  <text x="142" y="67" text-anchor="middle" font-size="9" fill="#475569">Хранение</text>
+  <line x1="184" y1="55" x2="197" y2="55" stroke="#6366f1" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="199" y="30" width="80" height="50" rx="8" fill="#a5b4fc" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="239" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Use</text>
+  <text x="239" y="67" text-anchor="middle" font-size="9" fill="#475569">Использование</text>
+  <line x1="281" y1="55" x2="294" y2="55" stroke="#6366f1" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="296" y="30" width="80" height="50" rx="8" fill="#818cf8" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="336" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#312e81">Share</text>
+  <text x="336" y="67" text-anchor="middle" font-size="9" fill="#312e81">Обмен</text>
+  <line x1="378" y1="55" x2="391" y2="55" stroke="#6366f1" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="393" y="30" width="80" height="50" rx="8" fill="#6366f1" stroke="#4338ca" stroke-width="1.5"/>
+  <text x="433" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Archive</text>
+  <text x="433" y="67" text-anchor="middle" font-size="9" fill="#e0e7ff">Архив</text>
+  <line x1="475" y1="55" x2="488" y2="55" stroke="#6366f1" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="490" y="30" width="80" height="50" rx="8" fill="#4f46e5" stroke="#3730a3" stroke-width="1.5"/>
+  <text x="530" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Purge</text>
+  <text x="530" y="67" text-anchor="middle" font-size="9" fill="#c7d2fe">Удаление</text>
+  <text x="300" y="105" text-anchor="middle" font-size="10" fill="#64748b">Жизненный цикл данных / Data Lifecycle</text>
+</svg>
+
+<ol>
+<li><strong>Создание / Create</strong> — данные возникают: ввод пользователем, генерация системой, получение из внешних источников (API, файлы, IoT-устройства)</li>
+<li><strong>Хранение / Store</strong> — данные сохраняются в базах данных, файловых системах, облачных хранилищах</li>
+<li><strong>Использование / Use</strong> — данные читаются, обрабатываются, анализируются для принятия решений и операционных процессов</li>
+<li><strong>Обмен / Share</strong> — данные передаются между системами, подразделениями, партнёрами через интеграции, API, отчёты</li>
+<li><strong>Архивирование / Archive</strong> — данные, которые больше не нужны для оперативной работы, переносятся в долгосрочные хранилища (дешевле, медленнее)</li>
+<li><strong>Удаление / Purge (Destroy)</strong> — данные окончательно удаляются по истечении срока хранения или по требованию регуляторов (например, GDPR «право на забвение»)</li>
+</ol>
+
+<div class="info-block"><strong>Для бизнес-аналитика:</strong> При анализе требований к системе задавайте вопросы по каждой стадии жизненного цикла:
+<ul>
+<li><strong>Create:</strong> Откуда берутся данные? Кто или что их создаёт?</li>
+<li><strong>Store:</strong> Где и как хранятся? Какие требования к доступности?</li>
+<li><strong>Use:</strong> Кто потребители данных? Для каких процессов?</li>
+<li><strong>Share:</strong> С кем и как данные передаются?</li>
+<li><strong>Archive:</strong> Когда данные становятся неактуальными? Куда переносить?</li>
+<li><strong>Purge:</strong> Каков срок хранения? Есть ли регуляторные требования?</li>
+</ul></div>
+
+<div class="example-block"><strong>Пример:</strong> Заявка на кредит. <strong>Create</strong> — клиент заполняет форму. <strong>Store</strong> — данные сохраняются в CRM. <strong>Use</strong> — скоринговая система оценивает риск. <strong>Share</strong> — результат передаётся в процессинг. <strong>Archive</strong> — через 3 года заявка уходит в архив. <strong>Purge</strong> — через 10 лет данные удаляются по требованиям регулятора.</div>
+`,
 checkQuestions:[
 {type:'single',question:'Какая стадия жизненного цикла НЕ входит в DAMA DMBOK?',options:['Create','Validate','Archive','Purge'],correct:1,explanation:'Validate — не стадия lifecycle. Стадии: Create, Store, Use, Share, Archive, Purge.'},
-{type:'fillin',question:'Как на английском называется стадия удаления данных по истечении срока?',correct:['purge','Purge','destroy','Destroy'],explanation:'Purge / Destroy — стадия удаления данных из жизненного цикла.'}
+{type:'fillin',question:'Как на английском называется стадия удаления данных по истечении срока?',correct:['purge','Purge','destroy','Destroy'],explanation:'Purge / Destroy — стадия удаления данных из жизненного цикла.'},
+{type:'single',question:'Какой вопрос относится к стадии Archive?',options:['Кто создаёт данные?','Кто потребитель?','Когда данные становятся неактуальными?','Какой формат отчёта?'],correct:2,explanation:'Archive связан с определением момента, когда данные перестают быть нужны для оперативной работы.'}
 ]},
-{title:'Структура DAMA DMBOK и колесо DAMA',content:`
-<p><span class="term">DAMA DMBOK</span> (<span class="term-en">Data Management Body of Knowledge</span>) — свод знаний по управлению данными от DAMA International. Это <strong>фреймворк</strong>, а не стандарт или методология.</p>
+{title:'4. Структура DAMA DMBOK и колесо DAMA / DAMA Wheel',content:`
+<p><span class="term">DAMA DMBOK</span> (<span class="term-en">Data Management Body of Knowledge</span>) — это свод знаний по управлению данными, разработанный международной ассоциацией <span class="term">DAMA International</span>. Текущая версия — <strong>DMBOK2</strong> (второе издание, 2017 год). Это <strong>фреймворк</strong> — набор общепринятых практик и принципов, а не стандарт или методология.</p>
+
 <h4>Колесо DAMA / DAMA Wheel</h4>
-<p>В центре — <span class="term">Data Governance</span>. Вокруг — 10 областей знаний / <span class="term-en">knowledge areas</span>:</p>
-<ul><li>Data Architecture</li><li>Data Modeling and Design</li><li>Data Storage and Operations</li><li>Data Security</li>
-<li>Data Integration and Interoperability</li><li>Document and Content Management</li><li>Reference and Master Data</li>
-<li>Data Warehousing and BI</li><li>Metadata</li><li>Data Quality</li></ul>
-<p>Итого <strong>11 областей</strong> (включая Data Governance в центре).</p>
-<p>Каждая область описана по единому шаблону: Definition, Goals, Activities, Inputs/Outputs, Roles, Practices, Tools, Metrics.</p>`,
+<p>Визуальная структура DMBOK представлена в виде <strong>колеса</strong>. В центре — <span class="term">Data Governance</span> (руководство данными), координирующая все остальные области. Вокруг — 10 областей знаний:</p>
+
+<svg viewBox="0 0 500 500" style="width:100%;max-width:440px;display:block;margin:20px auto" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="250" cy="250" r="220" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+  <circle cx="250" cy="250" r="150" fill="none" stroke="#c7d2fe" stroke-width="1.5"/>
+  <circle cx="250" cy="250" r="65" fill="#4f46e5" stroke="#3730a3" stroke-width="2"/>
+  <text x="250" y="244" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">DATA</text>
+  <text x="250" y="260" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">GOVERNANCE</text>
+  <g font-size="9.5" fill="#1e293b" font-weight="600">
+    <text x="250" y="55" text-anchor="middle">Data Architecture</text>
+    <text x="410" y="120" text-anchor="middle">Data Modeling</text>
+    <text x="460" y="220" text-anchor="middle">Data Storage</text>
+    <text x="430" y="320" text-anchor="middle">Data Security</text>
+    <text x="365" y="410" text-anchor="middle">Data Integration</text>
+    <text x="250" y="460" text-anchor="middle">Document &amp; Content Mgmt</text>
+    <text x="130" y="410" text-anchor="middle">Reference &amp; Master Data</text>
+    <text x="60" y="320" text-anchor="middle">DWH &amp; BI</text>
+    <text x="45" y="220" text-anchor="middle">Metadata</text>
+    <text x="90" y="120" text-anchor="middle">Data Quality</text>
+  </g>
+  <g fill="#6366f1">
+    <circle cx="250" cy="75" r="5"/><circle cx="400" cy="135" r="5"/><circle cx="440" cy="240" r="5"/>
+    <circle cx="415" cy="340" r="5"/><circle cx="350" cy="420" r="5"/><circle cx="250" cy="445" r="5"/>
+    <circle cx="150" cy="420" r="5"/><circle cx="80" cy="340" r="5"/><circle cx="60" cy="240" r="5"/>
+    <circle cx="100" cy="135" r="5"/>
+  </g>
+  <text x="250" y="490" text-anchor="middle" font-size="10" fill="#64748b">Колесо DAMA — Data Governance в центре, 10 областей вокруг</text>
+</svg>
+
+<p>Итого <strong>11 областей знаний / knowledge areas</strong> (включая Data Governance в центре).</p>
+
+<div class="info-block"><strong>Почему Data Governance в центре?</strong> Потому что руководство данными координирует и направляет все остальные области. Без governance остальные практики будут разрозненными. Governance определяет: <strong>кто</strong> принимает решения о данных, <strong>какие правила</strong> действуют, <strong>как контролируется</strong> их соблюдение.</div>
+
+<h4>Контекстная диаграмма каждой области знаний</h4>
+<p>Каждая из 11 областей описана в DMBOK по единому шаблону (контекстной диаграмме):</p>
+<ul>
+<li><strong>Definition / Определение</strong> — что это за область</li>
+<li><strong>Goals / Цели</strong> — чего стремимся достичь</li>
+<li><strong>Activities / Действия</strong> — конкретные практики и процессы</li>
+<li><strong>Inputs and Outputs / Входы и выходы</strong></li>
+<li><strong>Roles and Responsibilities / Роли и ответственности</strong></li>
+<li><strong>Practices and Techniques / Практики и техники</strong></li>
+<li><strong>Tools / Инструменты</strong></li>
+<li><strong>Metrics / Метрики</strong></li>
+</ul>
+`,
 checkQuestions:[
 {type:'single',question:'Сколько областей знаний в DAMA DMBOK?',options:['8','10','11','13'],correct:2,explanation:'11 областей: Data Governance в центре + 10 вокруг.'},
-{type:'single',question:'DAMA DMBOK — это:',options:['Стандарт ISO','Методология Agile','Фреймворк — свод знаний','Программное обеспечение'],correct:2,explanation:'DAMA DMBOK — фреймворк, а не стандарт или методология.'}
+{type:'single',question:'DAMA DMBOK — это:',options:['Стандарт ISO','Методология Agile','Фреймворк — свод знаний','Программное обеспечение'],correct:2,explanation:'DAMA DMBOK — фреймворк, а не стандарт или методология.'},
+{type:'single',question:'Что НЕ входит в контекстную диаграмму области знаний?',options:['Goals / Цели','Metrics / Метрики','Budget / Бюджет','Roles / Роли'],correct:2,explanation:'Бюджет не является стандартным элементом контекстной диаграммы.'}
 ]},
-{title:'Принципы и роли в управлении данными',content:`
-<h4>Принципы</h4>
-<ul><li><strong>Data is an asset</strong> — данные имеют ценность и требуют инвестиций</li>
-<li><strong>Leadership commitment</strong> — без поддержки руководства инициативы обречены</li>
-<li><strong>Cross-functional</strong> — требует сотрудничества бизнеса и IT</li>
-<li><strong>Strategic approach</strong> — стратегия данных производна от бизнес-стратегии</li></ul>
-<h4>Ключевые роли</h4>
-<ul><li><span class="term">Data Owner</span> — бизнес-руководитель, ответственный за набор данных. Принимает стратегические решения.</li>
-<li><span class="term">Data Steward</span> — операционная роль: ежедневное качество, соблюдение правил. Business Steward (правила) + Technical Steward (реализация).</li>
-<li><span class="term">Data Custodian</span> — техническая роль: хранение, бэкапы, инфраструктура.</li>
-<li><span class="term">CDO</span> (Chief Data Officer) — стратегическое руководство данными на уровне организации.</li></ul>
-<div class="warn-block"><strong>Типичная ошибка:</strong> Путать Owner, Steward и Custodian. Owner = стратегические решения (бизнес). Steward = оперативное управление (бизнес). Custodian = техническое обеспечение (IT).</div>
-<h4>Организационные модели</h4>
-<ul><li><strong>Centralized</strong> — единая команда</li><li><strong>Decentralized</strong> — каждое подразделение самостоятельно</li>
-<li><strong>Federated</strong> — единые стандарты + локальное исполнение (наиболее распространённая)</li></ul>`,
+{title:'5. Принципы и роли в управлении данными',content:`
+<h4>Принципы управления данными / Data Management Principles</h4>
+<ul>
+<li><strong>Data is an asset</strong> — данные имеют ценность, требуют инвестиций и могут создавать конкурентные преимущества</li>
+<li><strong>Leadership commitment</strong> — без поддержки руководства инициативы по управлению данными обречены на провал</li>
+<li><strong>Cross-functional collaboration</strong> — управление данными требует сотрудничества бизнеса и IT</li>
+<li><strong>Strategic approach</strong> — нужен план, а не реактивные действия; стратегия данных производна от бизнес-стратегии</li>
+<li><strong>Entrepreneurial approach</strong> — нужно показывать ценность инвестиций в данные</li>
+</ul>
+
+<h4>Ключевые роли / Key Roles</h4>
+
+<svg viewBox="0 0 560 260" style="width:100%;max-width:560px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="190" y="5" width="180" height="55" rx="10" fill="#4f46e5" stroke="#3730a3" stroke-width="1.5"/>
+  <text x="280" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">CDO</text>
+  <text x="280" y="46" text-anchor="middle" font-size="9" fill="#c7d2fe">Chief Data Officer — стратегия</text>
+  <line x1="280" y1="62" x2="280" y2="78" stroke="#6366f1" stroke-width="1.5"/>
+  <rect x="140" y="80" width="280" height="55" rx="10" fill="#6366f1" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="280" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Data Owner / Data Trustee</text>
+  <text x="280" y="121" text-anchor="middle" font-size="9" fill="#c7d2fe">Бизнес-руководитель — стратегич. решения о данных</text>
+  <line x1="200" y1="137" x2="200" y2="155" stroke="#6366f1" stroke-width="1.5"/>
+  <line x1="360" y1="137" x2="360" y2="155" stroke="#6366f1" stroke-width="1.5"/>
+  <rect x="60" y="157" width="210" height="55" rx="10" fill="#a5b4fc" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="165" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Data Steward</text>
+  <text x="165" y="197" text-anchor="middle" font-size="9" fill="#475569">Оперативное управление / качество</text>
+  <rect x="290" y="157" width="210" height="55" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="395" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Data Custodian</text>
+  <text x="395" y="197" text-anchor="middle" font-size="9" fill="#475569">Техническое обеспечение / IT</text>
+  <text x="165" y="234" text-anchor="middle" font-size="9" fill="#64748b">Business Steward + Technical Steward</text>
+  <text x="395" y="234" text-anchor="middle" font-size="9" fill="#64748b">Хранение, бэкапы, инфраструктура</text>
+  <text x="280" y="255" text-anchor="middle" font-size="10" fill="#64748b">Иерархия ролей в управлении данными</text>
+</svg>
+
+<ul>
+<li><span class="term">Data Owner / Data Trustee</span> — <strong>бизнес-руководитель</strong>, ответственный за конкретный домен данных (клиентские данные, финансовые данные). Принимает стратегические решения: кто имеет доступ, каковы стандарты качества, как данные используются.</li>
+<li><span class="term">Data Steward</span> — <strong>операционная роль</strong>: ежедневное управление качеством данных, соблюдение правил и стандартов. Два типа:
+  <ul>
+  <li><strong>Business Data Steward</strong> — определяет бизнес-правила, контролирует качество с точки зрения бизнеса</li>
+  <li><strong>Technical Data Steward</strong> — обеспечивает техническую реализацию правил (профилирование, мониторинг)</li>
+  </ul>
+</li>
+<li><span class="term">Data Custodian</span> — <strong>техническая роль</strong> (обычно IT): физическое хранение, бэкапы, безопасность на уровне инфраструктуры</li>
+<li><span class="term">CDO / Chief Data Officer</span> — руководитель, ответственный за стратегию управления данными на уровне всей организации</li>
+</ul>
+
+<div class="warn-block"><strong>Типичные ошибки при различении ролей:</strong>
+<ul>
+<li><strong>Owner vs Steward:</strong> Owner ОТВЕЧАЕТ за данные (стратегический уровень). Steward ЗАБОТИТСЯ о данных (операционный уровень). Owner — «владелец квартиры», Steward — «управляющий домом».</li>
+<li><strong>Steward vs Custodian:</strong> Steward — бизнес-роль (что данные значат, какие правила). Custodian — техническая роль (где данные хранятся, как бэкапить).</li>
+</ul></div>
+
+<h4>Организационные модели управления данными</h4>
+<ul>
+<li><strong>Centralized / Централизованная</strong> — единая команда управляет всеми данными организации. Плюс: единые стандарты. Минус: может быть далеко от бизнес-контекста.</li>
+<li><strong>Decentralized / Децентрализованная</strong> — каждое подразделение управляет своими данными самостоятельно. Плюс: близость к бизнесу. Минус: несогласованность.</li>
+<li><strong>Federated / Федеративная</strong> — <strong>наиболее распространённая в крупных организациях</strong>. Единые стандарты и политики на уровне организации, исполнение — на уровне подразделений.</li>
+</ul>
+
+<div class="info-block"><strong>Для бизнес-аналитика:</strong> В федеративной модели вы будете работать с локальными стюардами данных вашего подразделения, но следовать общекорпоративным стандартам и политикам. Знание того, кто является Data Owner для нужных вам данных — ключ к быстрому согласованию требований.</div>
+`,
 checkQuestions:[
 {type:'matching',question:'Сопоставьте роли с описаниями:',pairs:[{left:'Data Owner'},{left:'Data Steward'},{left:'Data Custodian'}],rightOptions:['Бизнес-руководитель, стратегические решения','Оперативное управление и контроль качества','Техническое обеспечение хранения'],correct:[0,1,2],explanation:'Owner=стратегия, Steward=операции, Custodian=техника.'},
-{type:'single',question:'Какая модель управления данными сочетает единые стандарты с локальным исполнением?',options:['Centralized','Decentralized','Federated','Hybrid'],correct:2,explanation:'Federated = единые стандарты + исполнение на уровне подразделений.'}
+{type:'single',question:'Какая модель управления данными сочетает единые стандарты с локальным исполнением?',options:['Centralized','Decentralized','Federated','Hybrid'],correct:2,explanation:'Federated = единые стандарты + исполнение на уровне подразделений.'},
+{type:'single',question:'Чем Business Data Steward отличается от Technical Data Steward?',options:['Нет разницы','Business определяет бизнес-правила, Technical обеспечивает техническую реализацию','Business — руководитель, Technical — исполнитель','Business работает только с метаданными'],correct:1,explanation:'Business Steward = бизнес-правила. Technical Steward = профилирование, мониторинг, техническая реализация.'}
 ]}
 ]},
+// ==================== MODULE 2: DATA GOVERNANCE ====================
 {id:'m2',title:'Data Governance',chapter:'DAMA DMBOK Chapter 3',
 objectives:['Understand data governance definition and goals','Distinguish governance from management','Know governance organizational structures','Understand data policies and standards','Know maturity model levels'],
 sections:[
-{title:'Определение и цели Data Governance',content:`
-<div class="def-block"><strong>Руководство данными / Data Governance</strong> — осуществление полномочий, контроля и совместного принятия решений в отношении управления данными как активом. Определяет: <strong>кто</strong> принимает решения, <strong>какие</strong> решения, <strong>как</strong> они контролируются.</div>
-<p><strong>Data Governance vs Data Management:</strong> Management — вся совокупность практик (11 областей). Governance — одна из областей, координирующая все остальные. Аналогия: Management = все департаменты компании, Governance = совет директоров.</p>
-<h4>Цели Governance</h4>
-<ul><li>Определить <span class="term">accountability</span> (подотчётность) за данные</li>
-<li>Установить правила и политики</li><li>Снизить риски</li>
-<li>Обеспечить <span class="term">compliance</span> (соответствие требованиям)</li>
-<li>Поддержать <span class="term">data-driven decision making</span></li></ul>
-<div class="warn-block"><strong>Типичная ошибка:</strong> Governance = бюрократия. На самом деле хороший governance ускоряет работу: ясные правила, роли и определения снимают неопределённость.</div>`,
+{title:'1. Определение, цели и отличие от Data Management',content:`
+<div class="def-block"><strong>Руководство данными / Data Governance</strong> — осуществление полномочий, контроля и совместного принятия решений (планирование, мониторинг и обеспечение выполнения) в отношении управления данными как активом.</div>
+
+<p>Data Governance — это <strong>не техническая система</strong>, а управленческая и организационная функция. Она определяет три ключевых вопроса:</p>
+
+<svg viewBox="0 0 520 100" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="5" y="10" width="160" height="70" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="85" y="40" text-anchor="middle" font-size="14" font-weight="800" fill="#4f46e5">КТО?</text>
+  <text x="85" y="58" text-anchor="middle" font-size="10" fill="#475569">Кто принимает</text>
+  <text x="85" y="70" text-anchor="middle" font-size="10" fill="#475569">решения о данных</text>
+  <rect x="180" y="10" width="160" height="70" rx="10" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2"/>
+  <text x="260" y="40" text-anchor="middle" font-size="14" font-weight="800" fill="#0d9488">КАКИЕ?</text>
+  <text x="260" y="58" text-anchor="middle" font-size="10" fill="#475569">Какие решения</text>
+  <text x="260" y="70" text-anchor="middle" font-size="10" fill="#475569">принимаются</text>
+  <rect x="355" y="10" width="160" height="70" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="435" y="40" text-anchor="middle" font-size="14" font-weight="800" fill="#d97706">КАК?</text>
+  <text x="435" y="58" text-anchor="middle" font-size="10" fill="#475569">Как решения</text>
+  <text x="435" y="70" text-anchor="middle" font-size="10" fill="#475569">контролируются</text>
+</svg>
+
+<h4>Data Governance vs Data Management</h4>
+<p>Эти два понятия часто путают. Ключевое различие:</p>
+<ul>
+<li><span class="term">Data Management</span> — <strong>вся совокупность</strong> практик по работе с данными (все 11 областей DAMA)</li>
+<li><span class="term">Data Governance</span> — <strong>одна из областей</strong> data management, которая <strong>координирует и направляет</strong> все остальные области</li>
+</ul>
+
+<div class="example-block"><strong>Аналогия:</strong> Если представить компанию, то Data Management — это все департаменты вместе (HR, финансы, производство, маркетинг...), а Data Governance — это совет директоров, который определяет стратегию, правила и контролирует их соблюдение всеми департаментами.</div>
+
+<h4>Цели Data Governance</h4>
+<ul>
+<li>Определить <span class="term">accountability / подотчётность</span> — кто конкретно отвечает за данные</li>
+<li>Установить правила и политики работы с данными</li>
+<li>Снизить риски, связанные с данными (утечки, ошибки, несоответствие)</li>
+<li>Обеспечить <span class="term">compliance / соответствие</span> нормативным требованиям (GDPR, HIPAA, отраслевые стандарты)</li>
+<li>Повысить ценность данных через стандартизацию и контроль качества</li>
+<li>Поддержать <span class="term">data-driven decision making</span> — принятие решений на основе достоверных данных</li>
+</ul>
+
+<div class="warn-block"><strong>Типичная ошибка:</strong> «Governance = бюрократия и замедление работы». На самом деле хорошо организованный governance <strong>ускоряет</strong> работу: люди знают, кто отвечает за данные, где найти правильные определения, какие правила действуют. Governance снимает неопределённость, а не создаёт бумажную волокиту.</div>
+`,
 checkQuestions:[
 {type:'truefalse',question:'Data Governance и Data Management — синонимы.',options:['Верно','Неверно'],correct:1,explanation:'Management = все практики. Governance = одна область, координирующая остальные.'},
 {type:'single',question:'Data Governance определяет:',options:['Технические спецификации СУБД','Кто, какие и как принимает решения о данных','Языки программирования','Стоимость серверов'],correct:1,explanation:'Governance — о решениях: кто принимает, какие решения, как контролируются.'}
 ]},
-{title:'Компоненты и организационная структура',content:`
-<h4>Организационная структура</h4>
-<ul><li><span class="term">Data Governance Council (DGC)</span> — высший орган: стратегия, приоритеты, политики. Включает бизнес-руководителей.</li>
-<li><span class="term">Data Governance Committee</span> — рабочая группа, реализующая решения.</li>
-<li><span class="term">Data Management Office (DMO)</span> / Data Governance Office — координирующее подразделение.</li>
-<li><span class="term">Executive Sponsor</span> — топ-менеджер, обеспечивающий поддержку. Без спонсора программа не выживет.</li></ul>
-<h4>Политики и стандарты</h4>
-<ul><li><strong>Data Quality Policy</strong> — стандарты качества</li>
-<li><strong>Data Security Policy</strong> — правила доступа и защиты</li>
-<li><strong>Data Retention Policy</strong> — сроки хранения и удаления</li>
-<li><strong>Data Usage Policy</strong> — допустимые способы использования</li></ul>
-<div class="def-block"><strong>Data Standard</strong> — более детальный документ с конкретными правилами (формат даты, naming conventions). Policy — документ высокого уровня.</div>
-<h4>Процессы</h4>
-<ul><li><span class="term">Data Issue Management</span> — выявление и решение проблем</li>
-<li><span class="term">Data Change Management</span> — контролируемые изменения</li>
-<li><span class="term">Escalation</span> — передача нерешённых вопросов наверх</li></ul>`,
+{title:'2. Организационная структура и компоненты программы',content:`
+<h4>Организационная структура Data Governance</h4>
+
+<svg viewBox="0 0 500 280" style="width:100%;max-width:500px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="150" y="5" width="200" height="45" rx="8" fill="#4f46e5" stroke="#3730a3" stroke-width="1.5"/>
+  <text x="250" y="23" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Executive Sponsor</text>
+  <text x="250" y="38" text-anchor="middle" font-size="8" fill="#c7d2fe">Топ-менеджер, поддержка и ресурсы</text>
+  <line x1="250" y1="52" x2="250" y2="66" stroke="#6366f1" stroke-width="1.5"/>
+  <rect x="120" y="68" width="260" height="45" rx="8" fill="#6366f1" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="250" y="86" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Data Governance Council (DGC)</text>
+  <text x="250" y="101" text-anchor="middle" font-size="8" fill="#c7d2fe">Стратегия, приоритеты, политики</text>
+  <line x1="250" y1="115" x2="250" y2="130" stroke="#6366f1" stroke-width="1.5"/>
+  <rect x="100" y="132" width="300" height="45" rx="8" fill="#a5b4fc" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="250" y="150" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3">Data Governance Committee</text>
+  <text x="250" y="165" text-anchor="middle" font-size="8" fill="#475569">Рабочая группа, реализация решений</text>
+  <line x1="170" y1="179" x2="170" y2="198" stroke="#6366f1" stroke-width="1"/>
+  <line x1="330" y1="179" x2="330" y2="198" stroke="#6366f1" stroke-width="1"/>
+  <rect x="60" y="200" width="180" height="40" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/>
+  <text x="150" y="218" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">Data Stewards</text>
+  <text x="150" y="232" text-anchor="middle" font-size="8" fill="#475569">Операционный уровень</text>
+  <rect x="260" y="200" width="180" height="40" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/>
+  <text x="350" y="218" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">DMO / DGO</text>
+  <text x="350" y="232" text-anchor="middle" font-size="8" fill="#475569">Координирующее подразделение</text>
+  <text x="250" y="268" text-anchor="middle" font-size="10" fill="#64748b">Типичная организационная структура Data Governance</text>
+</svg>
+
+<ul>
+<li><span class="term">Executive Sponsor</span> — топ-менеджер, обеспечивающий поддержку и ресурсы. <strong>Без спонсора программа governance не выживет</strong> — у неё не будет авторитета и бюджета.</li>
+<li><span class="term">Data Governance Council (DGC)</span> — высший орган, определяющий стратегию, приоритеты и политики. Обычно включает руководителей бизнес-подразделений. Может возглавляться CDO.</li>
+<li><span class="term">Data Governance Committee</span> — рабочая группа, реализующая решения Совета на практике.</li>
+<li><span class="term">Data Management Office (DMO)</span> / Data Governance Office (DGO) — подразделение, координирующее все активности по governance.</li>
+</ul>
+
+<h4>Политики данных / Data Policies</h4>
+<p><span class="term">Политика данных / Data Policy</span> — формальный документ, устанавливающий правила обращения с данными на высоком уровне.</p>
+
+<table class="info-table">
+<tr><th>Тип политики</th><th>Что определяет</th><th>Пример</th></tr>
+<tr><td><strong>Data Quality Policy</strong></td><td>Стандарты качества, правила валидации</td><td>«Все email-адреса должны быть валидированы при вводе»</td></tr>
+<tr><td><strong>Data Security Policy</strong></td><td>Правила доступа, классификации, защиты</td><td>«Персональные данные доступны только HR и юристам»</td></tr>
+<tr><td><strong>Data Retention Policy</strong></td><td>Сроки хранения, правила удаления</td><td>«Данные заявок хранятся 7 лет, затем удаляются»</td></tr>
+<tr><td><strong>Data Usage Policy</strong></td><td>Допустимые способы использования</td><td>«Клиентские данные нельзя использовать для обучения ML без согласия»</td></tr>
+</table>
+
+<div class="def-block"><strong>Data Standard</strong> — более детальный документ с конкретными правилами и нормами. Например: формат даты — ISO 8601 (YYYY-MM-DD), правила наименования полей (snake_case), допустимые значения справочников. <strong>Policy = «что делать»</strong>, <strong>Standard = «как именно делать»</strong>.</div>
+
+<h4>Процессы governance</h4>
+<ul>
+<li><span class="term">Data Issue Management</span> — систематический процесс выявления, документирования и решения проблем с данными (дубликаты, ошибки, несогласованность)</li>
+<li><span class="term">Data Change Management</span> — контролируемое внесение изменений в данные, метаданные и стандарты (не путать с IT Change Management)</li>
+<li><span class="term">Escalation</span> — процедура передачи нерешённых вопросов на более высокий уровень принятия решений</li>
+</ul>
+
+<h4>Метрики governance</h4>
+<ul>
+<li><strong>Policy compliance rate</strong> — уровень соответствия политикам</li>
+<li><strong>Data issues resolved</strong> — количество решённых проблем</li>
+<li><strong>Stewardship coverage</strong> — процент данных под управлением стюардов</li>
+<li><strong>Data management maturity</strong> — уровень зрелости</li>
+</ul>
+`,
 checkQuestions:[
 {type:'single',question:'Без кого программа Data Governance не выживет?',options:['DBA','Executive Sponsor','Data Analyst','Внешний консультант'],correct:1,explanation:'Executive Sponsor — топ-менеджер, обеспечивающий поддержку и ресурсы.'},
-{type:'truefalse',question:'Data Standard содержит более детальные правила, чем Data Policy.',options:['Верно','Неверно'],correct:0,explanation:'Standard = конкретные правила (формат даты). Policy = документ высокого уровня.'}
+{type:'truefalse',question:'Data Standard содержит более детальные правила, чем Data Policy.',options:['Верно','Неверно'],correct:0,explanation:'Standard = конкретные правила (формат даты). Policy = документ высокого уровня.'},
+{type:'single',question:'Policy compliance rate измеряет:',options:['Скорость сервера','Уровень соответствия политикам данных','Количество пользователей','Объём данных'],correct:1,explanation:'Policy compliance rate = метрика соответствия установленным политикам.'}
 ]},
-{title:'Модель зрелости и подходы к внедрению',content:`
+{title:'3. Модель зрелости и подходы к внедрению',content:`
 <h4>Data Management Maturity Model</h4>
-<ol start="0"><li><strong>Level 0</strong> — нет управления, хаос</li>
-<li><strong>Level 1 — Initial</strong> — отдельные инициативы, нет системности</li>
-<li><strong>Level 2 — Repeatable</strong> — базовые процессы определены</li>
-<li><strong>Level 3 — Defined</strong> — стандартизированные процессы</li>
-<li><strong>Level 4 — Managed</strong> — процессы измеряются количественно</li>
-<li><strong>Level 5 — Optimizing</strong> — постоянное совершенствование</li></ol>
-<h4>Подходы к внедрению</h4>
-<ul><li><strong>Top-down</strong> — от руководства. Плюс: авторитет. Риск: воспринимается как навязывание.</li>
-<li><strong>Bottom-up</strong> — от команд. Плюс: практичность. Риск: недостаток полномочий.</li>
-<li><strong>Combined</strong> — поддержка сверху + реализация снизу. Наиболее эффективный.</li></ul>
-<div class="warn-block"><strong>Типичная ошибка:</strong> Перепрыгивать уровни зрелости. Каждый уровень строится на предыдущем.</div>`,
+<p>DAMA описывает модель зрелости для оценки текущего состояния управления данными в организации. Это помогает понять, на каком этапе находится организация и какие следующие шаги приоритетны.</p>
+
+<svg viewBox="0 0 560 200" style="width:100%;max-width:560px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="5" y="140" width="85" height="50" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="47" y="160" text-anchor="middle" font-size="9" font-weight="700" fill="#dc2626">Level 0</text>
+  <text x="47" y="175" text-anchor="middle" font-size="8" fill="#475569">Нет управл.</text>
+  <rect x="97" y="115" width="85" height="75" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="139" y="140" text-anchor="middle" font-size="9" font-weight="700" fill="#d97706">Level 1</text>
+  <text x="139" y="155" text-anchor="middle" font-size="8" fill="#475569">Initial</text>
+  <text x="139" y="168" text-anchor="middle" font-size="7" fill="#64748b">Ad hoc</text>
+  <rect x="189" y="90" width="85" height="100" rx="6" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="231" y="115" text-anchor="middle" font-size="9" font-weight="700" fill="#0284c7">Level 2</text>
+  <text x="231" y="130" text-anchor="middle" font-size="8" fill="#475569">Repeatable</text>
+  <text x="231" y="143" text-anchor="middle" font-size="7" fill="#64748b">Базовые процессы</text>
+  <rect x="281" y="65" width="85" height="125" rx="6" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="323" y="90" text-anchor="middle" font-size="9" font-weight="700" fill="#0d9488">Level 3</text>
+  <text x="323" y="105" text-anchor="middle" font-size="8" fill="#475569">Defined</text>
+  <text x="323" y="118" text-anchor="middle" font-size="7" fill="#64748b">Стандартизир.</text>
+  <rect x="373" y="40" width="85" height="150" rx="6" fill="#c7d2fe" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="415" y="65" text-anchor="middle" font-size="9" font-weight="700" fill="#4f46e5">Level 4</text>
+  <text x="415" y="80" text-anchor="middle" font-size="8" fill="#475569">Managed</text>
+  <text x="415" y="93" text-anchor="middle" font-size="7" fill="#64748b">Измеряемые</text>
+  <rect x="465" y="15" width="85" height="175" rx="6" fill="#4f46e5" stroke="#3730a3" stroke-width="1.5"/>
+  <text x="507" y="40" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">Level 5</text>
+  <text x="507" y="55" text-anchor="middle" font-size="8" fill="#c7d2fe">Optimizing</text>
+  <text x="507" y="68" text-anchor="middle" font-size="7" fill="#c7d2fe">Постоянное</text>
+  <text x="507" y="78" text-anchor="middle" font-size="7" fill="#c7d2fe">улучшение</text>
+</svg>
+
+<table class="info-table">
+<tr><th>Уровень</th><th>Название</th><th>Характеристика</th></tr>
+<tr><td>0</td><td>No capability</td><td>Нет формального управления данными, хаос</td></tr>
+<tr><td>1</td><td>Initial</td><td>Отдельные инициативы, нет системности, ad hoc</td></tr>
+<tr><td>2</td><td>Repeatable</td><td>Базовые процессы определены и могут повторяться</td></tr>
+<tr><td>3</td><td>Defined</td><td>Процессы стандартизированы и документированы</td></tr>
+<tr><td>4</td><td>Managed</td><td>Процессы измеряются количественно и контролируются</td></tr>
+<tr><td>5</td><td>Optimizing</td><td>Постоянное совершенствование на основе метрик</td></tr>
+</table>
+
+<div class="warn-block"><strong>Типичная ошибка:</strong> Пытаться «перепрыгнуть» уровни — например, сразу с Level 1 на Level 5. Зрелость — постепенный процесс, каждый уровень строится на предыдущем. Если организация на Level 1, начните с определения базовых процессов (путь к Level 2), а не с внедрения сложных метрик.</div>
+
+<h4>Подходы к внедрению governance</h4>
+<ul>
+<li><strong>Top-down / Сверху вниз</strong> — инициатива идёт от руководства. Сильная сторона: авторитет и ресурсы. Риск: может восприниматься как «навязывание» и вызвать сопротивление.</li>
+<li><strong>Bottom-up / Снизу вверх</strong> — инициатива от операционных команд. Сильная сторона: практичность и понимание реальных проблем. Риск: недостаток полномочий для масштабных изменений.</li>
+<li><strong>Combined / Комбинированный</strong> — поддержка сверху + практическая реализация снизу. <strong>Наиболее эффективный подход</strong>, сочетающий авторитет руководства с практическим знанием команд.</li>
+</ul>
+
+<h4>Data Governance и смежные области</h4>
+<ul>
+<li><strong>Governance → Data Quality:</strong> Governance определяет стандарты качества, метрики и ответственных. Без governance инициативы по качеству разрозненны.</li>
+<li><strong>Governance → Compliance:</strong> Governance обеспечивает соответствие GDPR, HIPAA и отраслевым нормам.</li>
+<li><strong>Governance → Metadata:</strong> Без метаданных (описания данных) governance невозможен — нельзя управлять тем, что не описано.</li>
+</ul>
+`,
 checkQuestions:[
 {type:'single',question:'Какой уровень зрелости характеризуется стандартизированными процессами?',options:['Initial','Repeatable','Defined','Managed'],correct:2,explanation:'Defined (Level 3) = процессы стандартизированы и документированы.'},
-{type:'single',question:'Какой подход к внедрению governance наиболее эффективен?',options:['Top-down','Bottom-up','Combined','Без формальной структуры'],correct:2,explanation:'Combined: поддержка руководства + практическая реализация командами.'}
+{type:'single',question:'Какой подход к внедрению governance наиболее эффективен?',options:['Top-down','Bottom-up','Combined','Без формальной структуры'],correct:2,explanation:'Combined: поддержка руководства + практическая реализация командами.'},
+{type:'single',question:'Что отличает Level 4 (Managed) от Level 3 (Defined)?',options:['Наличие документации','Количественное измерение процессов','Наличие ролей','Использование облака'],correct:1,explanation:'Managed = Defined + процессы измеряются количественно и контролируются.'}
 ]}
 ]},
+// ==================== MODULE 3: DATA ARCHITECTURE ====================
 {id:'m3',title:'Data Architecture',chapter:'DAMA DMBOK Chapter 4',
 objectives:['Understand data architecture definition and goals','Know Enterprise Architecture domains','Know key architecture artifacts (DFD, CRUD, catalog)','Understand As-Is / To-Be and roadmaps','Know TOGAF and Zachman frameworks'],
 sections:[
-{title:'Определение и место в Enterprise Architecture',content:`
-<div class="def-block"><strong>Архитектура данных / Data Architecture</strong> — совокупность спецификаций, описывающих структуру данных организации, их связь с процессами и приложениями, а также планы по управлению данными.</div>
-<p>Data Architecture входит в <span class="term">Enterprise Architecture (EA)</span>, которая включает 4 домена:</p>
-<ul><li><strong>Business Architecture</strong> — процессы, стратегия</li>
-<li><strong>Data Architecture</strong> — структура и потоки данных</li>
-<li><strong>Application Architecture</strong> — информационные системы</li>
-<li><strong>Technology Architecture</strong> — инфраструктура</li></ul>
-<h4>Цели</h4>
-<ul><li>Определить потребности в данных</li><li>Согласовать структуру данных с бизнес-стратегией</li>
-<li>Поддержать <span class="term">data reuse</span> (повторное использование)</li>
-<li>Уменьшить <span class="term">data redundancy</span> (избыточность)</li>
-<li>Устранить <span class="term">data silos</span> (изолированные островки данных)</li></ul>
-<div class="warn-block"><strong>Типичная ошибка:</strong> Путать архитектуру данных с моделированием. Архитектура = стратегический уровень (план города). Моделирование = детальное проектирование (чертёж здания).</div>`,
+{title:'1. Определение и место в Enterprise Architecture',content:`
+<div class="def-block"><strong>Архитектура данных / Data Architecture</strong> — совокупность спецификаций, описывающих структуру данных организации, их связь с бизнес-процессами и приложениями, а также планы по управлению данными. Архитектура данных отвечает на вопросы: <strong>какие данные</strong> нужны, <strong>где</strong> они хранятся, <strong>как</strong> перемещаются и <strong>как связаны</strong> с бизнесом.</div>
+
+<h4>Enterprise Architecture (EA)</h4>
+<p>Data Architecture является одним из четырёх доменов <span class="term">корпоративной архитектуры / Enterprise Architecture</span>:</p>
+
+<svg viewBox="0 0 520 140" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="5" y="15" width="120" height="90" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="65" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="#d97706">Business</text>
+  <text x="65" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="#d97706">Architecture</text>
+  <text x="65" y="82" text-anchor="middle" font-size="9" fill="#475569">Процессы, стратегия</text>
+  <rect x="135" y="15" width="120" height="90" rx="10" fill="#4f46e5" stroke="#3730a3" stroke-width="2"/>
+  <text x="195" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Data</text>
+  <text x="195" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Architecture</text>
+  <text x="195" y="82" text-anchor="middle" font-size="9" fill="#c7d2fe">Данные, потоки</text>
+  <rect x="265" y="15" width="120" height="90" rx="10" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2"/>
+  <text x="325" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="#0d9488">Application</text>
+  <text x="325" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="#0d9488">Architecture</text>
+  <text x="325" y="82" text-anchor="middle" font-size="9" fill="#475569">ИС, приложения</text>
+  <rect x="395" y="15" width="120" height="90" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="455" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Technology</text>
+  <text x="455" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Architecture</text>
+  <text x="455" y="82" text-anchor="middle" font-size="9" fill="#475569">Инфраструктура</text>
+  <text x="260" y="130" text-anchor="middle" font-size="10" fill="#64748b">Четыре домена Enterprise Architecture</text>
+</svg>
+
+<h4>Цели архитектуры данных</h4>
+<ul>
+<li>Определить потребности организации в данных и согласовать их с бизнес-стратегией</li>
+<li>Управлять сложностью ландшафта данных</li>
+<li>Поддержать <span class="term">data reuse</span> — повторное использование данных</li>
+<li>Уменьшить <span class="term">data redundancy</span> — избыточное дублирование</li>
+<li>Устранить <span class="term">data silos</span> — изолированные «островки» данных, не связанные с другими системами</li>
+<li>Создать основу для интеграции данных</li>
+</ul>
+
+<div class="warn-block"><strong>Типичная ошибка:</strong> Путать архитектуру данных с моделированием данных. <strong>Архитектура</strong> — стратегический уровень: какие данные нужны, где хранятся, как связаны с бизнесом (аналог: <em>план города</em>). <strong>Моделирование</strong> — детальное проектирование структуры конкретных наборов данных (аналог: <em>чертёж здания</em>).</div>
+
+<div class="info-block"><strong>Для бизнес-аналитика:</strong> Архитектура данных — это «карта» данных организации. Когда вы начинаете проект, архитектура помогает ответить: «Где найти нужные данные? Откуда они берутся? Какие системы их используют?» Это экономит недели исследований.</div>
+`,
 checkQuestions:[
 {type:'matching',question:'Сопоставьте домены EA:',pairs:[{left:'Business Architecture'},{left:'Data Architecture'},{left:'Application Architecture'},{left:'Technology Architecture'}],rightOptions:['Процессы и стратегия','Структура и потоки данных','Информационные системы','Инфраструктура'],correct:[0,1,2,3],explanation:'Каждый домен EA охватывает свой аспект организации.'},
 {type:'truefalse',question:'Data Architecture и Data Modeling — одно и то же.',options:['Верно','Неверно'],correct:1,explanation:'Architecture = стратегический уровень. Modeling = детальное проектирование.'}
 ]},
-{title:'Артефакты архитектуры данных',content:`
-<ul><li><span class="term">Data Catalog</span> — инвентаризация всех наборов данных с описанием назначения, владельцев, расположения.</li>
-<li><span class="term">Data Flow Diagram (DFD)</span> — визуализация движения данных: источники, потребители, преобразования, хранилища.</li>
-<li><span class="term">CRUD Matrix</span> — таблица «процессы × данные», показывающая Create/Read/Update/Delete.</li>
-<li><span class="term">Subject Area Model</span> — высокоуровневая модель предметных областей (клиенты, продукты, заказы).</li></ul>
-<div class="def-block"><strong>Single Source of Truth (SSOT)</strong> — принцип: каждый элемент данных имеет один авторитетный источник.</div>`,
+{title:'2. Артефакты архитектуры данных',content:`
+<p>Архитектор данных создаёт ряд <span class="term">артефактов / artifacts</span> — документов и моделей, описывающих архитектуру:</p>
+
+<h4>Data Catalog / Каталог данных</h4>
+<p>Инвентаризация всех наборов данных организации с описанием назначения, владельцев и расположения. Отвечает на вопрос: «Какие данные у нас есть и кому они принадлежат?»</p>
+
+<h4>Data Flow Diagram (DFD) / Потоковая диаграмма</h4>
+<p>Визуализация движения данных между системами. Показывает источники данных, потребителей, преобразования и хранилища.</p>
+
+<svg viewBox="0 0 500 180" style="width:100%;max-width:500px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="a2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6366f1"/></marker></defs>
+  <rect x="10" y="55" width="100" height="50" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="60" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">CRM</text>
+  <text x="60" y="92" text-anchor="middle" font-size="8" fill="#475569">Источник</text>
+  <rect x="200" y="40" width="100" height="80" rx="40" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/>
+  <text x="250" y="75" text-anchor="middle" font-size="10" font-weight="600" fill="#0d9488">ETL</text>
+  <text x="250" y="90" text-anchor="middle" font-size="8" fill="#475569">Преобразование</text>
+  <rect x="390" y="55" width="100" height="50" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="440" y="78" text-anchor="middle" font-size="10" font-weight="600" fill="#d97706">DWH</text>
+  <text x="440" y="92" text-anchor="middle" font-size="8" fill="#475569">Хранилище</text>
+  <line x1="112" y1="80" x2="198" y2="80" stroke="#6366f1" stroke-width="1.5" marker-end="url(#a2)"/>
+  <line x1="302" y1="80" x2="388" y2="80" stroke="#6366f1" stroke-width="1.5" marker-end="url(#a2)"/>
+  <text x="155" y="73" text-anchor="middle" font-size="8" fill="#64748b">Данные клиентов</text>
+  <text x="345" y="73" text-anchor="middle" font-size="8" fill="#64748b">Очищенные данные</text>
+  <text x="250" y="155" text-anchor="middle" font-size="10" fill="#64748b">Упрощённый пример Data Flow Diagram</text>
+</svg>
+
+<h4>CRUD Matrix</h4>
+<p>Таблица, сопоставляющая бизнес-процессы с наборами данных. Показывает, какие данные какими процессами создаются (<strong>C</strong>reate), читаются (<strong>R</strong>ead), обновляются (<strong>U</strong>pdate) и удаляются (<strong>D</strong>elete).</p>
+
+<table class="info-table">
+<tr><th>Процесс / Данные</th><th>Клиенты</th><th>Заказы</th><th>Продукты</th></tr>
+<tr><td>Регистрация клиента</td><td><strong>C</strong></td><td></td><td><strong>R</strong></td></tr>
+<tr><td>Оформление заказа</td><td><strong>R</strong></td><td><strong>C</strong></td><td><strong>R, U</strong></td></tr>
+<tr><td>Возврат товара</td><td><strong>R</strong></td><td><strong>U</strong></td><td><strong>U</strong></td></tr>
+<tr><td>Удаление аккаунта</td><td><strong>D</strong></td><td><strong>U</strong></td><td></td></tr>
+</table>
+
+<h4>Subject Area Model</h4>
+<p>Высокоуровневая модель, показывающая ключевые <span class="term">предметные области / subject areas</span> организации и их связи: клиенты, продукты, заказы, финансы, поставщики.</p>
+
+<h4>Принцип SSOT</h4>
+<div class="def-block"><strong>Single Source of Truth (SSOT)</strong> / Единый источник правды — принцип, согласно которому каждый элемент данных имеет <strong>один авторитетный источник</strong>, из которого берутся все копии. Это устраняет проблему «у нас 5 систем с разными данными о клиенте — какие правильные?»</div>
+`,
 checkQuestions:[
 {type:'single',question:'Что показывает CRUD Matrix?',options:['Скорость запросов','Какие процессы какие операции выполняют над данными','Стоимость хранения','Уровень безопасности'],correct:1,explanation:'CRUD Matrix сопоставляет процессы с операциями Create/Read/Update/Delete.'},
 {type:'fillin',question:'Как расшифровывается SSOT?',correct:['single source of truth','Single Source of Truth'],explanation:'SSOT = Single Source of Truth — единый источник правды.'}
 ]},
-{title:'As-Is, To-Be и фреймворки',content:`
-<div class="def-block"><strong>As-Is</strong> — текущее состояние архитектуры. <strong>To-Be</strong> — целевое состояние. <strong>Roadmap</strong> — план перехода от As-Is к To-Be.</div>
-<h4>Фреймворки</h4>
-<ul><li><span class="term">TOGAF</span> (The Open Group Architecture Framework) — наиболее распространённый фреймворк EA.</li>
-<li><span class="term">Zachman Framework</span> — матричный подход: вопросы (что, как, где, кто, когда, зачем) × уровни абстракции.</li></ul>
-<h4>Типичные вызовы</h4>
-<ul><li><strong>Data Silos</strong> — разрозненные данные</li>
-<li><strong>Technical Debt</strong> — накопленные архитектурные компромиссы</li>
-<li><strong>Shadow IT</strong> — системы, созданные без координации с IT</li></ul>`,
+{title:'3. As-Is, To-Be, Roadmap и фреймворки',content:`
+<h4>Два состояния архитектуры</h4>
+
+<svg viewBox="0 0 500 100" style="width:100%;max-width:500px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="a3" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#6366f1"/></marker></defs>
+  <rect x="10" y="15" width="150" height="60" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="85" y="42" text-anchor="middle" font-size="14" font-weight="700" fill="#dc2626">As-Is</text>
+  <text x="85" y="58" text-anchor="middle" font-size="10" fill="#475569">Текущее состояние</text>
+  <line x1="162" y1="45" x2="208" y2="45" stroke="#6366f1" stroke-width="2" marker-end="url(#a3)" stroke-dasharray="6,3"/>
+  <rect x="170" y="25" width="160" height="40" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="250" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#4f46e5">Roadmap / Дорожная карта</text>
+  <rect x="340" y="15" width="150" height="60" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+  <text x="415" y="42" text-anchor="middle" font-size="14" font-weight="700" fill="#059669">To-Be</text>
+  <text x="415" y="58" text-anchor="middle" font-size="10" fill="#475569">Целевое состояние</text>
+  <text x="250" y="95" text-anchor="middle" font-size="10" fill="#64748b">Архитектурное планирование: от текущего к целевому состоянию</text>
+</svg>
+
+<ul>
+<li><span class="term">As-Is / Текущее состояние</span> — описание существующей архитектуры: какие данные есть, где хранятся, как перемещаются, какие проблемы существуют.</li>
+<li><span class="term">To-Be / Целевое состояние</span> — видение будущей архитектуры, отражающее бизнес-стратегию и устраняющее текущие проблемы.</li>
+<li><span class="term">Roadmap / Дорожная карта</span> — план перехода от As-Is к To-Be: приоритизированные инициативы, этапы, зависимости, ресурсы.</li>
+</ul>
+
+<div class="warn-block"><strong>Типичная ошибка:</strong> Создавать целевую архитектуру (To-Be) без анализа текущего состояния (As-Is). Архитектура «на бумаге» без понимания реальности нежизнеспособна. Всегда начинайте с As-Is.</div>
+
+<h4>Фреймворки архитектуры</h4>
+<ul>
+<li><span class="term">TOGAF</span> (The Open Group Architecture Framework) — <strong>наиболее распространённый</strong> фреймворк корпоративной архитектуры. Определяет ADM (Architecture Development Method) — пошаговый метод разработки архитектуры.</li>
+<li><span class="term">Zachman Framework</span> — матричный подход, сопоставляющий 6 вопросов (что, как, где, кто, когда, зачем) с 6 уровнями абстракции (от контекста до деталей). Помогает организовать архитектурные знания.</li>
+</ul>
+
+<h4>Типичные вызовы архитектуры данных</h4>
+<ul>
+<li><strong>Data Silos</strong> — разрозненные данные в изолированных системах, не связанных между собой. Одна из главных проблем, которую решает архитектура.</li>
+<li><strong>Technical Debt</strong> — накопленные архитектурные компромиссы и «быстрые решения», которые затрудняют развитие.</li>
+<li><strong>Shadow IT</strong> — системы и базы данных, созданные подразделениями без ведома и координации с IT-отделом.</li>
+</ul>
+
+<div class="info-block"><strong>Для бизнес-аналитика:</strong> Когда формулируете требования к новой системе, спросите: «Есть ли целевая архитектура данных (To-Be)?» Это поможет убедиться, что ваш проект вписывается в общую стратегию и не создаёт новых data silos.</div>
+`,
 checkQuestions:[
 {type:'single',question:'Roadmap архитектуры данных — это:',options:['Список серверов','План перехода от As-Is к To-Be','Каталог СУБД','Бюджет IT'],correct:1,explanation:'Roadmap = план перехода от текущего к целевому состоянию.'},
-{type:'single',question:'Shadow IT — это:',options:['Теневые серверы','Системы, созданные подразделениями без координации с IT','Шифрование данных','Резервные копии'],correct:1,explanation:'Shadow IT = неконтролируемые системы, созданные бизнесом самостоятельно.'}
+{type:'single',question:'Shadow IT — это:',options:['Теневые серверы','Системы, созданные подразделениями без координации с IT','Шифрование данных','Резервные копии'],correct:1,explanation:'Shadow IT = неконтролируемые системы, созданные бизнесом самостоятельно.'},
+{type:'single',question:'TOGAF — это:',options:['Тип СУБД','Наиболее распространённый фреймворк EA','Язык программирования','Метод шифрования'],correct:1,explanation:'TOGAF = The Open Group Architecture Framework — самый популярный EA-фреймворк.'}
 ]}
 ]},
+// ==================== MODULE 4: DATA MODELING & DESIGN ====================
 {id:'m4',title:'Data Modeling & Design',chapter:'DAMA DMBOK Chapter 5',
 objectives:['Know entities, attributes, relationships, constraints','Distinguish CDM, LDM, PDM','Understand cardinality and keys','Know normalization (1NF, 2NF, 3NF)','Understand Star and Snowflake schemas'],
 sections:[
-{title:'Основы моделирования данных',content:`
-<div class="def-block"><strong>Моделирование данных / Data Modeling</strong> — процесс создания визуального представления структуры данных, включающего сущности, атрибуты, связи и ограничения.</div>
-<ul><li><span class="term">Entity</span> (сущность) — объект реального мира: клиент, заказ, продукт</li>
-<li><span class="term">Attribute</span> (атрибут) — характеристика: имя, дата, цена</li>
-<li><span class="term">Relationship</span> (связь) — отношение: «клиент размещает заказ»</li>
-<li><span class="term">Constraint</span> (ограничение) — правило целостности: email уникален</li></ul>
-<h4>Три уровня моделей</h4>
-<table class="info-table"><tr><th></th><th>CDM</th><th>LDM</th><th>PDM</th></tr>
-<tr><td>Аудитория</td><td>Бизнес</td><td>Бизнес + IT</td><td>IT / DBA</td></tr>
-<tr><td>Детализация</td><td>Низкая</td><td>Высокая</td><td>Максимальная</td></tr>
-<tr><td>Привязка к СУБД</td><td>Нет</td><td>Нет</td><td>Да</td></tr>
-<tr><td>Нормализация</td><td>Нет</td><td>Обычно да</td><td>Может денорм.</td></tr></table>
-<div class="warn-block"><strong>Типичная ошибка:</strong> Пропускать CDM. Без согласования с бизнесом есть риск хранить «не те» данные.</div>`,
+{title:'1. Основы моделирования: сущности, атрибуты, связи',content:`
+<div class="def-block"><strong>Моделирование данных / Data Modeling</strong> — процесс создания визуального представления структуры данных организации или системы. Модель данных описывает: какие данные хранятся, как они связаны и какие правила к ним применяются.</div>
+
+<h4>Четыре основных элемента модели данных</h4>
+
+<svg viewBox="0 0 520 180" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="240" height="65" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="130" y="33" text-anchor="middle" font-size="12" font-weight="700" fill="#4f46e5">Entity / Сущность</text>
+  <text x="130" y="50" text-anchor="middle" font-size="9" fill="#475569">Объект реального мира: Клиент,</text>
+  <text x="130" y="63" text-anchor="middle" font-size="9" fill="#475569">Заказ, Продукт</text>
+  <rect x="270" y="10" width="240" height="65" rx="10" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2"/>
+  <text x="390" y="33" text-anchor="middle" font-size="12" font-weight="700" fill="#0d9488">Attribute / Атрибут</text>
+  <text x="390" y="50" text-anchor="middle" font-size="9" fill="#475569">Характеристика сущности:</text>
+  <text x="390" y="63" text-anchor="middle" font-size="9" fill="#475569">имя, дата, цена</text>
+  <rect x="10" y="95" width="240" height="65" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="130" y="118" text-anchor="middle" font-size="12" font-weight="700" fill="#d97706">Relationship / Связь</text>
+  <text x="130" y="135" text-anchor="middle" font-size="9" fill="#475569">Отношение между сущностями:</text>
+  <text x="130" y="148" text-anchor="middle" font-size="9" fill="#475569">«клиент размещает заказ»</text>
+  <rect x="270" y="95" width="240" height="65" rx="10" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+  <text x="390" y="118" text-anchor="middle" font-size="12" font-weight="700" fill="#db2777">Constraint / Ограничение</text>
+  <text x="390" y="135" text-anchor="middle" font-size="9" fill="#475569">Правило целостности:</text>
+  <text x="390" y="148" text-anchor="middle" font-size="9" fill="#475569">email уникален, NOT NULL</text>
+</svg>
+
+<h4>Три уровня моделей данных</h4>
+
+<table class="info-table">
+<tr><th>Характеристика</th><th>CDM (Conceptual)</th><th>LDM (Logical)</th><th>PDM (Physical)</th></tr>
+<tr><td><strong>Аудитория</strong></td><td>Бизнес</td><td>Бизнес + IT</td><td>IT / DBA</td></tr>
+<tr><td><strong>Детализация</strong></td><td>Низкая — только сущности и связи</td><td>Высокая — + атрибуты, ключи, правила</td><td>Максимальная — + типы данных, индексы</td></tr>
+<tr><td><strong>Привязка к СУБД</strong></td><td>Нет</td><td>Нет</td><td>Да</td></tr>
+<tr><td><strong>Нормализация</strong></td><td>Не применяется</td><td>Обычно да (3NF)</td><td>Может быть денорм.</td></tr>
+<tr><td><strong>Пример содержимого</strong></td><td>Клиент — Заказ — Продукт</td><td>+ ФИО, email, дата заказа, цена</td><td>+ VARCHAR(100), INDEX, PARTITION</td></tr>
+</table>
+
+<div class="warn-block"><strong>Типичная ошибка:</strong> Пропускать CDM и сразу строить логическую или физическую модель. CDM — ключевой инструмент для согласования понимания данных с бизнесом. Без CDM есть риск построить систему, которая хранит «не те» данные.</div>
+
+<div class="example-block"><strong>Пример перехода CDM → LDM → PDM:</strong><br>
+<strong>CDM:</strong> Клиент — [размещает] — Заказ — [содержит] — Продукт (3 сущности, 2 связи)<br>
+<strong>LDM:</strong> Клиент (ФИО, email, телефон, адрес) → Заказ (номер, дата, сумма, статус) → Продукт (название, цена, SKU, категория)<br>
+<strong>PDM:</strong> CREATE TABLE customers (id SERIAL PK, name VARCHAR(100), email VARCHAR(255) UNIQUE, ...); CREATE INDEX idx_email ON customers(email);</div>
+
+<div class="info-block"><strong>Для бизнес-аналитика:</strong> Моделирование данных — один из ваших ключевых навыков. Вы должны уметь читать модели данных и участвовать в создании CDM. Концептуальная модель — ваш основной инструмент для фиксации бизнес-требований к данным.</div>
+`,
 checkQuestions:[
 {type:'single',question:'Какая модель создаётся для бизнес-аудитории без технических деталей?',options:['PDM','LDM','CDM','ERD'],correct:2,explanation:'CDM = Conceptual Data Model — для бизнеса, без технических деталей.'},
-{type:'single',question:'Какая модель привязана к конкретной СУБД?',options:['CDM','LDM','PDM','Все три'],correct:2,explanation:'PDM (Physical Data Model) оптимизирована для конкретной СУБД.'}
+{type:'single',question:'Какая модель привязана к конкретной СУБД?',options:['CDM','LDM','PDM','Все три'],correct:2,explanation:'PDM (Physical Data Model) оптимизирована для конкретной СУБД.'},
+{type:'single',question:'Что НЕ входит в CDM?',options:['Сущности','Связи','Индексы и типы данных','Предметные области'],correct:2,explanation:'Индексы и типы данных — элементы PDM, не CDM.'}
 ]},
-{title:'Связи, ключи, нормализация и схемы',content:`
-<h4>Кардинальность</h4>
-<ul><li><strong>1:1</strong> (One-to-One) — сотрудник ↔ рабочее место</li>
-<li><strong>1:M</strong> (One-to-Many) — клиент → заказы. Самый распространённый тип.</li>
-<li><strong>M:M</strong> (Many-to-Many) — студент ↔ курс. Реализуется через промежуточную таблицу.</li></ul>
-<h4>Ключи</h4>
-<ul><li><span class="term">Primary Key (PK)</span> — уникальный идентификатор записи</li>
-<li><span class="term">Foreign Key (FK)</span> — ссылка на PK другой сущности</li>
-<li><span class="term">Natural Key</span> — на основе реальных данных (ИНН, email)</li>
-<li><span class="term">Surrogate Key</span> — искусственный (автоинкрементный ID)</li></ul>
+{title:'2. Связи, ключи, нормализация и схемы DWH',content:`
+<h4>Кардинальность / Cardinality</h4>
+
+<svg viewBox="0 0 500 150" style="width:100%;max-width:500px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(0,10)">
+    <rect x="10" y="5" width="100" height="30" rx="5" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/><text x="60" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">Сотрудник</text>
+    <line x1="112" y1="20" x2="220" y2="20" stroke="#475569" stroke-width="1.5"/>
+    <rect x="222" y="5" width="100" height="30" rx="5" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/><text x="272" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">Раб. место</text>
+    <text x="165" y="15" text-anchor="middle" font-size="9" fill="#64748b">1 : 1</text>
+  </g>
+  <g transform="translate(0,50)">
+    <rect x="10" y="5" width="100" height="30" rx="5" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/><text x="60" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#0d9488">Клиент</text>
+    <line x1="112" y1="20" x2="198" y2="20" stroke="#475569" stroke-width="1.5"/>
+    <line x1="200" y1="12" x2="220" y2="20" stroke="#475569" stroke-width="1.5"/>
+    <line x1="200" y1="28" x2="220" y2="20" stroke="#475569" stroke-width="1.5"/>
+    <line x1="200" y1="20" x2="220" y2="20" stroke="#475569" stroke-width="1.5"/>
+    <rect x="222" y="5" width="100" height="30" rx="5" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/><text x="272" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#0d9488">Заказы</text>
+    <text x="165" y="15" text-anchor="middle" font-size="9" fill="#64748b">1 : M</text>
+    <text x="380" y="25" font-size="9" fill="#64748b">← самый частый тип</text>
+  </g>
+  <g transform="translate(0,90)">
+    <rect x="10" y="5" width="100" height="30" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="60" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#d97706">Студент</text>
+    <line x1="112" y1="20" x2="220" y2="20" stroke="#475569" stroke-width="1.5"/>
+    <rect x="222" y="5" width="100" height="30" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="272" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#d97706">Курс</text>
+    <text x="165" y="15" text-anchor="middle" font-size="9" fill="#64748b">M : M</text>
+    <text x="380" y="25" font-size="9" fill="#64748b">→ через промежуточную таблицу</text>
+  </g>
+</svg>
+
+<h4>Ключи / Keys</h4>
+<ul>
+<li><span class="term">Primary Key (PK)</span> — уникальный идентификатор записи в сущности</li>
+<li><span class="term">Foreign Key (FK)</span> — атрибут, ссылающийся на PK другой сущности, реализующий связь</li>
+<li><span class="term">Natural Key</span> — ключ на основе реальных данных (ИНН, email). Может измениться!</li>
+<li><span class="term">Surrogate Key</span> — искусственный ключ, созданный системой (auto-increment ID). Стабильнее.</li>
+</ul>
+
 <h4>Нормализация / Normalization</h4>
-<ul><li><strong>1NF</strong> — атомарность: каждое поле содержит одно неделимое значение</li>
-<li><strong>2NF</strong> = 1NF + полная зависимость от всего PK</li>
-<li><strong>3NF</strong> = 2NF + нет транзитивных зависимостей</li></ul>
-<p><span class="term">Денормализация / Denormalization</span> — сознательное нарушение NF для ускорения чтения. OLTP обычно нормализован (3NF). OLAP часто денормализован.</p>
-<h4>Схемы DWH</h4>
-<ul><li><span class="term">Star Schema</span> — fact table в центре + денормализованные dimension tables вокруг</li>
-<li><span class="term">Snowflake Schema</span> — то же, но dimension tables нормализованы</li></ul>
-<p><span class="term">Fact Table</span> = числовые метрики. <span class="term">Dimension Table</span> = описательные атрибуты (кто, что, когда).</p>
-<h4>Нотации</h4>
-<ul><li><span class="term">IE (Information Engineering)</span> — crow's foot (воронья лапка). Наиболее распространена.</li>
-<li><span class="term">UML</span> — универсальный язык моделирования</li>
-<li><span class="term">IDEF1X</span> — стандарт NIST</li></ul>`,
+<div class="def-block"><strong>Нормализация</strong> — процесс организации данных для устранения избыточности и обеспечения целостности. Данные разделяются на связанные таблицы по определённым правилам (нормальным формам).</div>
+
+<table class="info-table">
+<tr><th>Форма</th><th>Требование</th><th>Пример нарушения</th></tr>
+<tr><td><strong>1NF</strong></td><td>Атомарность: одно значение на поле</td><td>Поле «Телефоны» = «+7-999-111, +7-999-222»</td></tr>
+<tr><td><strong>2NF</strong></td><td>1NF + каждый неключевой атрибут зависит от <em>всего</em> PK</td><td>Частичная зависимость от составного ключа</td></tr>
+<tr><td><strong>3NF</strong></td><td>2NF + нет транзитивных зависимостей</td><td>Город зависит от индекса, а не от PK</td></tr>
+</table>
+
+<p><span class="term">Денормализация / Denormalization</span> — сознательное нарушение NF для ускорения чтения. <strong>OLTP</strong> обычно нормализован (3NF). <strong>OLAP</strong> часто денормализован.</p>
+
+<h4>Схемы хранилищ данных</h4>
+
+<svg viewBox="0 0 520 170" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <text x="130" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Star Schema</text>
+  <rect x="80" y="60" width="100" height="40" rx="6" fill="#4f46e5" stroke="#3730a3" stroke-width="1.5"/>
+  <text x="130" y="85" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Fact Table</text>
+  <rect x="10" y="25" width="70" height="25" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/><text x="45" y="42" text-anchor="middle" font-size="8" fill="#4f46e5">Dim: Time</text>
+  <rect x="180" y="25" width="70" height="25" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/><text x="215" y="42" text-anchor="middle" font-size="8" fill="#4f46e5">Dim: Product</text>
+  <rect x="10" y="110" width="70" height="25" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/><text x="45" y="127" text-anchor="middle" font-size="8" fill="#4f46e5">Dim: Store</text>
+  <rect x="180" y="110" width="70" height="25" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/><text x="215" y="127" text-anchor="middle" font-size="8" fill="#4f46e5">Dim: Customer</text>
+  <line x1="80" y1="52" x2="105" y2="60" stroke="#6366f1" stroke-width="1"/>
+  <line x1="180" y1="52" x2="155" y2="60" stroke="#6366f1" stroke-width="1"/>
+  <line x1="80" y1="110" x2="105" y2="100" stroke="#6366f1" stroke-width="1"/>
+  <line x1="180" y1="110" x2="155" y2="100" stroke="#6366f1" stroke-width="1"/>
+  <text x="130" y="155" text-anchor="middle" font-size="8" fill="#64748b">Dimensions денормализованы</text>
+  <text x="390" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#0d9488">Snowflake Schema</text>
+  <rect x="340" y="60" width="100" height="40" rx="6" fill="#0d9488" stroke="#065f46" stroke-width="1.5"/>
+  <text x="390" y="85" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Fact Table</text>
+  <rect x="270" y="25" width="60" height="22" rx="4" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1"/><text x="300" y="40" text-anchor="middle" font-size="7" fill="#0d9488">Dim</text>
+  <rect x="440" y="25" width="60" height="22" rx="4" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1"/><text x="470" y="40" text-anchor="middle" font-size="7" fill="#0d9488">Dim</text>
+  <rect x="270" y="110" width="60" height="22" rx="4" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1"/><text x="300" y="125" text-anchor="middle" font-size="7" fill="#0d9488">Dim</text>
+  <rect x="440" y="110" width="60" height="22" rx="4" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1"/><text x="470" y="125" text-anchor="middle" font-size="7" fill="#0d9488">Dim</text>
+  <rect x="270" y="0" width="45" height="18" rx="3" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1"/><text x="292" y="13" text-anchor="middle" font-size="6" fill="#0d9488">Sub</text>
+  <rect x="460" y="0" width="45" height="18" rx="3" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1"/><text x="482" y="13" text-anchor="middle" font-size="6" fill="#0d9488">Sub</text>
+  <line x1="340" y1="48" x2="330" y2="60" stroke="#14b8a6" stroke-width="1"/>
+  <line x1="440" y1="48" x2="415" y2="60" stroke="#14b8a6" stroke-width="1"/>
+  <line x1="330" y1="110" x2="355" y2="100" stroke="#14b8a6" stroke-width="1"/>
+  <line x1="440" y1="110" x2="415" y2="100" stroke="#14b8a6" stroke-width="1"/>
+  <line x1="292" y1="18" x2="292" y2="25" stroke="#99f6e4" stroke-width="1"/>
+  <line x1="482" y1="18" x2="482" y2="25" stroke="#99f6e4" stroke-width="1"/>
+  <text x="390" y="155" text-anchor="middle" font-size="8" fill="#64748b">Dimensions нормализованы (подтаблицы)</text>
+</svg>
+
+<ul>
+<li><span class="term">Fact Table</span> = числовые метрики (сумма продажи, количество, стоимость) + FK на dimensions</li>
+<li><span class="term">Dimension Table</span> = описательные атрибуты (кто купил, что, когда, где)</li>
+</ul>
+
+<h4>Нотации моделирования</h4>
+<ul>
+<li><span class="term">IE (Information Engineering)</span> — нотация с символом «crow's foot» (воронья лапка) для обозначения «многие». <strong>Наиболее распространена</strong>.</li>
+<li><span class="term">UML</span> (Unified Modeling Language) — универсальный язык, используется для диаграмм классов</li>
+<li><span class="term">IDEF1X</span> — стандарт NIST для моделирования данных</li>
+</ul>
+`,
 checkQuestions:[
 {type:'single',question:'Самый распространённый тип связи:',options:['One-to-One','One-to-Many','Many-to-Many','Zero-to-One'],correct:1,explanation:'1:M (One-to-Many) — самый частый тип связи.'},
 {type:'single',question:'Star Schema содержит в центре:',options:['Dimension Table','Fact Table','Lookup Table','Bridge Table'],correct:1,explanation:'В Star Schema центральная таблица — Fact Table с метриками.'},
-{type:'truefalse',question:'3NF устраняет транзитивные зависимости.',options:['Верно','Неверно'],correct:0,explanation:'3NF = 2NF + нет транзитивных зависимостей между неключевыми атрибутами.'}
+{type:'truefalse',question:'3NF устраняет транзитивные зависимости.',options:['Верно','Неверно'],correct:0,explanation:'3NF = 2NF + нет транзитивных зависимостей между неключевыми атрибутами.'},
+{type:'single',question:'Snowflake отличается от Star тем, что:',options:['Нет fact table','Dimension tables нормализованы','Данные зашифрованы','Нет разницы'],correct:1,explanation:'Snowflake = Star + нормализованные dimension tables.'}
 ]}
 ]},
+// ==================== MODULE 5: DATA STORAGE & OPERATIONS ====================
 {id:'m5',title:'Data Storage & Operations',chapter:'DAMA DMBOK Chapter 6',
 objectives:['Know RDBMS vs NoSQL types','Understand ACID properties','Distinguish OLTP and OLAP','Know backup types and RPO/RTO','Understand cloud models and data virtualization'],
 sections:[
-{title:'Типы СУБД и ACID',content:`
-<h4>RDBMS (Relational DBMS)</h4>
-<p>Таблицы, SQL, <span class="term">ACID</span>-свойства:</p>
-<ul><li><strong>Atomicity</strong> — транзакция: всё или ничего</li>
-<li><strong>Consistency</strong> — БД переходит из одного согласованного состояния в другое</li>
-<li><strong>Isolation</strong> — параллельные транзакции не влияют друг на друга</li>
-<li><strong>Durability</strong> — после commit данные сохраняются даже при сбое</li></ul>
-<p>Примеры: Oracle, PostgreSQL, MySQL, SQL Server.</p>
-<h4>NoSQL</h4>
-<ul><li><strong>Document stores</strong> — JSON-документы (MongoDB)</li>
-<li><strong>Key-Value</strong> — простейшая модель (Redis)</li>
-<li><strong>Column-family</strong> — данные по столбцам (Cassandra, HBase)</li>
-<li><strong>Graph databases</strong> — узлы и связи (Neo4j)</li></ul>
+{title:'1. Типы СУБД: RDBMS, NoSQL и свойства ACID',content:`
+<p>Эта область DAMA DMBOK охватывает «физическую» сторону работы с данными: выбор и управление СУБД, обеспечение доступности, производительности и восстановления.</p>
+
+<h4>Реляционные СУБД / RDBMS</h4>
+<p>Хранят данные в таблицах (строки × столбцы), используют SQL. Обеспечивают <span class="term">ACID</span>-свойства транзакций:</p>
+
+<svg viewBox="0 0 520 110" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="5" y="10" width="120" height="80" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="65" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="#4f46e5">A</text>
+  <text x="65" y="52" text-anchor="middle" font-size="9" font-weight="600" fill="#4338ca">Atomicity</text>
+  <text x="65" y="67" text-anchor="middle" font-size="8" fill="#475569">Всё или ничего</text>
+  <rect x="135" y="10" width="120" height="80" rx="10" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2"/>
+  <text x="195" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="#0d9488">C</text>
+  <text x="195" y="52" text-anchor="middle" font-size="9" font-weight="600" fill="#0d9488">Consistency</text>
+  <text x="195" y="67" text-anchor="middle" font-size="8" fill="#475569">Согласованность</text>
+  <rect x="265" y="10" width="120" height="80" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="325" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="#d97706">I</text>
+  <text x="325" y="52" text-anchor="middle" font-size="9" font-weight="600" fill="#d97706">Isolation</text>
+  <text x="325" y="67" text-anchor="middle" font-size="8" fill="#475569">Изолированность</text>
+  <rect x="395" y="10" width="120" height="80" rx="10" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+  <text x="455" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="#db2777">D</text>
+  <text x="455" y="52" text-anchor="middle" font-size="9" font-weight="600" fill="#db2777">Durability</text>
+  <text x="455" y="67" text-anchor="middle" font-size="8" fill="#475569">Долговечность</text>
+</svg>
+
+<ul>
+<li><strong>Atomicity / Атомарность</strong> — транзакция выполняется полностью или не выполняется вообще (переводим деньги: списание + зачисление = одна неделимая операция)</li>
+<li><strong>Consistency / Согласованность</strong> — транзакция переводит БД из одного корректного состояния в другое (баланс не может стать отрицательным, если это запрещено)</li>
+<li><strong>Isolation / Изолированность</strong> — параллельные транзакции не влияют друг на друга (два оператора не продадут последний билет одному клиенту)</li>
+<li><strong>Durability / Долговечность</strong> — после фиксации (commit) данные сохраняются даже при сбое системы</li>
+</ul>
+<p>Примеры RDBMS: Oracle, PostgreSQL, MySQL, SQL Server.</p>
+
+<h4>NoSQL СУБД</h4>
+<p>Семейство СУБД, не использующих реляционную модель. Четыре основных типа:</p>
+
+<table class="info-table">
+<tr><th>Тип</th><th>Модель данных</th><th>Пример</th><th>Когда использовать</th></tr>
+<tr><td><strong>Document store</strong></td><td>JSON-документы</td><td>MongoDB</td><td>Гибкая структура, веб-приложения</td></tr>
+<tr><td><strong>Key-Value</strong></td><td>Ключ → значение</td><td>Redis</td><td>Кэширование, сессии</td></tr>
+<tr><td><strong>Column-family</strong></td><td>Данные по столбцам</td><td>Cassandra, HBase</td><td>Большие объёмы, высокая запись</td></tr>
+<tr><td><strong>Graph</strong></td><td>Узлы + связи</td><td>Neo4j</td><td>Социальные сети, рекомендации</td></tr>
+</table>
+
 <h4>OLTP vs OLAP</h4>
-<table class="info-table"><tr><th></th><th>OLTP</th><th>OLAP</th></tr>
-<tr><td>Назначение</td><td>Транзакции</td><td>Аналитика</td></tr>
-<tr><td>Операции</td><td>Много INSERT/UPDATE</td><td>Сложные SELECT</td></tr>
-<tr><td>Нормализация</td><td>Высокая (3NF)</td><td>Низкая (Star)</td></tr>
-<tr><td>Данные</td><td>Текущие</td><td>Исторические</td></tr>
-<tr><td>Пример</td><td>CRM, ERP</td><td>DWH, BI</td></tr></table>`,
+<table class="info-table">
+<tr><th></th><th>OLTP</th><th>OLAP</th></tr>
+<tr><td><strong>Назначение</strong></td><td>Транзакционная обработка</td><td>Аналитическая обработка</td></tr>
+<tr><td><strong>Операции</strong></td><td>Много коротких INSERT/UPDATE</td><td>Сложные SELECT с агрегациями</td></tr>
+<tr><td><strong>Нормализация</strong></td><td>Высокая (3NF)</td><td>Низкая (Star/Snowflake)</td></tr>
+<tr><td><strong>Данные</strong></td><td>Текущие, оперативные</td><td>Исторические, аналитические</td></tr>
+<tr><td><strong>Примеры</strong></td><td>CRM, ERP, банковские системы</td><td>Data Warehouse, BI-системы</td></tr>
+</table>
+
+<div class="warn-block"><strong>Типичная ошибка:</strong> Использовать одну систему для OLTP и OLAP одновременно. Аналитические запросы замедляют транзакции, а частые обновления мешают аналитике. Эти нагрузки следует разделять.</div>
+`,
 checkQuestions:[
 {type:'single',question:'Atomicity в ACID означает:',options:['Данные хранятся вечно','Транзакция: всё или ничего','Данные атомарны','Данные изолированы'],correct:1,explanation:'Atomicity = атомарность: транзакция полностью выполняется или откатывается.'},
-{type:'matching',question:'Сопоставьте NoSQL типы с примерами:',pairs:[{left:'Document store'},{left:'Key-Value'},{left:'Graph'},{left:'Column-family'}],rightOptions:['MongoDB','Redis','Neo4j','Cassandra'],correct:[0,1,2,3],explanation:'MongoDB=документы, Redis=ключ-значение, Neo4j=граф, Cassandra=колонки.'}
+{type:'matching',question:'Сопоставьте NoSQL типы с примерами:',pairs:[{left:'Document store'},{left:'Key-Value'},{left:'Graph'},{left:'Column-family'}],rightOptions:['MongoDB','Redis','Neo4j','Cassandra'],correct:[0,1,2,3],explanation:'MongoDB=документы, Redis=ключ-значение, Neo4j=граф, Cassandra=колонки.'},
+{type:'truefalse',question:'OLTP и OLAP эффективно совмещаются в одной системе.',options:['Верно','Неверно'],correct:1,explanation:'Транзакционные и аналитические нагрузки конфликтуют и должны разделяться.'}
 ]},
-{title:'Backup, RPO/RTO и облачные модели',content:`
-<h4>Типы бэкапов</h4>
-<ul><li><strong>Full</strong> — полная копия</li>
-<li><strong>Incremental</strong> — изменения с последнего бэкапа (любого)</li>
-<li><strong>Differential</strong> — изменения с последнего полного бэкапа</li></ul>
-<h4>Метрики доступности</h4>
-<ul><li><span class="term">RPO (Recovery Point Objective)</span> — максимально допустимая потеря данных (в единицах времени)</li>
-<li><span class="term">RTO (Recovery Time Objective)</span> — максимально допустимое время восстановления</li>
-<li><span class="term">SLA (Service Level Agreement)</span> — соглашение об уровне обслуживания</li></ul>
-<h4>Облачные модели</h4>
-<ul><li><strong>IaaS</strong> — инфраструктура</li><li><strong>PaaS</strong> — платформа</li>
-<li><strong>SaaS</strong> — готовое ПО</li><li><strong>DBaaS</strong> — СУБД как услуга</li></ul>
-<div class="def-block"><strong>Data Virtualization</strong> — виртуальный слой доступа к данным из разных источников без физического перемещения.</div>
-<div class="info-block"><strong>Для BA:</strong> RPO и RTO — ключевые нефункциональные требования. «Сколько данных допустимо потерять?» и «Как быстро восстановиться?»</div>`,
+{title:'2. Резервное копирование, RPO/RTO и облачные модели',content:`
+<h4>Типы резервного копирования / Backup Types</h4>
+<ul>
+<li><strong>Full Backup / Полное</strong> — полная копия всех данных. Самый надёжный, но медленный и объёмный.</li>
+<li><strong>Incremental Backup / Инкрементальное</strong> — только изменения с последнего бэкапа (любого типа). Быстрый, но восстановление требует всех инкрементов.</li>
+<li><strong>Differential Backup / Дифференциальное</strong> — изменения с последнего <em>полного</em> бэкапа. Компромисс между скоростью и надёжностью.</li>
+</ul>
+
+<h4>Ключевые метрики доступности</h4>
+
+<svg viewBox="0 0 500 110" style="width:100%;max-width:500px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="230" height="80" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="125" y="35" text-anchor="middle" font-size="14" font-weight="800" fill="#dc2626">RPO</text>
+  <text x="125" y="52" text-anchor="middle" font-size="10" fill="#475569">Recovery Point Objective</text>
+  <text x="125" y="68" text-anchor="middle" font-size="9" fill="#475569">Макс. допустимая потеря данных</text>
+  <text x="125" y="82" text-anchor="middle" font-size="9" fill="#64748b">«Сколько данных можно потерять?»</text>
+  <rect x="260" y="10" width="230" height="80" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="375" y="35" text-anchor="middle" font-size="14" font-weight="800" fill="#0284c7">RTO</text>
+  <text x="375" y="52" text-anchor="middle" font-size="10" fill="#475569">Recovery Time Objective</text>
+  <text x="375" y="68" text-anchor="middle" font-size="9" fill="#475569">Макс. допустимое время восстановления</text>
+  <text x="375" y="82" text-anchor="middle" font-size="9" fill="#64748b">«Как быстро восстановиться?»</text>
+</svg>
+
+<p><span class="term">SLA (Service Level Agreement)</span> — формальное соглашение об уровне обслуживания, включающее RPO, RTO, доступность (99.9% и т.д.).</p>
+
+<div class="example-block"><strong>Пример:</strong> RPO = 1 час означает, что при сбое допустима потеря данных максимум за последний час (нужны бэкапы каждый час). RTO = 30 минут означает, что система должна быть восстановлена в течение 30 минут после сбоя.</div>
+
+<h4>Облачные модели / Cloud Models</h4>
+<table class="info-table">
+<tr><th>Модель</th><th>Что предоставляется</th><th>Пример</th></tr>
+<tr><td><strong>IaaS</strong></td><td>Infrastructure as a Service — серверы, хранение, сеть</td><td>AWS EC2, Azure VMs</td></tr>
+<tr><td><strong>PaaS</strong></td><td>Platform as a Service — платформа для разработки</td><td>Heroku, Google App Engine</td></tr>
+<tr><td><strong>SaaS</strong></td><td>Software as a Service — готовое ПО</td><td>Salesforce, Google Workspace</td></tr>
+<tr><td><strong>DBaaS</strong></td><td>Database as a Service — управляемая СУБД</td><td>Amazon RDS, Azure SQL</td></tr>
+</table>
+
+<h4>Виртуализация данных / Data Virtualization</h4>
+<div class="def-block"><strong>Data Virtualization</strong> — технология, позволяющая обращаться к данным из разных источников как к единому набору, <strong>без физического перемещения данных</strong>. Создаёт виртуальный слой абстракции поверх множества источников.</div>
+
+<div class="info-block"><strong>Для бизнес-аналитика:</strong> RPO и RTO — ключевые <strong>нефункциональные требования</strong>, которые вы должны собирать. Спрашивайте бизнес-заказчиков: «Сколько данных допустимо потерять при сбое?» (RPO) и «Как быстро система должна восстановиться?» (RTO).</div>
+`,
 checkQuestions:[
 {type:'single',question:'RPO определяет:',options:['Скорость запросов','Максимально допустимую потерю данных','Размер БД','Количество серверов'],correct:1,explanation:'RPO = Recovery Point Objective = допустимая потеря данных.'},
-{type:'truefalse',question:'Data Virtualization перемещает данные физически.',options:['Верно','Неверно'],correct:1,explanation:'Виртуализация создаёт виртуальный слой БЕЗ перемещения данных.'}
+{type:'truefalse',question:'Data Virtualization перемещает данные физически.',options:['Верно','Неверно'],correct:1,explanation:'Виртуализация создаёт виртуальный слой БЕЗ перемещения данных.'},
+{type:'single',question:'Дифференциальный бэкап копирует изменения с:',options:['Последнего бэкапа любого типа','Последнего ПОЛНОГО бэкапа','Начала работы системы','Последнего инкрементального'],correct:1,explanation:'Differential = с последнего FULL backup (в отличие от Incremental — с любого последнего).'}
 ]}
 ]},
+// ==================== MODULE 6: DATA INTEGRATION & INTEROPERABILITY ====================
 {id:'m6',title:'Data Integration & Interoperability',chapter:'DAMA DMBOK Chapter 8',
 objectives:['Understand data integration and interoperability','Know ETL vs ELT approaches','Understand integration patterns (point-to-point, hub-spoke, ESB)','Know canonical data model and MDM','Distinguish batch, real-time, and stream processing'],
 sections:[
-{title:'ETL, ELT и виртуализация',content:`
-<div class="def-block"><strong>Data Integration</strong> — объединение данных из разных источников для предоставления согласованного набора.<br>
-<strong>Data Interoperability</strong> — способность систем обмениваться данными и использовать их.</div>
+{title:'1. Определение, ETL vs ELT и виртуализация',content:`
+<div class="def-block"><strong>Интеграция данных / Data Integration</strong> — процессы объединения данных из разных источников для предоставления потребителям согласованного и единого набора данных (unified view).</div>
+<div class="def-block"><strong>Интероперабельность / Data Interoperability</strong> — способность систем и организаций обмениваться данными и использовать полученные данные без дополнительных усилий.</div>
+
+<p><strong>Integration</strong> фокусируется на <em>объединении</em> данных. <strong>Interoperability</strong> — на <em>способности обмениваться</em>.</p>
+
 <h4>ETL vs ELT</h4>
-<table class="info-table"><tr><th></th><th>ETL</th><th>ELT</th></tr>
-<tr><td>Порядок</td><td>Extract → Transform → Load</td><td>Extract → Load → Transform</td></tr>
-<tr><td>Где преобразование</td><td>На промежуточном сервере</td><td>Внутри целевого хранилища</td></tr>
-<tr><td>Когда использовать</td><td>Классические DWH</td><td>Облачные хранилища</td></tr></table>
-<p><strong>Data Virtualization</strong> — без физического перемещения, через виртуальный слой.</p>
-<p><strong>API Integration:</strong> REST API (наиболее распространённый), SOAP (строже, XML), GraphQL (гибкий).</p>`,
+
+<svg viewBox="0 0 520 200" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="a4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6366f1"/></marker></defs>
+  <text x="260" y="15" text-anchor="middle" font-size="12" font-weight="700" fill="#4f46e5">ETL — Transform BEFORE Load</text>
+  <rect x="10" y="30" width="80" height="40" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="50" y="55" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">Extract</text>
+  <line x1="92" y1="50" x2="128" y2="50" stroke="#6366f1" stroke-width="1.5" marker-end="url(#a4)"/>
+  <rect x="130" y="30" width="100" height="40" rx="6" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2"/>
+  <text x="180" y="55" text-anchor="middle" font-size="10" font-weight="700" fill="#0d9488">Transform</text>
+  <line x1="232" y1="50" x2="268" y2="50" stroke="#6366f1" stroke-width="1.5" marker-end="url(#a4)"/>
+  <rect x="270" y="30" width="80" height="40" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="310" y="55" text-anchor="middle" font-size="10" font-weight="600" fill="#d97706">Load</text>
+  <text x="420" y="55" font-size="9" fill="#64748b">→ Классические DWH</text>
+  <text x="260" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="#0d9488">ELT — Transform AFTER Load</text>
+  <rect x="10" y="115" width="80" height="40" rx="6" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="50" y="140" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">Extract</text>
+  <line x1="92" y1="135" x2="128" y2="135" stroke="#6366f1" stroke-width="1.5" marker-end="url(#a4)"/>
+  <rect x="130" y="115" width="80" height="40" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="170" y="140" text-anchor="middle" font-size="10" font-weight="600" fill="#d97706">Load</text>
+  <line x1="212" y1="135" x2="248" y2="135" stroke="#6366f1" stroke-width="1.5" marker-end="url(#a4)"/>
+  <rect x="250" y="115" width="100" height="40" rx="6" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2"/>
+  <text x="300" y="140" text-anchor="middle" font-size="10" font-weight="700" fill="#0d9488">Transform</text>
+  <text x="420" y="140" font-size="9" fill="#64748b">→ Облачные DWH</text>
+  <text x="260" y="185" text-anchor="middle" font-size="9" fill="#64748b">ELT популярен благодаря мощным облачным хранилищам (Snowflake, BigQuery)</text>
+</svg>
+
+<p><strong>Data Virtualization</strong> — без физического перемещения, через виртуальный слой. Данные остаются в источниках.</p>
+
+<p><strong>API Integration:</strong></p>
+<ul>
+<li><strong>REST API</strong> — наиболее распространённый стандарт для веб-интеграций</li>
+<li><strong>SOAP</strong> — более строгий, XML-основанный протокол</li>
+<li><strong>GraphQL</strong> — гибкий язык запросов для API (клиент определяет, какие данные нужны)</li>
+</ul>
+`,
 checkQuestions:[
 {type:'single',question:'В ETL преобразование происходит:',options:['После загрузки','До загрузки','В источнике','Не происходит'],correct:1,explanation:'ETL: Extract → Transform → Load. Преобразование ДО загрузки.'},
 {type:'single',question:'ELT популярен благодаря:',options:['Мощным облачным хранилищам','Уменьшению данных','Отказу от SQL','Сокращению бюджетов'],correct:0,explanation:'ELT стал популярен с облачными хранилищами (Snowflake, BigQuery).'}
 ]},
-{title:'Паттерны интеграции и MDM',content:`
-<h4>Паттерны</h4>
-<ul><li><strong>Point-to-Point</strong> — прямые связи. Создаёт «спагетти» при масштабировании (n×(n-1)/2 связей).</li>
-<li><strong>Hub-and-Spoke</strong> — центральный узел (хаб). Упрощает управление.</li>
-<li><strong>ESB (Enterprise Service Bus)</strong> — промежуточный слой: маршрутизация, преобразование, мониторинг.</li>
-<li><strong>Pub-Sub (Publish-Subscribe)</strong> — публикация + подписка. Обеспечивает <span class="term">loose coupling</span> (слабую связанность).</li></ul>
-<div class="def-block"><strong>Canonical Data Model</strong> — единый промежуточный формат обмена. Каждая система маппится только в/из канонического формата, уменьшая количество маппингов.</div>
+{title:'2. Паттерны интеграции, MDM и типы обмена',content:`
+<h4>Паттерны интеграции / Integration Patterns</h4>
+
+<svg viewBox="0 0 520 200" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
+  <text x="130" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">Point-to-Point (спагетти!)</text>
+  <circle cx="80" cy="70" r="18" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><text x="80" y="74" text-anchor="middle" font-size="8" fill="#dc2626">A</text>
+  <circle cx="130" cy="40" r="18" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><text x="130" y="44" text-anchor="middle" font-size="8" fill="#dc2626">B</text>
+  <circle cx="180" cy="70" r="18" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><text x="180" y="74" text-anchor="middle" font-size="8" fill="#dc2626">C</text>
+  <circle cx="130" cy="100" r="18" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><text x="130" y="104" text-anchor="middle" font-size="8" fill="#dc2626">D</text>
+  <line x1="96" y1="60" x2="114" y2="50" stroke="#ef4444" stroke-width="1"/>
+  <line x1="96" y1="80" x2="114" y2="90" stroke="#ef4444" stroke-width="1"/>
+  <line x1="146" y1="50" x2="164" y2="60" stroke="#ef4444" stroke-width="1"/>
+  <line x1="146" y1="90" x2="164" y2="80" stroke="#ef4444" stroke-width="1"/>
+  <line x1="80" y1="88" x2="114" y2="95" stroke="#ef4444" stroke-width="1"/>
+  <line x1="180" y1="88" x2="146" y2="95" stroke="#ef4444" stroke-width="1"/>
+  <text x="130" y="140" text-anchor="middle" font-size="8" fill="#64748b">n×(n-1)/2 связей</text>
+  <text x="390" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="#059669">Hub-and-Spoke</text>
+  <circle cx="390" cy="70" r="25" fill="#d1fae5" stroke="#10b981" stroke-width="2"/><text x="390" y="74" text-anchor="middle" font-size="9" font-weight="700" fill="#059669">HUB</text>
+  <circle cx="330" cy="40" r="15" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/><text x="330" y="44" text-anchor="middle" font-size="7" fill="#059669">A</text>
+  <circle cx="450" cy="40" r="15" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/><text x="450" y="44" text-anchor="middle" font-size="7" fill="#059669">B</text>
+  <circle cx="330" cy="100" r="15" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/><text x="330" y="104" text-anchor="middle" font-size="7" fill="#059669">C</text>
+  <circle cx="450" cy="100" r="15" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/><text x="450" y="104" text-anchor="middle" font-size="7" fill="#059669">D</text>
+  <line x1="345" y1="48" x2="368" y2="58" stroke="#10b981" stroke-width="1"/>
+  <line x1="435" y1="48" x2="412" y2="58" stroke="#10b981" stroke-width="1"/>
+  <line x1="345" y1="92" x2="368" y2="82" stroke="#10b981" stroke-width="1"/>
+  <line x1="435" y1="92" x2="412" y2="82" stroke="#10b981" stroke-width="1"/>
+  <text x="390" y="140" text-anchor="middle" font-size="8" fill="#64748b">Всё через центр</text>
+  <text x="260" y="190" text-anchor="middle" font-size="9" fill="#64748b">Point-to-Point создаёт хаос при масштабировании. Hub-and-Spoke/ESB управляемы.</text>
+</svg>
+
+<ul>
+<li><strong>Point-to-Point</strong> — прямые связи между системами. Просто для 2-3 систем, но при масштабировании количество связей растёт как <strong>n×(n-1)/2</strong> — неуправляемо.</li>
+<li><strong>Hub-and-Spoke</strong> — центральный узел (хаб), через который проходит весь обмен. Упрощает управление.</li>
+<li><strong>ESB (Enterprise Service Bus)</strong> — промежуточный слой с маршрутизацией, преобразованием и мониторингом обмена данными.</li>
+<li><strong>Pub-Sub (Publish-Subscribe)</strong> — источник публикует данные/события, подписчики получают. Обеспечивает <span class="term">loose coupling</span> — слабую связанность.</li>
+</ul>
+
+<h4>Каноническая модель / Canonical Data Model</h4>
+<div class="def-block"><strong>Canonical Data Model</strong> — единый промежуточный формат обмена данными. Каждая система маппится только в/из канонического формата, вместо создания маппингов между каждой парой систем. При N системах: без канонической модели — N×(N-1) маппингов. С канонической — только 2×N маппингов.</div>
+
 <h4>MDM (Master Data Management)</h4>
-<p>Единое согласованное представление ключевых сущностей (клиенты, продукты). Определяет <span class="term">golden record</span> — авторитетную версию.</p>
-<h4>Типы обмена</h4>
-<ul><li><strong>Batch Processing</strong> — порциями по расписанию (аналитика)</li>
-<li><strong>Real-Time</strong> — мгновенно (операционные процессы)</li>
-<li><strong>Stream Processing</strong> — непрерывный поток (Kafka, Flink)</li></ul>
-<div class="warn-block"><strong>Типичная ошибка:</strong> Point-to-Point для большого числа систем. Используйте Hub-and-Spoke или ESB.</div>`,
+<p><span class="term">Управление мастер-данными / MDM</span> — дисциплина, обеспечивающая единое и согласованное представление ключевых бизнес-сущностей (клиенты, продукты, поставщики) во всей организации. Определяет <span class="term">golden record / золотую запись</span> — авторитетную версию каждой сущности.</p>
+
+<div class="example-block"><strong>Пример:</strong> Клиент «Иванов» записан в CRM как «Иванов И.И.», в ERP как «Ivanov Ivan», а в маркетинговой системе как «ivan@mail.ru». MDM создаёт единую «золотую запись» с полной и согласованной информацией.</div>
+
+<h4>Типы обмена данными</h4>
+<table class="info-table">
+<tr><th>Тип</th><th>Описание</th><th>Когда использовать</th></tr>
+<tr><td><strong>Batch Processing</strong></td><td>Порциями по расписанию (ежечасно, ежедневно)</td><td>Аналитика, загрузка DWH, отчёты</td></tr>
+<tr><td><strong>Real-Time</strong></td><td>Мгновенно при поступлении</td><td>Операционные процессы, уведомления</td></tr>
+<tr><td><strong>Stream Processing</strong></td><td>Непрерывный поток событий</td><td>Мониторинг, fraud detection, IoT</td></tr>
+</table>
+<p>Технологии потоковой обработки: Apache Kafka, Apache Flink, Apache Spark Streaming.</p>
+
+<div class="warn-block"><strong>Типичная ошибка:</strong> Выбирать Point-to-Point для большого числа систем. С ростом числа систем количество связей растёт квадратично. Используйте Hub-and-Spoke, ESB или событийную архитектуру (Pub-Sub).</div>
+
+<div class="info-block"><strong>Для бизнес-аналитика:</strong> Интеграция данных — одна из самых частых задач. «Нам нужно видеть данные из CRM, ERP и маркетинговой системы в одном отчёте» — это задача интеграции. Ваша роль — определить <strong>какие данные</strong> нужны, <strong>откуда</strong> они берутся и <strong>какие правила преобразования</strong> применить.</div>
+`,
 checkQuestions:[
 {type:'single',question:'Point-to-Point создаёт проблемы при:',options:['2 системах','Большом числе систем','Облачном хранении','Использовании API'],correct:1,explanation:'Количество связей растёт как n×(n-1)/2 — неуправляемо.'},
 {type:'fillin',question:'Как называется авторитетная версия мастер-данных в MDM?',correct:['golden record','Golden Record'],explanation:'Golden Record = «золотая запись», единая авторитетная версия.'},
-{type:'single',question:'Pub-Sub обеспечивает:',options:['Жёсткую связанность','Loose coupling','Отсутствие обмена','Синхронный вызов'],correct:1,explanation:'Publish-Subscribe = слабая связанность: источник не зависит от получателей.'}
+{type:'single',question:'Pub-Sub обеспечивает:',options:['Жёсткую связанность','Loose coupling','Отсутствие обмена','Синхронный вызов'],correct:1,explanation:'Publish-Subscribe = слабая связанность: источник не зависит от получателей.'},
+{type:'single',question:'Canonical Data Model уменьшает маппинги с N×(N-1) до:',options:['N','2×N','N²','N/2'],correct:1,explanation:'С канонической моделью каждая система маппится только в/из канонического формата = 2×N.'}
 ]}
 ]}
 ];
