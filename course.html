@@ -147,6 +147,14 @@ table.info-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13p
 .sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}
 .main{margin-left:0}.menu-toggle{display:block}.content{padding:16px}.card{padding:18px}
 }
+.figure-box{margin:24px 0;background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.figure-box img{display:block;width:100%;height:auto}
+.figure-box figcaption{padding:10px 16px;font-size:12px;color:var(--text-muted);background:var(--border-light);border-top:1px solid var(--border);line-height:1.5}
+.figure-box figcaption strong{color:var(--text-secondary)}
+.module-export-bar{margin-top:24px;padding:20px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius)}
+.module-export-bar .meb-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.module-export-bar .meb-label{font-size:14px;font-weight:600;color:var(--text);flex:1}
+.module-export-bar .meb-hint{font-size:12px;color:var(--text-muted);margin-top:8px}
 @media print{.sidebar,.topbar,.menu-toggle{display:none}.main{margin-left:0}}
 </style>
 </head>
@@ -174,6 +182,8 @@ objectives:['Understand data, information, knowledge, wisdom (DIKW)','Know the D
 sections:[
 {title:'1. Данные, информация, знания, мудрость — иерархия DIKW',content:`
 <p>Для эффективного управления данными необходимо чётко различать уровни абстракции информации. DAMA DMBOK использует модель <span class="term">DIKW</span> — иерархию, описывающую переход от сырых фактов к принятию решений.</p>
+<figure class="figure-box"><img src="img/ch1_fig02_lifecycle.jpg" alt="Figure 2 — Data Lifecycle Key Activities. Циклическая модель: Plan → Design & Enable → Create/Obtain → Store/Maintain → Use → Enhance, с ответвлением Dispose of"><figcaption><strong>Figure 2 —</strong> Data Lifecycle Key Activities. Циклическая модель: Plan → Design & Enable → Create/Obtain → Store/Maintain → Use → Enhance, с ответвлением Dispose of</figcaption></figure>
+
 
 <svg viewBox="0 0 500 320" style="width:100%;max-width:500px;display:block;margin:20px auto" xmlns="http://www.w3.org/2000/svg">
   <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#4f46e5"/></linearGradient></defs>
@@ -324,32 +334,9 @@ checkQuestions:[
 <h4>Колесо DAMA / DAMA Wheel</h4>
 <p>Визуальная структура DMBOK представлена в виде <strong>колеса</strong>. В центре — <span class="term">Data Governance</span> (руководство данными), координирующая все остальные области. Вокруг — 10 областей знаний:</p>
 
-<svg viewBox="0 0 500 500" style="width:100%;max-width:440px;display:block;margin:20px auto" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="250" cy="250" r="220" fill="none" stroke="#e2e8f0" stroke-width="2"/>
-  <circle cx="250" cy="250" r="150" fill="none" stroke="#c7d2fe" stroke-width="1.5"/>
-  <circle cx="250" cy="250" r="65" fill="#4f46e5" stroke="#3730a3" stroke-width="2"/>
-  <text x="250" y="244" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">DATA</text>
-  <text x="250" y="260" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">GOVERNANCE</text>
-  <g font-size="9.5" fill="#1e293b" font-weight="600">
-    <text x="250" y="55" text-anchor="middle">Data Architecture</text>
-    <text x="410" y="120" text-anchor="middle">Data Modeling</text>
-    <text x="460" y="220" text-anchor="middle">Data Storage</text>
-    <text x="430" y="320" text-anchor="middle">Data Security</text>
-    <text x="365" y="410" text-anchor="middle">Data Integration</text>
-    <text x="250" y="460" text-anchor="middle">Document &amp; Content Mgmt</text>
-    <text x="130" y="410" text-anchor="middle">Reference &amp; Master Data</text>
-    <text x="60" y="320" text-anchor="middle">DWH &amp; BI</text>
-    <text x="45" y="220" text-anchor="middle">Metadata</text>
-    <text x="90" y="120" text-anchor="middle">Data Quality</text>
-  </g>
-  <g fill="#6366f1">
-    <circle cx="250" cy="75" r="5"/><circle cx="400" cy="135" r="5"/><circle cx="440" cy="240" r="5"/>
-    <circle cx="415" cy="340" r="5"/><circle cx="350" cy="420" r="5"/><circle cx="250" cy="445" r="5"/>
-    <circle cx="150" cy="420" r="5"/><circle cx="80" cy="340" r="5"/><circle cx="60" cy="240" r="5"/>
-    <circle cx="100" cy="135" r="5"/>
-  </g>
-  <text x="250" y="490" text-anchor="middle" font-size="10" fill="#64748b">Колесо DAMA — Data Governance в центре, 10 областей вокруг</text>
-</svg>
+
+<figure class="figure-box"><img src="img/ch1_fig05_dama_wheel.jpg" alt="Figure 5 — DAMA Wheel. Data Governance в центре, 10 областей знаний вокруг"><figcaption><strong>Figure 5 —</strong> DAMA Wheel. Data Governance в центре, 10 областей знаний вокруг</figcaption></figure>
+
 
 <p>Итого <strong>11 областей знаний / knowledge areas</strong> (включая Data Governance в центре).</p>
 
@@ -385,26 +372,9 @@ checkQuestions:[
 
 <h4>Ключевые роли / Key Roles</h4>
 
-<svg viewBox="0 0 560 260" style="width:100%;max-width:560px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
-  <rect x="190" y="5" width="180" height="55" rx="10" fill="#4f46e5" stroke="#3730a3" stroke-width="1.5"/>
-  <text x="280" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">CDO</text>
-  <text x="280" y="46" text-anchor="middle" font-size="9" fill="#c7d2fe">Chief Data Officer — стратегия</text>
-  <line x1="280" y1="62" x2="280" y2="78" stroke="#6366f1" stroke-width="1.5"/>
-  <rect x="140" y="80" width="280" height="55" rx="10" fill="#6366f1" stroke="#4f46e5" stroke-width="1.5"/>
-  <text x="280" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Data Owner / Data Trustee</text>
-  <text x="280" y="121" text-anchor="middle" font-size="9" fill="#c7d2fe">Бизнес-руководитель — стратегич. решения о данных</text>
-  <line x1="200" y1="137" x2="200" y2="155" stroke="#6366f1" stroke-width="1.5"/>
-  <line x1="360" y1="137" x2="360" y2="155" stroke="#6366f1" stroke-width="1.5"/>
-  <rect x="60" y="157" width="210" height="55" rx="10" fill="#a5b4fc" stroke="#6366f1" stroke-width="1.5"/>
-  <text x="165" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Data Steward</text>
-  <text x="165" y="197" text-anchor="middle" font-size="9" fill="#475569">Оперативное управление / качество</text>
-  <rect x="290" y="157" width="210" height="55" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
-  <text x="395" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Data Custodian</text>
-  <text x="395" y="197" text-anchor="middle" font-size="9" fill="#475569">Техническое обеспечение / IT</text>
-  <text x="165" y="234" text-anchor="middle" font-size="9" fill="#64748b">Business Steward + Technical Steward</text>
-  <text x="395" y="234" text-anchor="middle" font-size="9" fill="#64748b">Хранение, бэкапы, инфраструктура</text>
-  <text x="280" y="255" text-anchor="middle" font-size="10" fill="#64748b">Иерархия ролей в управлении данными</text>
-</svg>
+
+<figure class="figure-box"><img src="img/ch1_fig11_wheel_evolved.jpg" alt="Figure 11 — DAMA Wheel Evolved. Lifecycle Management внутри (Plan & Design / Enable & Maintain / Use & Enhance), Data Governance как внешнее кольцо, Foundational Activities на фундаменте"><figcaption><strong>Figure 11 —</strong> DAMA Wheel Evolved. Lifecycle Management внутри (Plan & Design / Enable & Maintain / Use & Enhance), Data Governance как внешнее кольцо, Foundational Activities на фундаменте</figcaption></figure>
+
 
 <ul>
 <li><span class="term">Data Owner / Data Trustee</span> — <strong>бизнес-руководитель</strong>, ответственный за конкретный домен данных (клиентские данные, финансовые данные). Принимает стратегические решения: кто имеет доступ, каковы стандарты качества, как данные используются.</li>
@@ -448,20 +418,9 @@ sections:[
 
 <p>Data Governance — это <strong>не техническая система</strong>, а управленческая и организационная функция. Она определяет три ключевых вопроса:</p>
 
-<svg viewBox="0 0 520 100" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
-  <rect x="5" y="10" width="160" height="70" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
-  <text x="85" y="40" text-anchor="middle" font-size="14" font-weight="800" fill="#4f46e5">КТО?</text>
-  <text x="85" y="58" text-anchor="middle" font-size="10" fill="#475569">Кто принимает</text>
-  <text x="85" y="70" text-anchor="middle" font-size="10" fill="#475569">решения о данных</text>
-  <rect x="180" y="10" width="160" height="70" rx="10" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2"/>
-  <text x="260" y="40" text-anchor="middle" font-size="14" font-weight="800" fill="#0d9488">КАКИЕ?</text>
-  <text x="260" y="58" text-anchor="middle" font-size="10" fill="#475569">Какие решения</text>
-  <text x="260" y="70" text-anchor="middle" font-size="10" fill="#475569">принимаются</text>
-  <rect x="355" y="10" width="160" height="70" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-  <text x="435" y="40" text-anchor="middle" font-size="14" font-weight="800" fill="#d97706">КАК?</text>
-  <text x="435" y="58" text-anchor="middle" font-size="10" fill="#475569">Как решения</text>
-  <text x="435" y="70" text-anchor="middle" font-size="10" fill="#475569">контролируются</text>
-</svg>
+
+<figure class="figure-box"><img src="img/ch3_fig14_dg_context.jpg" alt="Figure 14 — Context Diagram: Data Governance and Stewardship. 3 цели, 4 группы активностей, входы/выходы, роли, инструменты, метрики"><figcaption><strong>Figure 14 —</strong> Context Diagram: Data Governance and Stewardship. 3 цели, 4 группы активностей, входы/выходы, роли, инструменты, метрики</figcaption></figure>
+
 
 <h4>Data Governance vs Data Management</h4>
 <p>Эти два понятия часто путают. Ключевое различие:</p>
@@ -491,28 +450,11 @@ checkQuestions:[
 {title:'2. Организационная структура и компоненты программы',content:`
 <h4>Организационная структура Data Governance</h4>
 
-<svg viewBox="0 0 500 280" style="width:100%;max-width:500px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
-  <rect x="150" y="5" width="200" height="45" rx="8" fill="#4f46e5" stroke="#3730a3" stroke-width="1.5"/>
-  <text x="250" y="23" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Executive Sponsor</text>
-  <text x="250" y="38" text-anchor="middle" font-size="8" fill="#c7d2fe">Топ-менеджер, поддержка и ресурсы</text>
-  <line x1="250" y1="52" x2="250" y2="66" stroke="#6366f1" stroke-width="1.5"/>
-  <rect x="120" y="68" width="260" height="45" rx="8" fill="#6366f1" stroke="#4f46e5" stroke-width="1.5"/>
-  <text x="250" y="86" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Data Governance Council (DGC)</text>
-  <text x="250" y="101" text-anchor="middle" font-size="8" fill="#c7d2fe">Стратегия, приоритеты, политики</text>
-  <line x1="250" y1="115" x2="250" y2="130" stroke="#6366f1" stroke-width="1.5"/>
-  <rect x="100" y="132" width="300" height="45" rx="8" fill="#a5b4fc" stroke="#6366f1" stroke-width="1.5"/>
-  <text x="250" y="150" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3">Data Governance Committee</text>
-  <text x="250" y="165" text-anchor="middle" font-size="8" fill="#475569">Рабочая группа, реализация решений</text>
-  <line x1="170" y1="179" x2="170" y2="198" stroke="#6366f1" stroke-width="1"/>
-  <line x1="330" y1="179" x2="330" y2="198" stroke="#6366f1" stroke-width="1"/>
-  <rect x="60" y="200" width="180" height="40" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/>
-  <text x="150" y="218" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">Data Stewards</text>
-  <text x="150" y="232" text-anchor="middle" font-size="8" fill="#475569">Операционный уровень</text>
-  <rect x="260" y="200" width="180" height="40" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/>
-  <text x="350" y="218" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">DMO / DGO</text>
-  <text x="350" y="232" text-anchor="middle" font-size="8" fill="#475569">Координирующее подразделение</text>
-  <text x="250" y="268" text-anchor="middle" font-size="10" fill="#64748b">Типичная организационная структура Data Governance</text>
-</svg>
+
+<figure class="figure-box"><img src="img/ch3_fig16_dg_org.jpg" alt="Figure 16 — Data Governance Organization Parts. CDO/CIO матрица: от Enterprise через Divisions до Local уровня"><figcaption><strong>Figure 16 —</strong> Data Governance Organization Parts. CDO/CIO матрица: от Enterprise через Divisions до Local уровня</figcaption></figure>
+
+<figure class="figure-box"><img src="img/ch3_fig18_cdo_pyramid.jpg" alt="Figure 18 — CDO Organizational Touch Points. Пирамида: Financials → Governance → Multiplier Effect (SDLC, EAI, DQ Programs)"><figcaption><strong>Figure 18 —</strong> CDO Organizational Touch Points. Пирамида: Financials → Governance → Multiplier Effect (SDLC, EAI, DQ Programs)</figcaption></figure>
+
 
 <ul>
 <li><span class="term">Executive Sponsor</span> — топ-менеджер, обеспечивающий поддержку и ресурсы. <strong>Без спонсора программа governance не выживет</strong> — у неё не будет авторитета и бюджета.</li>
@@ -534,7 +476,9 @@ checkQuestions:[
 
 <div class="def-block"><strong>Data Standard</strong> — более детальный документ с конкретными правилами и нормами. Например: формат даты — ISO 8601 (YYYY-MM-DD), правила наименования полей (snake_case), допустимые значения справочников. <strong>Policy = «что делать»</strong>, <strong>Standard = «как именно делать»</strong>.</div>
 
-<h4>Процессы governance</h4>
+<h4>Процессы governance<
+<figure class="figure-box"><img src="img/ch3_fig19_dg_ops.jpg" alt="Figure 19 — Data Governance Operations. Executive Council → Enterprise DG Oversight → DGC → DGO (Domain DG + Forums)"><figcaption><strong>Figure 19 —</strong> Data Governance Operations. Executive Council → Enterprise DG Oversight → DGC → DGO (Domain DG + Forums)</figcaption></figure>
+</h4>
 <ul>
 <li><span class="term">Data Issue Management</span> — систематический процесс выявления, документирования и решения проблем с данными (дубликаты, ошибки, несогласованность)</li>
 <li><span class="term">Data Change Management</span> — контролируемое внесение изменений в данные, метаданные и стандарты (не путать с IT Change Management)</li>
@@ -627,25 +571,9 @@ sections:[
 <h4>Enterprise Architecture (EA)</h4>
 <p>Data Architecture является одним из четырёх доменов <span class="term">корпоративной архитектуры / Enterprise Architecture</span>:</p>
 
-<svg viewBox="0 0 520 140" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
-  <rect x="5" y="15" width="120" height="90" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-  <text x="65" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="#d97706">Business</text>
-  <text x="65" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="#d97706">Architecture</text>
-  <text x="65" y="82" text-anchor="middle" font-size="9" fill="#475569">Процессы, стратегия</text>
-  <rect x="135" y="15" width="120" height="90" rx="10" fill="#4f46e5" stroke="#3730a3" stroke-width="2"/>
-  <text x="195" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Data</text>
-  <text x="195" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Architecture</text>
-  <text x="195" y="82" text-anchor="middle" font-size="9" fill="#c7d2fe">Данные, потоки</text>
-  <rect x="265" y="15" width="120" height="90" rx="10" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2"/>
-  <text x="325" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="#0d9488">Application</text>
-  <text x="325" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="#0d9488">Architecture</text>
-  <text x="325" y="82" text-anchor="middle" font-size="9" fill="#475569">ИС, приложения</text>
-  <rect x="395" y="15" width="120" height="90" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
-  <text x="455" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Technology</text>
-  <text x="455" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Architecture</text>
-  <text x="455" y="82" text-anchor="middle" font-size="9" fill="#475569">Инфраструктура</text>
-  <text x="260" y="130" text-anchor="middle" font-size="10" fill="#64748b">Четыре домена Enterprise Architecture</text>
-</svg>
+
+<figure class="figure-box"><img src="img/ch4_fig21_arch_context.jpg" alt="Figure 21 — Context Diagram: Data Architecture. Цели, активности (Establish DA, Integrate with EA), инструменты и метрики"><figcaption><strong>Figure 21 —</strong> Context Diagram: Data Architecture. Цели, активности (Establish DA, Integrate with EA), инструменты и метрики</figcaption></figure>
+
 
 <h4>Цели архитектуры данных</h4>
 <ul>
@@ -708,6 +636,12 @@ checkQuestions:[
 
 <h4>Принцип SSOT</h4>
 <div class="def-block"><strong>Single Source of Truth (SSOT)</strong> / Единый источник правды — принцип, согласно которому каждый элемент данных имеет <strong>один авторитетный источник</strong>, из которого берутся все копии. Это устраняет проблему «у нас 5 систем с разными данными о клиенте — какие правильные?»</div>
+<figure class="figure-box"><img src="img/ch4_fig24_subject_area.jpg" alt="Figure 24 — Subject Area Model Example. Три предметные области: Product Design, Commercial Offer, Sales с сущностями и связями"><figcaption><strong>Figure 24 —</strong> Subject Area Model Example. Три предметные области: Product Design, Commercial Offer, Sales с сущностями и связями</figcaption></figure>
+
+<figure class="figure-box"><img src="img/ch4_fig25_data_flow_matrix.jpg" alt="Figure 25 — Data Flow Matrix (CRUD). Процессы × сущности — какие данные создаются (●) и читаются (○) каким процессом"><figcaption><strong>Figure 25 —</strong> Data Flow Matrix (CRUD). Процессы × сущности — какие данные создаются (●) и читаются (○) каким процессом</figcaption></figure>
+
+<figure class="figure-box"><img src="img/ch4_fig26_data_flow.jpg" alt="Figure 26 — System Data Flow Diagram. Потоки данных между PDM, CRM, Sales, Manufacturing и Aftermarket системами"><figcaption><strong>Figure 26 —</strong> System Data Flow Diagram. Потоки данных между PDM, CRM, Sales, Manufacturing и Aftermarket системами</figcaption></figure>
+
 `,
 checkQuestions:[
 {type:'single',question:'Что показывает CRUD Matrix?',options:['Скорость запросов','Какие процессы какие операции выполняют над данными','Стоимость хранения','Уровень безопасности'],correct:1,explanation:'CRUD Matrix сопоставляет процессы с операциями Create/Read/Update/Delete.'},
@@ -768,24 +702,11 @@ sections:[
 
 <h4>Четыре основных элемента модели данных</h4>
 
-<svg viewBox="0 0 520 180" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
-  <rect x="10" y="10" width="240" height="65" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
-  <text x="130" y="33" text-anchor="middle" font-size="12" font-weight="700" fill="#4f46e5">Entity / Сущность</text>
-  <text x="130" y="50" text-anchor="middle" font-size="9" fill="#475569">Объект реального мира: Клиент,</text>
-  <text x="130" y="63" text-anchor="middle" font-size="9" fill="#475569">Заказ, Продукт</text>
-  <rect x="270" y="10" width="240" height="65" rx="10" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2"/>
-  <text x="390" y="33" text-anchor="middle" font-size="12" font-weight="700" fill="#0d9488">Attribute / Атрибут</text>
-  <text x="390" y="50" text-anchor="middle" font-size="9" fill="#475569">Характеристика сущности:</text>
-  <text x="390" y="63" text-anchor="middle" font-size="9" fill="#475569">имя, дата, цена</text>
-  <rect x="10" y="95" width="240" height="65" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-  <text x="130" y="118" text-anchor="middle" font-size="12" font-weight="700" fill="#d97706">Relationship / Связь</text>
-  <text x="130" y="135" text-anchor="middle" font-size="9" fill="#475569">Отношение между сущностями:</text>
-  <text x="130" y="148" text-anchor="middle" font-size="9" fill="#475569">«клиент размещает заказ»</text>
-  <rect x="270" y="95" width="240" height="65" rx="10" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
-  <text x="390" y="118" text-anchor="middle" font-size="12" font-weight="700" fill="#db2777">Constraint / Ограничение</text>
-  <text x="390" y="135" text-anchor="middle" font-size="9" fill="#475569">Правило целостности:</text>
-  <text x="390" y="148" text-anchor="middle" font-size="9" fill="#475569">email уникален, NOT NULL</text>
-</svg>
+
+<figure class="figure-box"><img src="img/ch5_fig28_modeling_context.jpg" alt="Figure 28 — Context Diagram: Data Modeling and Design. Активности: Plan, Build (CDM/LDM/PDM), Review, Maintain data models"><figcaption><strong>Figure 28 —</strong> Context Diagram: Data Modeling and Design. Активности: Plan, Build (CDM/LDM/PDM), Review, Maintain data models</figcaption></figure>
+
+<figure class="figure-box"><img src="img/ch5_fig46_conceptual.jpg" alt="Figure 46 — Relational Conceptual Data Model. Пример CDM: Student — Attendance — Course с подсущностями"><figcaption><strong>Figure 46 —</strong> Relational Conceptual Data Model. Пример CDM: Student — Attendance — Course с подсущностями</figcaption></figure>
+
 
 <h4>Три уровня моделей данных</h4>
 
@@ -815,31 +736,7 @@ checkQuestions:[
 {title:'2. Связи, ключи, нормализация и схемы DWH',content:`
 <h4>Кардинальность / Cardinality</h4>
 
-<svg viewBox="0 0 500 150" style="width:100%;max-width:500px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(0,10)">
-    <rect x="10" y="5" width="100" height="30" rx="5" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/><text x="60" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">Сотрудник</text>
-    <line x1="112" y1="20" x2="220" y2="20" stroke="#475569" stroke-width="1.5"/>
-    <rect x="222" y="5" width="100" height="30" rx="5" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/><text x="272" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#4f46e5">Раб. место</text>
-    <text x="165" y="15" text-anchor="middle" font-size="9" fill="#64748b">1 : 1</text>
-  </g>
-  <g transform="translate(0,50)">
-    <rect x="10" y="5" width="100" height="30" rx="5" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/><text x="60" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#0d9488">Клиент</text>
-    <line x1="112" y1="20" x2="198" y2="20" stroke="#475569" stroke-width="1.5"/>
-    <line x1="200" y1="12" x2="220" y2="20" stroke="#475569" stroke-width="1.5"/>
-    <line x1="200" y1="28" x2="220" y2="20" stroke="#475569" stroke-width="1.5"/>
-    <line x1="200" y1="20" x2="220" y2="20" stroke="#475569" stroke-width="1.5"/>
-    <rect x="222" y="5" width="100" height="30" rx="5" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/><text x="272" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#0d9488">Заказы</text>
-    <text x="165" y="15" text-anchor="middle" font-size="9" fill="#64748b">1 : M</text>
-    <text x="380" y="25" font-size="9" fill="#64748b">← самый частый тип</text>
-  </g>
-  <g transform="translate(0,90)">
-    <rect x="10" y="5" width="100" height="30" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="60" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#d97706">Студент</text>
-    <line x1="112" y1="20" x2="220" y2="20" stroke="#475569" stroke-width="1.5"/>
-    <rect x="222" y="5" width="100" height="30" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="272" y="25" text-anchor="middle" font-size="10" font-weight="600" fill="#d97706">Курс</text>
-    <text x="165" y="15" text-anchor="middle" font-size="9" fill="#64748b">M : M</text>
-    <text x="380" y="25" font-size="9" fill="#64748b">→ через промежуточную таблицу</text>
-  </g>
-</svg>
+
 
 <h4>Ключи / Keys</h4>
 <ul>
@@ -863,36 +760,11 @@ checkQuestions:[
 
 <h4>Схемы хранилищ данных</h4>
 
-<svg viewBox="0 0 520 170" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
-  <text x="130" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Star Schema</text>
-  <rect x="80" y="60" width="100" height="40" rx="6" fill="#4f46e5" stroke="#3730a3" stroke-width="1.5"/>
-  <text x="130" y="85" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Fact Table</text>
-  <rect x="10" y="25" width="70" height="25" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/><text x="45" y="42" text-anchor="middle" font-size="8" fill="#4f46e5">Dim: Time</text>
-  <rect x="180" y="25" width="70" height="25" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/><text x="215" y="42" text-anchor="middle" font-size="8" fill="#4f46e5">Dim: Product</text>
-  <rect x="10" y="110" width="70" height="25" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/><text x="45" y="127" text-anchor="middle" font-size="8" fill="#4f46e5">Dim: Store</text>
-  <rect x="180" y="110" width="70" height="25" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="1"/><text x="215" y="127" text-anchor="middle" font-size="8" fill="#4f46e5">Dim: Customer</text>
-  <line x1="80" y1="52" x2="105" y2="60" stroke="#6366f1" stroke-width="1"/>
-  <line x1="180" y1="52" x2="155" y2="60" stroke="#6366f1" stroke-width="1"/>
-  <line x1="80" y1="110" x2="105" y2="100" stroke="#6366f1" stroke-width="1"/>
-  <line x1="180" y1="110" x2="155" y2="100" stroke="#6366f1" stroke-width="1"/>
-  <text x="130" y="155" text-anchor="middle" font-size="8" fill="#64748b">Dimensions денормализованы</text>
-  <text x="390" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#0d9488">Snowflake Schema</text>
-  <rect x="340" y="60" width="100" height="40" rx="6" fill="#0d9488" stroke="#065f46" stroke-width="1.5"/>
-  <text x="390" y="85" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Fact Table</text>
-  <rect x="270" y="25" width="60" height="22" rx="4" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1"/><text x="300" y="40" text-anchor="middle" font-size="7" fill="#0d9488">Dim</text>
-  <rect x="440" y="25" width="60" height="22" rx="4" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1"/><text x="470" y="40" text-anchor="middle" font-size="7" fill="#0d9488">Dim</text>
-  <rect x="270" y="110" width="60" height="22" rx="4" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1"/><text x="300" y="125" text-anchor="middle" font-size="7" fill="#0d9488">Dim</text>
-  <rect x="440" y="110" width="60" height="22" rx="4" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1"/><text x="470" y="125" text-anchor="middle" font-size="7" fill="#0d9488">Dim</text>
-  <rect x="270" y="0" width="45" height="18" rx="3" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1"/><text x="292" y="13" text-anchor="middle" font-size="6" fill="#0d9488">Sub</text>
-  <rect x="460" y="0" width="45" height="18" rx="3" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1"/><text x="482" y="13" text-anchor="middle" font-size="6" fill="#0d9488">Sub</text>
-  <line x1="340" y1="48" x2="330" y2="60" stroke="#14b8a6" stroke-width="1"/>
-  <line x1="440" y1="48" x2="415" y2="60" stroke="#14b8a6" stroke-width="1"/>
-  <line x1="330" y1="110" x2="355" y2="100" stroke="#14b8a6" stroke-width="1"/>
-  <line x1="440" y1="110" x2="415" y2="100" stroke="#14b8a6" stroke-width="1"/>
-  <line x1="292" y1="18" x2="292" y2="25" stroke="#99f6e4" stroke-width="1"/>
-  <line x1="482" y1="18" x2="482" y2="25" stroke="#99f6e4" stroke-width="1"/>
-  <text x="390" y="155" text-anchor="middle" font-size="8" fill="#64748b">Dimensions нормализованы (подтаблицы)</text>
-</svg>
+
+<figure class="figure-box"><img src="img/ch5_fig49_snowflake.jpg" alt="Figure 49 — Dimensional LDM (Snowflake Schema). Admissions fact в центре, нормализованные dimensions: Country→Region→Zone, School→SchoolLevel, Semester→Year"><figcaption><strong>Figure 49 —</strong> Dimensional LDM (Snowflake Schema). Admissions fact в центре, нормализованные dimensions: Country→Region→Zone, School→SchoolLevel, Semester→Year</figcaption></figure>
+
+<figure class="figure-box"><img src="img/ch5_fig51_star.jpg" alt="Figure 51 — Dimensional PDM (Star Schema). Тот же домен, но dimensions денормализованы — сравните с Snowflake выше"><figcaption><strong>Figure 51 —</strong> Dimensional PDM (Star Schema). Тот же домен, но dimensions денормализованы — сравните с Snowflake выше</figcaption></figure>
+
 
 <ul>
 <li><span class="term">Fact Table</span> = числовые метрики (сумма продажи, количество, стоимость) + FK на dimensions</li>
@@ -923,24 +795,11 @@ sections:[
 <h4>Реляционные СУБД / RDBMS</h4>
 <p>Хранят данные в таблицах (строки × столбцы), используют SQL. Обеспечивают <span class="term">ACID</span>-свойства транзакций:</p>
 
-<svg viewBox="0 0 520 110" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
-  <rect x="5" y="10" width="120" height="80" rx="10" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
-  <text x="65" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="#4f46e5">A</text>
-  <text x="65" y="52" text-anchor="middle" font-size="9" font-weight="600" fill="#4338ca">Atomicity</text>
-  <text x="65" y="67" text-anchor="middle" font-size="8" fill="#475569">Всё или ничего</text>
-  <rect x="135" y="10" width="120" height="80" rx="10" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2"/>
-  <text x="195" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="#0d9488">C</text>
-  <text x="195" y="52" text-anchor="middle" font-size="9" font-weight="600" fill="#0d9488">Consistency</text>
-  <text x="195" y="67" text-anchor="middle" font-size="8" fill="#475569">Согласованность</text>
-  <rect x="265" y="10" width="120" height="80" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-  <text x="325" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="#d97706">I</text>
-  <text x="325" y="52" text-anchor="middle" font-size="9" font-weight="600" fill="#d97706">Isolation</text>
-  <text x="325" y="67" text-anchor="middle" font-size="8" fill="#475569">Изолированность</text>
-  <rect x="395" y="10" width="120" height="80" rx="10" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
-  <text x="455" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="#db2777">D</text>
-  <text x="455" y="52" text-anchor="middle" font-size="9" font-weight="600" fill="#db2777">Durability</text>
-  <text x="455" y="67" text-anchor="middle" font-size="8" fill="#475569">Долговечность</text>
-</svg>
+
+<figure class="figure-box"><img src="img/ch6_fig54_storage_context.jpg" alt="Figure 54 — Context Diagram: Data Storage and Operations. Активности: Manage Database Technology, Manage Database Operations"><figcaption><strong>Figure 54 —</strong> Context Diagram: Data Storage and Operations. Активности: Manage Database Technology, Manage Database Operations</figcaption></figure>
+
+<figure class="figure-box"><img src="img/ch6_db_spectrum.jpg" alt="Database Structure Spectrum. От Hierarchical (Tree Schema) через Relational (Schema on Write) к Non-Relational (Schema on Read)"><figcaption><strong></strong> Database Structure Spectrum. От Hierarchical (Tree Schema) через Relational (Schema on Write) к Non-Relational (Schema on Read)</figcaption></figure>
+
 
 <ul>
 <li><strong>Atomicity / Атомарность</strong> — транзакция выполняется полностью или не выполняется вообще (переводим деньги: списание + зачисление = одна неделимая операция)</li>
@@ -961,6 +820,10 @@ sections:[
 <tr><td><strong>Graph</strong></td><td>Узлы + связи</td><td>Neo4j</td><td>Социальные сети, рекомендации</td></tr>
 </table>
 
+
+<figure class="figure-box"><img src="img/ch6_centralized_distributed.jpg" alt="Centralized vs Distributed Database. Единое представление данных: одна локация vs несколько синхронизированных"><figcaption><strong></strong> Centralized vs Distributed Database. Единое представление данных: одна локация vs несколько синхронизированных</figcaption></figure>
+
+<figure class="figure-box"><img src="img/ch6_cap_theorem.jpg" alt="CAP Theorem. Распределённая система гарантирует только 2 из 3: Consistency, Availability, Partition Tolerance"><figcaption><strong></strong> CAP Theorem. Распределённая система гарантирует только 2 из 3: Consistency, Availability, Partition Tolerance</figcaption></figure>
 <h4>OLTP vs OLAP</h4>
 <table class="info-table">
 <tr><th></th><th>OLTP</th><th>OLAP</th></tr>
@@ -988,18 +851,9 @@ checkQuestions:[
 
 <h4>Ключевые метрики доступности</h4>
 
-<svg viewBox="0 0 500 110" style="width:100%;max-width:500px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
-  <rect x="10" y="10" width="230" height="80" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
-  <text x="125" y="35" text-anchor="middle" font-size="14" font-weight="800" fill="#dc2626">RPO</text>
-  <text x="125" y="52" text-anchor="middle" font-size="10" fill="#475569">Recovery Point Objective</text>
-  <text x="125" y="68" text-anchor="middle" font-size="9" fill="#475569">Макс. допустимая потеря данных</text>
-  <text x="125" y="82" text-anchor="middle" font-size="9" fill="#64748b">«Сколько данных можно потерять?»</text>
-  <rect x="260" y="10" width="230" height="80" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
-  <text x="375" y="35" text-anchor="middle" font-size="14" font-weight="800" fill="#0284c7">RTO</text>
-  <text x="375" y="52" text-anchor="middle" font-size="10" fill="#475569">Recovery Time Objective</text>
-  <text x="375" y="68" text-anchor="middle" font-size="9" fill="#475569">Макс. допустимое время восстановления</text>
-  <text x="375" y="82" text-anchor="middle" font-size="9" fill="#64748b">«Как быстро восстановиться?»</text>
-</svg>
+
+<figure class="figure-box"><img src="img/ch6_sla.jpg" alt="SLA Structure. Service Level Agreements между Data Owners/Stewards, IT Data Management Services и DBA/NSA. Включает System и Database Performance/Availability/Recovery"><figcaption><strong></strong> SLA Structure. Service Level Agreements между Data Owners/Stewards, IT Data Management Services и DBA/NSA. Включает System и Database Performance/Availability/Recovery</figcaption></figure>
+
 
 <p><span class="term">SLA (Service Level Agreement)</span> — формальное соглашение об уровне обслуживания, включающее RPO, RTO, доступность (99.9% и т.д.).</p>
 
@@ -1035,6 +889,10 @@ sections:[
 
 <p><strong>Integration</strong> фокусируется на <em>объединении</em> данных. <strong>Interoperability</strong> — на <em>способности обмениваться</em>.</p>
 
+
+<figure class="figure-box"><img src="img/ch8_fig67_etl.jpg" alt="Figure 67 — ETL Process Flow. Source → Extract → Staging → Transform (с Lookups/Mappings) → Load → Target"><figcaption><strong>Figure 67 —</strong> ETL Process Flow. Source → Extract → Staging → Transform (с Lookups/Mappings) → Load → Target</figcaption></figure>
+
+<figure class="figure-box"><img src="img/ch8_fig68_elt.jpg" alt="Figure 68 — ELT Process Flow. Source → Extract → Load → Target, затем Transform внутри Target. Для Big Data / Cloud DWH"><figcaption><strong>Figure 68 —</strong> ELT Process Flow. Source → Extract → Load → Target, затем Transform внутри Target. Для Big Data / Cloud DWH</figcaption></figure>
 <h4>ETL vs ELT</h4>
 
 <svg viewBox="0 0 520 200" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
@@ -1078,32 +936,11 @@ checkQuestions:[
 {title:'2. Паттерны интеграции, MDM и типы обмена',content:`
 <h4>Паттерны интеграции / Integration Patterns</h4>
 
-<svg viewBox="0 0 520 200" style="width:100%;max-width:520px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
-  <text x="130" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">Point-to-Point (спагетти!)</text>
-  <circle cx="80" cy="70" r="18" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><text x="80" y="74" text-anchor="middle" font-size="8" fill="#dc2626">A</text>
-  <circle cx="130" cy="40" r="18" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><text x="130" y="44" text-anchor="middle" font-size="8" fill="#dc2626">B</text>
-  <circle cx="180" cy="70" r="18" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><text x="180" y="74" text-anchor="middle" font-size="8" fill="#dc2626">C</text>
-  <circle cx="130" cy="100" r="18" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/><text x="130" y="104" text-anchor="middle" font-size="8" fill="#dc2626">D</text>
-  <line x1="96" y1="60" x2="114" y2="50" stroke="#ef4444" stroke-width="1"/>
-  <line x1="96" y1="80" x2="114" y2="90" stroke="#ef4444" stroke-width="1"/>
-  <line x1="146" y1="50" x2="164" y2="60" stroke="#ef4444" stroke-width="1"/>
-  <line x1="146" y1="90" x2="164" y2="80" stroke="#ef4444" stroke-width="1"/>
-  <line x1="80" y1="88" x2="114" y2="95" stroke="#ef4444" stroke-width="1"/>
-  <line x1="180" y1="88" x2="146" y2="95" stroke="#ef4444" stroke-width="1"/>
-  <text x="130" y="140" text-anchor="middle" font-size="8" fill="#64748b">n×(n-1)/2 связей</text>
-  <text x="390" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="#059669">Hub-and-Spoke</text>
-  <circle cx="390" cy="70" r="25" fill="#d1fae5" stroke="#10b981" stroke-width="2"/><text x="390" y="74" text-anchor="middle" font-size="9" font-weight="700" fill="#059669">HUB</text>
-  <circle cx="330" cy="40" r="15" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/><text x="330" y="44" text-anchor="middle" font-size="7" fill="#059669">A</text>
-  <circle cx="450" cy="40" r="15" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/><text x="450" y="44" text-anchor="middle" font-size="7" fill="#059669">B</text>
-  <circle cx="330" cy="100" r="15" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/><text x="330" y="104" text-anchor="middle" font-size="7" fill="#059669">C</text>
-  <circle cx="450" cy="100" r="15" fill="#ecfdf5" stroke="#10b981" stroke-width="1"/><text x="450" y="104" text-anchor="middle" font-size="7" fill="#059669">D</text>
-  <line x1="345" y1="48" x2="368" y2="58" stroke="#10b981" stroke-width="1"/>
-  <line x1="435" y1="48" x2="412" y2="58" stroke="#10b981" stroke-width="1"/>
-  <line x1="345" y1="92" x2="368" y2="82" stroke="#10b981" stroke-width="1"/>
-  <line x1="435" y1="92" x2="412" y2="82" stroke="#10b981" stroke-width="1"/>
-  <text x="390" y="140" text-anchor="middle" font-size="8" fill="#64748b">Всё через центр</text>
-  <text x="260" y="190" text-anchor="middle" font-size="9" fill="#64748b">Point-to-Point создаёт хаос при масштабировании. Hub-and-Spoke/ESB управляемы.</text>
-</svg>
+
+<figure class="figure-box"><img src="img/ch8_fig69_coupling.jpg" alt="Figure 69 — Application Coupling. Tight Coupling: Process A ↔ Process B напрямую. Loose Coupling: через API и Service"><figcaption><strong>Figure 69 —</strong> Application Coupling. Tight Coupling: Process A ↔ Process B напрямую. Loose Coupling: через API и Service</figcaption></figure>
+
+<figure class="figure-box"><img src="img/ch8_fig70_esb.jpg" alt="Figure 70 — Enterprise Service Bus. Центральная шина: Process Orchestration Manager координирует обмен между Applications и Services"><figcaption><strong>Figure 70 —</strong> Enterprise Service Bus. Центральная шина: Process Orchestration Manager координирует обмен между Applications и Services</figcaption></figure>
+
 
 <ul>
 <li><strong>Point-to-Point</strong> — прямые связи между системами. Просто для 2-3 систем, но при масштабировании количество связей растёт как <strong>n×(n-1)/2</strong> — неуправляемо.</li>
@@ -1888,6 +1725,14 @@ function renderModule(c,modId){
         h+='</div>';
       }
     }
+    // Per-module export bar
+    const mAtts=state.attempts[modId]||[];
+    if(mAtts.length){
+      const bs=Math.max(...mAtts.map(a=>a.score));
+      const st=bs>=80?'PASSED':'NOT PASSED';
+      const sc=bs>=80?'var(--success)':'var(--danger)';
+      h+=`<div class="module-export-bar"><div class="meb-top"><span class="meb-label">Module result: <span style="color:${sc};font-weight:700">${st} (${bs}%)</span></span><button class="btn btn-primary" onclick="exportModuleResults('${modId}','json')">Export JSON</button><button class="btn" onclick="exportModuleResults('${modId}','csv')">Export CSV</button><button class="btn" onclick="exportModuleResults('${modId}','md')">Export MD</button></div><p class="meb-hint">Export includes: score, pass/fail, attempt history, weak areas. Each module can be exported independently.</p></div>`;
+    }
     h+='</div>';
   }
   c.innerHTML=h;
@@ -2166,6 +2011,40 @@ function exportResults(fmt){
   const blob=new Blob([content],{type:mime});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url);
+}
+
+
+function getModuleWeakAreas(modId){
+  const aq=state.activeQuizzes[modId];
+  if(!aq||!aq.questions) return [];
+  const ts={};
+  aq.questions.forEach((q,i)=>{
+    const t=q.topic||'general';
+    if(!ts[t]) ts[t]={total:0,correct:0,wrong:[]};
+    ts[t].total++;
+    if(aq.answers[i]?.correct) ts[t].correct++;
+    else ts[t].wrong.push(q.question.substring(0,80));
+  });
+  const w=[];
+  Object.entries(ts).forEach(([topic,s])=>{
+    const pct=s.total>0?Math.round(s.correct/s.total*100):0;
+    if(pct<80) w.push({topic,pct,correct:s.correct,total:s.total,missed:s.wrong});
+  });
+  return w.sort((a,b)=>a.pct-b.pct);
+}
+
+function exportModuleResults(modId,fmt){
+  const mod=MODULES.find(m=>m.id===modId);if(!mod)return;
+  const atts=state.attempts[modId]||[];
+  const best=atts.length?Math.max(...atts.map(a=>a.score)):null;
+  const weak=getModuleWeakAreas(modId);
+  const status=best===null?'Not attempted':best>=80?'PASSED':'FAILED';
+  const d={course:'DAMA DMBOK Self-Study',module:mod.title,chapter:mod.chapter,learner:state.userName||'Anonymous',date:new Date().toISOString(),dateLocal:new Date().toLocaleString(),threshold:'80%',bestScore:best!==null?best+'%':'N/A',status:status,attempts:atts.map((a,i)=>({n:i+1,date:new Date(a.date).toLocaleString(),score:a.score+'%',correct:a.correct,total:a.total,passed:a.score>=80,id:a.id})),weakAreas:weak};
+  let content,fn,mime;const sn=mod.title.replace(/[^a-zA-Z0-9]/g,'_').toLowerCase();
+  if(fmt==='json'){content=JSON.stringify(d,null,2);fn='dama_'+sn+'.json';mime='application/json';}
+  else if(fmt==='csv'){let c='DAMA DMBOK Module Results\n';c+='Module,"'+d.module+'"\n';c+='Chapter,"'+d.chapter+'"\n';c+='Learner,"'+d.learner+'"\n';c+='Date,"'+d.dateLocal+'"\n';c+='Best Score,'+d.bestScore+'\n';c+='Status,'+d.status+'\n';c+='Threshold,80%\n\n';c+='Attempt,Date,Score,Correct,Total,Passed,ID\n';d.attempts.forEach(a=>{c+=a.n+',"'+a.date+'",'+a.score+','+a.correct+','+a.total+','+(a.passed?'Yes':'No')+','+a.id+'\n';});if(weak.length){c+='\nWeak Areas (below 80%)\nTopic,Score,Correct,Total\n';weak.forEach(w=>{c+='"'+w.topic+'",'+w.pct+'%,'+w.correct+','+w.total+'\n';});}content=c;fn='dama_'+sn+'.csv';mime='text/csv';}
+  else{let m='# '+d.module+'\n\n|Field|Value|\n|---|---|\n';m+='|Module|'+d.module+'|\n|Chapter|'+d.chapter+'|\n|Learner|'+d.learner+'|\n|Date|'+d.dateLocal+'|\n|Best Score|'+d.bestScore+'|\n|Status|'+d.status+'|\n|Threshold|80%|\n';m+='\n## Attempts\n\n|#|Date|Score|Correct|Passed|ID|\n|---|---|---|---|---|---|\n';d.attempts.forEach(a=>{m+='|'+a.n+'|'+a.date+'|'+a.score+'|'+a.correct+'/'+a.total+'|'+(a.passed?'Yes':'No')+'|'+a.id+'|\n';});if(weak.length){m+='\n## Weak Areas\n\n|Topic|Score|Correct|\n|---|---|---|\n';weak.forEach(w=>{m+='|'+w.topic+'|'+w.pct+'%|'+w.correct+'/'+w.total+'|\n';});}content=m;fn='dama_'+sn+'.md';mime='text/markdown';}
+  const blob=new Blob([content],{type:mime});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=fn;a.click();URL.revokeObjectURL(u);
 }
 
 function resetProgress(){
