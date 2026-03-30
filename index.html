@@ -182,8 +182,6 @@ objectives:['Understand data, information, knowledge, wisdom (DIKW)','Know the D
 sections:[
 {title:'1. Данные, информация, знания, мудрость — иерархия DIKW',content:`
 <p>Для эффективного управления данными необходимо чётко различать уровни абстракции информации. DAMA DMBOK использует модель <span class="term">DIKW</span> — иерархию, описывающую переход от сырых фактов к принятию решений.</p>
-<figure class="figure-box"><img src="img/ch1_fig02_lifecycle.jpg" alt="Figure 2 — Data Lifecycle Key Activities. Циклическая модель: Plan → Design & Enable → Create/Obtain → Store/Maintain → Use → Enhance, с ответвлением Dispose of"><figcaption><strong>Figure 2 —</strong> Data Lifecycle Key Activities. Циклическая модель: Plan → Design & Enable → Create/Obtain → Store/Maintain → Use → Enhance, с ответвлением Dispose of</figcaption></figure>
-
 
 <svg viewBox="0 0 500 320" style="width:100%;max-width:500px;display:block;margin:20px auto" xmlns="http://www.w3.org/2000/svg">
   <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#4f46e5"/></linearGradient></defs>
@@ -212,6 +210,8 @@ sections:[
 <strong>Information:</strong> Продажи продукта А по кварталам за 2025 год составили 150, 200, 180, 220 тыс. руб.<br>
 <strong>Knowledge:</strong> Продажи растут в среднем на 12% год к году; падение в Q3 связано с сезонным фактором.<br>
 <strong>Wisdom:</strong> Заранее увеличить запасы перед Q4 и запланировать промо-акцию в Q3 для сглаживания сезонного спада.</div>
+
+<div class="warn-block"><strong>Важно:</strong> DAMA DMBOK отмечает ограничения модели DIKW: она предполагает, что данные «просто существуют», хотя для создания данных уже нужны знания. Кроме того, линейная последовательность «от данных к мудрости» не учитывает, что данные и информация тесно переплетены. Несмотря на эти ограничения, DIKW остаётся полезной концептуальной моделью для понимания уровней абстракции.</div>
 
 <div class="info-block"><strong>Для бизнес-аналитика:</strong> Вы работаете преимущественно на уровнях Information и Knowledge. Ваша задача — превращать сырые данные в осмысленную информацию через анализ требований и помогать организации строить знания для принятия решений.</div>
 `,
@@ -252,7 +252,7 @@ checkQuestions:[
 <div class="warn-block"><strong>Типичная ошибка:</strong> Считать данные «заботой IT-отдела». Данные — это <strong>бизнес-актив</strong>. IT обеспечивает инфраструктуру для их хранения и обработки, но ответственность за качество, достоверность и использование данных лежит на бизнесе. Точно так же, как здание принадлежит компании, а не строительной бригаде.</div>
 
 <h4>Определение Data Management</h4>
-<div class="def-block"><strong>Управление данными / Data Management</strong> — разработка, выполнение и контроль планов, программ, политик, практик и процедур, которые обеспечивают, контролируют, защищают, доставляют и повышают ценность данных и информационных активов на протяжении их жизненного цикла.</div>
+<div class="def-block"><strong>Управление данными / Data Management</strong> — разработка, выполнение и надзор (<span class="term-en">supervision</span>) за планами, политиками, программами и практиками, которые доставляют, контролируют, защищают и повышают ценность данных и информационных активов на протяжении их жизненного цикла.</div>
 
 <p>Ключевые аспекты этого определения:</p>
 <ul>
@@ -272,61 +272,71 @@ checkQuestions:[
 {type:'single',question:'Какое свойство данных как актива отличает их от физических активов?',options:['Данные требуют обслуживания','Данные не расходуются при использовании','Данные всегда стоят одинаково','Данные невозможно потерять'],correct:1,explanation:'Неисчерпаемость — ключевое свойство. Данные используются многими людьми одновременно без потребления.'}
 ]},
 {title:'3. Жизненный цикл данных / Data Lifecycle',content:`
-<p>Данные проходят несколько стадий от момента создания до окончательного удаления. Понимание жизненного цикла помогает бизнес-аналитику правильно формулировать требования к системам.</p>
+<p>DAMA DMBOK определяет жизненный цикл данных как <strong>циклическую модель</strong> (Figure 2), включающую следующие ключевые активности. Понимание этих стадий помогает бизнес-аналитику правильно формулировать требования к системам.</p>
 
-<svg viewBox="0 0 600 120" style="width:100%;max-width:600px;display:block;margin:20px auto" xmlns="http://www.w3.org/2000/svg">
+<figure class="figure-box"><img src="img/ch1_fig02_lifecycle.jpg" alt="Figure 2 — Data Lifecycle Key Activities. Циклическая модель: Plan → Design & Enable → Create/Obtain → Store/Maintain → Use → Enhance, с ответвлением Dispose of"><figcaption><strong>Figure 2 —</strong> Data Lifecycle Key Activities. Циклическая модель: Plan → Design &amp; Enable → Create/Obtain → Store/Maintain → Use → Enhance, с ответвлением Dispose of</figcaption></figure>
+
+<svg viewBox="0 0 620 140" style="width:100%;max-width:620px;display:block;margin:20px auto" xmlns="http://www.w3.org/2000/svg">
   <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6366f1"/></marker></defs>
   <rect x="5" y="30" width="80" height="50" rx="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.5"/>
-  <text x="45" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#4f46e5">Create</text>
-  <text x="45" y="67" text-anchor="middle" font-size="9" fill="#475569">Создание</text>
+  <text x="45" y="50" text-anchor="middle" font-size="10" font-weight="700" fill="#4f46e5">Plan</text>
+  <text x="45" y="65" text-anchor="middle" font-size="8" fill="#475569">Планировать</text>
   <line x1="87" y1="55" x2="100" y2="55" stroke="#6366f1" stroke-width="1.5" marker-end="url(#ah)"/>
-  <rect x="102" y="30" width="80" height="50" rx="8" fill="#c7d2fe" stroke="#6366f1" stroke-width="1.5"/>
-  <text x="142" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#4338ca">Store</text>
-  <text x="142" y="67" text-anchor="middle" font-size="9" fill="#475569">Хранение</text>
+  <rect x="102" y="25" width="80" height="60" rx="8" fill="#c7d2fe" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="142" y="48" text-anchor="middle" font-size="9" font-weight="700" fill="#4338ca">Design &amp;</text>
+  <text x="142" y="60" text-anchor="middle" font-size="9" font-weight="700" fill="#4338ca">Enable</text>
+  <text x="142" y="75" text-anchor="middle" font-size="8" fill="#475569">Проектировать</text>
   <line x1="184" y1="55" x2="197" y2="55" stroke="#6366f1" stroke-width="1.5" marker-end="url(#ah)"/>
-  <rect x="199" y="30" width="80" height="50" rx="8" fill="#a5b4fc" stroke="#6366f1" stroke-width="1.5"/>
-  <text x="239" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Use</text>
-  <text x="239" y="67" text-anchor="middle" font-size="9" fill="#475569">Использование</text>
+  <rect x="199" y="25" width="80" height="60" rx="8" fill="#a5b4fc" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="239" y="48" text-anchor="middle" font-size="9" font-weight="700" fill="#3730a3">Create /</text>
+  <text x="239" y="60" text-anchor="middle" font-size="9" font-weight="700" fill="#3730a3">Obtain</text>
+  <text x="239" y="75" text-anchor="middle" font-size="8" fill="#475569">Создать</text>
   <line x1="281" y1="55" x2="294" y2="55" stroke="#6366f1" stroke-width="1.5" marker-end="url(#ah)"/>
-  <rect x="296" y="30" width="80" height="50" rx="8" fill="#818cf8" stroke="#4f46e5" stroke-width="1.5"/>
-  <text x="336" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#312e81">Share</text>
-  <text x="336" y="67" text-anchor="middle" font-size="9" fill="#312e81">Обмен</text>
+  <rect x="296" y="25" width="80" height="60" rx="8" fill="#818cf8" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="336" y="48" text-anchor="middle" font-size="9" font-weight="700" fill="#312e81">Store /</text>
+  <text x="336" y="60" text-anchor="middle" font-size="9" font-weight="700" fill="#312e81">Maintain</text>
+  <text x="336" y="75" text-anchor="middle" font-size="8" fill="#312e81">Хранить</text>
   <line x1="378" y1="55" x2="391" y2="55" stroke="#6366f1" stroke-width="1.5" marker-end="url(#ah)"/>
-  <rect x="393" y="30" width="80" height="50" rx="8" fill="#6366f1" stroke="#4338ca" stroke-width="1.5"/>
-  <text x="433" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Archive</text>
-  <text x="433" y="67" text-anchor="middle" font-size="9" fill="#e0e7ff">Архив</text>
-  <line x1="475" y1="55" x2="488" y2="55" stroke="#6366f1" stroke-width="1.5" marker-end="url(#ah)"/>
-  <rect x="490" y="30" width="80" height="50" rx="8" fill="#4f46e5" stroke="#3730a3" stroke-width="1.5"/>
-  <text x="530" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Purge</text>
-  <text x="530" y="67" text-anchor="middle" font-size="9" fill="#c7d2fe">Удаление</text>
-  <text x="300" y="105" text-anchor="middle" font-size="10" fill="#64748b">Жизненный цикл данных / Data Lifecycle</text>
+  <rect x="393" y="30" width="60" height="50" rx="8" fill="#6366f1" stroke="#4338ca" stroke-width="1.5"/>
+  <text x="423" y="50" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Use</text>
+  <text x="423" y="65" text-anchor="middle" font-size="8" fill="#e0e7ff">Использ.</text>
+  <line x1="455" y1="55" x2="468" y2="55" stroke="#6366f1" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="470" y="30" width="70" height="50" rx="8" fill="#4f46e5" stroke="#3730a3" stroke-width="1.5"/>
+  <text x="505" y="50" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Enhance</text>
+  <text x="505" y="65" text-anchor="middle" font-size="8" fill="#c7d2fe">Улучшить</text>
+  <rect x="470" y="100" width="70" height="35" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="505" y="118" text-anchor="middle" font-size="9" font-weight="700" fill="#dc2626">Dispose of</text>
+  <line x1="505" y1="82" x2="505" y2="98" stroke="#ef4444" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="310" y="130" text-anchor="middle" font-size="10" fill="#64748b">Data Lifecycle Key Activities (DAMA DMBOK Figure 2)</text>
 </svg>
 
 <ol>
-<li><strong>Создание / Create</strong> — данные возникают: ввод пользователем, генерация системой, получение из внешних источников (API, файлы, IoT-устройства)</li>
-<li><strong>Хранение / Store</strong> — данные сохраняются в базах данных, файловых системах, облачных хранилищах</li>
+<li><strong>Планирование / Plan</strong> — определение требований к данным, разработка стратегии и архитектуры данных</li>
+<li><strong>Проектирование и обеспечение / Design &amp; Enable</strong> — моделирование данных, проектирование структур, создание инфраструктуры для хранения и доступа</li>
+<li><strong>Создание и получение / Create / Obtain</strong> — данные возникают: ввод пользователем, генерация системой, получение из внешних источников (API, файлы, IoT-устройства)</li>
+<li><strong>Хранение и поддержка / Store / Maintain</strong> — данные сохраняются в базах данных, файловых системах, облачных хранилищах; обеспечиваются их качество и доступность</li>
 <li><strong>Использование / Use</strong> — данные читаются, обрабатываются, анализируются для принятия решений и операционных процессов</li>
-<li><strong>Обмен / Share</strong> — данные передаются между системами, подразделениями, партнёрами через интеграции, API, отчёты</li>
-<li><strong>Архивирование / Archive</strong> — данные, которые больше не нужны для оперативной работы, переносятся в долгосрочные хранилища (дешевле, медленнее)</li>
-<li><strong>Удаление / Purge (Destroy)</strong> — данные окончательно удаляются по истечении срока хранения или по требованию регуляторов (например, GDPR «право на забвение»)</li>
+<li><strong>Улучшение / Enhance</strong> — повышение качества данных: очистка, обогащение, интеграция, стандартизация</li>
+<li><strong>Утилизация / Dispose of</strong> — данные архивируются или окончательно удаляются по истечении срока хранения или по требованию регуляторов (например, GDPR «право на забвение»)</li>
 </ol>
 
 <div class="info-block"><strong>Для бизнес-аналитика:</strong> При анализе требований к системе задавайте вопросы по каждой стадии жизненного цикла:
 <ul>
-<li><strong>Create:</strong> Откуда берутся данные? Кто или что их создаёт?</li>
-<li><strong>Store:</strong> Где и как хранятся? Какие требования к доступности?</li>
+<li><strong>Plan:</strong> Какие данные нужны? Какая стратегия?</li>
+<li><strong>Design &amp; Enable:</strong> Какая структура данных? Какие системы обеспечат хранение?</li>
+<li><strong>Create / Obtain:</strong> Откуда берутся данные? Кто или что их создаёт?</li>
+<li><strong>Store / Maintain:</strong> Где и как хранятся? Какие требования к доступности и качеству?</li>
 <li><strong>Use:</strong> Кто потребители данных? Для каких процессов?</li>
-<li><strong>Share:</strong> С кем и как данные передаются?</li>
-<li><strong>Archive:</strong> Когда данные становятся неактуальными? Куда переносить?</li>
-<li><strong>Purge:</strong> Каков срок хранения? Есть ли регуляторные требования?</li>
+<li><strong>Enhance:</strong> Как улучшать качество данных? Какие правила очистки?</li>
+<li><strong>Dispose of:</strong> Каков срок хранения? Есть ли регуляторные требования к удалению?</li>
 </ul></div>
 
-<div class="example-block"><strong>Пример:</strong> Заявка на кредит. <strong>Create</strong> — клиент заполняет форму. <strong>Store</strong> — данные сохраняются в CRM. <strong>Use</strong> — скоринговая система оценивает риск. <strong>Share</strong> — результат передаётся в процессинг. <strong>Archive</strong> — через 3 года заявка уходит в архив. <strong>Purge</strong> — через 10 лет данные удаляются по требованиям регулятора.</div>
+<div class="example-block"><strong>Пример:</strong> Заявка на кредит. <strong>Plan</strong> — определяем, какие данные необходимы для скоринга. <strong>Design &amp; Enable</strong> — проектируем модель данных для заявок. <strong>Create/Obtain</strong> — клиент заполняет форму. <strong>Store/Maintain</strong> — данные сохраняются в CRM. <strong>Use</strong> — скоринговая система оценивает риск. <strong>Enhance</strong> — данные обогащаются из внешних бюро. <strong>Dispose of</strong> — через 10 лет данные удаляются по требованиям регулятора.</div>
 `,
 checkQuestions:[
-{type:'single',question:'Какая стадия жизненного цикла НЕ входит в DAMA DMBOK?',options:['Create','Validate','Archive','Purge'],correct:1,explanation:'Validate — не стадия lifecycle. Стадии: Create, Store, Use, Share, Archive, Purge.'},
-{type:'fillin',question:'Как на английском называется стадия удаления данных по истечении срока?',correct:['purge','Purge','destroy','Destroy'],explanation:'Purge / Destroy — стадия удаления данных из жизненного цикла.'},
-{type:'single',question:'Какой вопрос относится к стадии Archive?',options:['Кто создаёт данные?','Кто потребитель?','Когда данные становятся неактуальными?','Какой формат отчёта?'],correct:2,explanation:'Archive связан с определением момента, когда данные перестают быть нужны для оперативной работы.'}
+{type:'single',question:'Какая стадия НЕ входит в жизненный цикл данных по DAMA DMBOK?',options:['Plan','Validate','Enhance','Create / Obtain'],correct:1,explanation:'Validate — не стадия lifecycle. Стадии по DMBOK: Plan, Design & Enable, Create/Obtain, Store/Maintain, Use, Enhance, Dispose of.'},
+{type:'fillin',question:'Как на английском называется стадия утилизации/удаления данных в DAMA DMBOK?',correct:['dispose of','Dispose of','dispose','Dispose'],explanation:'Dispose of — стадия утилизации данных в жизненном цикле DAMA DMBOK.'},
+{type:'single',question:'Какой вопрос относится к стадии Enhance?',options:['Кто создаёт данные?','Кто потребитель?','Как улучшить качество и обогатить данные?','Какой формат отчёта?'],correct:2,explanation:'Enhance — стадия улучшения качества данных: очистка, обогащение, интеграция.'}
 ]},
 {title:'4. Структура DAMA DMBOK и колесо DAMA / DAMA Wheel',content:`
 <p><span class="term">DAMA DMBOK</span> (<span class="term-en">Data Management Body of Knowledge</span>) — это свод знаний по управлению данными, разработанный международной ассоциацией <span class="term">DAMA International</span>. Текущая версия — <strong>DMBOK2</strong> (второе издание, 2017 год). Это <strong>фреймворк</strong> — набор общепринятых практик и принципов, а не стандарт или методология.</p>
@@ -340,17 +350,22 @@ checkQuestions:[
 
 <p>Итого <strong>11 областей знаний / knowledge areas</strong> (включая Data Governance в центре).</p>
 
+<p>DMBOK также описывает эволюцию этой модели (Figure 11), где области сгруппированы по трём слоям:</p>
+<figure class="figure-box"><img src="img/ch1_fig11_wheel_evolved.jpg" alt="Figure 11 — DAMA Wheel Evolved. Oversight (Data Governance) наверху, Lifecycle Management в центре, Foundational Activities внизу"><figcaption><strong>Figure 11 —</strong> DAMA Wheel Evolved. Oversight (Data Governance) — слой надзора наверху, Lifecycle Management — центральный слой, Foundational Activities — базовый слой внизу</figcaption></figure>
+
 <div class="info-block"><strong>Почему Data Governance в центре?</strong> Потому что руководство данными координирует и направляет все остальные области. Без governance остальные практики будут разрозненными. Governance определяет: <strong>кто</strong> принимает решения о данных, <strong>какие правила</strong> действуют, <strong>как контролируется</strong> их соблюдение.</div>
 
 <h4>Контекстная диаграмма каждой области знаний</h4>
-<p>Каждая из 11 областей описана в DMBOK по единому шаблону (контекстной диаграмме):</p>
+<p>Каждая из 11 областей описана в DMBOK по единому шаблону (контекстной диаграмме, см. Figure 7):</p>
 <ul>
 <li><strong>Definition / Определение</strong> — что это за область</li>
 <li><strong>Goals / Цели</strong> — чего стремимся достичь</li>
-<li><strong>Activities / Действия</strong> — конкретные практики и процессы</li>
-<li><strong>Inputs and Outputs / Входы и выходы</strong></li>
+<li><strong>Activities / Действия</strong> — конкретные практики и процессы (классифицируются по PDOC: Plan, Develop, Operate, Control)</li>
+<li><strong>Inputs / Входы</strong> — что поступает на вход процессов</li>
+<li><strong>Deliverables / Результаты</strong> — что производится на выходе</li>
+<li><strong>Suppliers, Participants, Consumers / Поставщики, участники, потребители</strong></li>
 <li><strong>Roles and Responsibilities / Роли и ответственности</strong></li>
-<li><strong>Practices and Techniques / Практики и техники</strong></li>
+<li><strong>Techniques / Техники</strong></li>
 <li><strong>Tools / Инструменты</strong></li>
 <li><strong>Metrics / Метрики</strong></li>
 </ul>
@@ -362,19 +377,20 @@ checkQuestions:[
 ]},
 {title:'5. Принципы и роли в управлении данными',content:`
 <h4>Принципы управления данными / Data Management Principles</h4>
+<p>DAMA DMBOK выделяет группы принципов, охватывающих все аспекты управления данными:</p>
 <ul>
-<li><strong>Data is an asset</strong> — данные имеют ценность, требуют инвестиций и могут создавать конкурентные преимущества</li>
-<li><strong>Leadership commitment</strong> — без поддержки руководства инициативы по управлению данными обречены на провал</li>
-<li><strong>Cross-functional collaboration</strong> — управление данными требует сотрудничества бизнеса и IT</li>
-<li><strong>Strategic approach</strong> — нужен план, а не реактивные действия; стратегия данных производна от бизнес-стратегии</li>
-<li><strong>Entrepreneurial approach</strong> — нужно показывать ценность инвестиций в данные</li>
+<li><strong>Data is an asset with unique properties</strong> — данные имеют ценность, не расходуются при использовании, и их ценность можно и нужно выражать в экономических терминах</li>
+<li><strong>Managing data means managing quality</strong> — обеспечение качества данных — неотъемлемая часть управления ими</li>
+<li><strong>It takes Metadata to manage data</strong> — для управления данными необходимы метаданные</li>
+<li><strong>It takes planning to manage data</strong> — управление данными требует стратегического планирования, а не реактивных действий</li>
+<li><strong>Data management is cross-functional</strong> — требует сотрудничества бизнеса и IT, с учётом разных перспектив</li>
+<li><strong>Data management requires an enterprise perspective</strong> — необходим взгляд на уровне всей организации</li>
+<li><strong>Data management must account for risks</strong> — управление данными включает управление связанными рисками</li>
+<li><strong>Effective data management requires leadership commitment</strong> — без поддержки руководства инициативы обречены на провал</li>
 </ul>
 
 <h4>Ключевые роли / Key Roles</h4>
-
-
-<figure class="figure-box"><img src="img/ch1_fig11_wheel_evolved.jpg" alt="Figure 11 — DAMA Wheel Evolved. Lifecycle Management внутри (Plan & Design / Enable & Maintain / Use & Enhance), Data Governance как внешнее кольцо, Foundational Activities на фундаменте"><figcaption><strong>Figure 11 —</strong> DAMA Wheel Evolved. Lifecycle Management внутри (Plan & Design / Enable & Maintain / Use & Enhance), Data Governance как внешнее кольцо, Foundational Activities на фундаменте</figcaption></figure>
-
+<div class="info-block"><strong>Примечание:</strong> Глава 1 кратко упоминает роли (Data Stewards, CDO) как примеры специалистов по управлению данными. Детальное описание ролей приводится в <strong>главе 3</strong> (Data Governance) и <strong>главе 16</strong> (Data Management Organization). Ниже — обзор ключевых ролей для общего понимания.</div>
 
 <ul>
 <li><span class="term">Data Owner / Data Trustee</span> — <strong>бизнес-руководитель</strong>, ответственный за конкретный домен данных (клиентские данные, финансовые данные). Принимает стратегические решения: кто имеет доступ, каковы стандарты качества, как данные используются.</li>
@@ -395,6 +411,7 @@ checkQuestions:[
 </ul></div>
 
 <h4>Организационные модели управления данными</h4>
+<div class="info-block"><strong>Примечание:</strong> Организационные модели подробно рассматриваются в <strong>главе 16</strong> (Data Management Organization), где описаны 5 моделей: Decentralized, Network, Centralized, Hybrid, Federated. Ниже — три наиболее распространённые.</div>
 <ul>
 <li><strong>Centralized / Централизованная</strong> — единая команда управляет всеми данными организации. Плюс: единые стандарты. Минус: может быть далеко от бизнес-контекста.</li>
 <li><strong>Decentralized / Децентрализованная</strong> — каждое подразделение управляет своими данными самостоятельно. Плюс: близость к бизнесу. Минус: несогласованность.</li>
@@ -431,15 +448,13 @@ sections:[
 
 <div class="example-block"><strong>Аналогия:</strong> Если представить компанию, то Data Management — это все департаменты вместе (HR, финансы, производство, маркетинг...), а Data Governance — это совет директоров, который определяет стратегию, правила и контролирует их соблюдение всеми департаментами.</div>
 
-<h4>Цели Data Governance</h4>
+<h4>Цели Data Governance (по Figure 14)</h4>
 <ul>
-<li>Определить <span class="term">accountability / подотчётность</span> — кто конкретно отвечает за данные</li>
-<li>Установить правила и политики работы с данными</li>
-<li>Снизить риски, связанные с данными (утечки, ошибки, несоответствие)</li>
-<li>Обеспечить <span class="term">compliance / соответствие</span> нормативным требованиям (GDPR, HIPAA, отраслевые стандарты)</li>
-<li>Повысить ценность данных через стандартизацию и контроль качества</li>
-<li>Поддержать <span class="term">data-driven decision making</span> — принятие решений на основе достоверных данных</li>
+<li><strong>Обеспечить управление данными как активом</strong> (<span class="term-en">Enable an organization to manage its data as an asset</span>) — основная цель governance</li>
+<li><strong>Определить, утвердить и внедрить</strong> принципы, политики, процедуры, метрики, инструменты и <span class="term">accountability / подотчётность</span> за управление данными</li>
+<li><strong>Мониторить и направлять</strong> соблюдение политик (<span class="term-en">policy compliance</span>), использование данных и управленческие активности</li>
 </ul>
+<p>Эти три цели охватывают: снижение рисков, <span class="term">compliance</span> (соответствие GDPR, HIPAA и отраслевым нормам), повышение ценности данных и поддержку <span class="term">data-driven decision making</span>.</p>
 
 <div class="warn-block"><strong>Типичная ошибка:</strong> «Governance = бюрократия и замедление работы». На самом деле хорошо организованный governance <strong>ускоряет</strong> работу: люди знают, кто отвечает за данные, где найти правильные определения, какие правила действуют. Governance снимает неопределённость, а не создаёт бумажную волокиту.</div>
 `,
@@ -458,9 +473,10 @@ checkQuestions:[
 
 <ul>
 <li><span class="term">Executive Sponsor</span> — топ-менеджер, обеспечивающий поддержку и ресурсы. <strong>Без спонсора программа governance не выживет</strong> — у неё не будет авторитета и бюджета.</li>
-<li><span class="term">Data Governance Council (DGC)</span> — высший орган, определяющий стратегию, приоритеты и политики. Обычно включает руководителей бизнес-подразделений. Может возглавляться CDO.</li>
-<li><span class="term">Data Governance Committee</span> — рабочая группа, реализующая решения Совета на практике.</li>
-<li><span class="term">Data Management Office (DMO)</span> / Data Governance Office (DGO) — подразделение, координирующее все активности по governance.</li>
+<li><span class="term">Data Governance Steering Committee</span> — <strong>высший орган</strong>, ответственный за надзор, поддержку и финансирование программы Data Governance. Состоит из кросс-функциональной группы топ-менеджеров.</li>
+<li><span class="term">Data Governance Council (DGC)</span> — управляет инициативами governance (разработка политик, метрик), решает проблемы и эскалации. Состоит из руководителей в соответствии с операционной моделью.</li>
+<li><span class="term">Data Governance Office (DGO)</span> — подразделение, координирующее все операционные активности по governance.</li>
+<li><span class="term">Data Stewardship Teams</span> — команды стюардов данных, фокусирующиеся на конкретных предметных областях или проектах.</li>
 </ul>
 
 <h4>Политики данных / Data Policies</h4>
@@ -481,7 +497,7 @@ checkQuestions:[
 </h4>
 <ul>
 <li><span class="term">Data Issue Management</span> — систематический процесс выявления, документирования и решения проблем с данными (дубликаты, ошибки, несогласованность)</li>
-<li><span class="term">Data Change Management</span> — контролируемое внесение изменений в данные, метаданные и стандарты (не путать с IT Change Management)</li>
+<li><span class="term">Organizational Change Management (OCM)</span> — управление организационными изменениями: преодоление сопротивления, обучение, коммуникации, получение поддержки сотрудников для внедрения практик governance</li>
 <li><span class="term">Escalation</span> — процедура передачи нерешённых вопросов на более высокий уровень принятия решений</li>
 </ul>
 
@@ -500,7 +516,7 @@ checkQuestions:[
 ]},
 {title:'3. Модель зрелости и подходы к внедрению',content:`
 <h4>Data Management Maturity Model</h4>
-<p>DAMA описывает модель зрелости для оценки текущего состояния управления данными в организации. Это помогает понять, на каком этапе находится организация и какие следующие шаги приоритетны.</p>
+<p>Для оценки текущего состояния управления данными используются модели зрелости. DMBOK ссылается на модель зрелости CMMI (<span class="term-en">Capability Maturity Model Integration</span>), подробно рассматриваемую в главе 15. Уровни зрелости помогают понять, где находится организация и какие шаги приоритетны.</p>
 
 <svg viewBox="0 0 560 200" style="width:100%;max-width:560px;display:block;margin:16px auto" xmlns="http://www.w3.org/2000/svg">
   <rect x="5" y="140" width="85" height="50" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="1.5"/>
@@ -542,10 +558,11 @@ checkQuestions:[
 <div class="warn-block"><strong>Типичная ошибка:</strong> Пытаться «перепрыгнуть» уровни — например, сразу с Level 1 на Level 5. Зрелость — постепенный процесс, каждый уровень строится на предыдущем. Если организация на Level 1, начните с определения базовых процессов (путь к Level 2), а не с внедрения сложных метрик.</div>
 
 <h4>Подходы к внедрению governance</h4>
+<p>DMBOK подчёркивает, что внедрение governance требует <strong>организационного управления изменениями (OCM)</strong>, поддержки руководства и инкрементального подхода. На практике выделяют три стратегии:</p>
 <ul>
 <li><strong>Top-down / Сверху вниз</strong> — инициатива идёт от руководства. Сильная сторона: авторитет и ресурсы. Риск: может восприниматься как «навязывание» и вызвать сопротивление.</li>
 <li><strong>Bottom-up / Снизу вверх</strong> — инициатива от операционных команд. Сильная сторона: практичность и понимание реальных проблем. Риск: недостаток полномочий для масштабных изменений.</li>
-<li><strong>Combined / Комбинированный</strong> — поддержка сверху + практическая реализация снизу. <strong>Наиболее эффективный подход</strong>, сочетающий авторитет руководства с практическим знанием команд.</li>
+<li><strong>Combined / Комбинированный</strong> — поддержка сверху + практическая реализация снизу. Сочетает авторитет руководства с практическим знанием команд.</li>
 </ul>
 
 <h4>Data Governance и смежные области</h4>
@@ -557,7 +574,7 @@ checkQuestions:[
 `,
 checkQuestions:[
 {type:'single',question:'Какой уровень зрелости характеризуется стандартизированными процессами?',options:['Initial','Repeatable','Defined','Managed'],correct:2,explanation:'Defined (Level 3) = процессы стандартизированы и документированы.'},
-{type:'single',question:'Какой подход к внедрению governance наиболее эффективен?',options:['Top-down','Bottom-up','Combined','Без формальной структуры'],correct:2,explanation:'Combined: поддержка руководства + практическая реализация командами.'},
+{type:'single',question:'Что DMBOK считает критически важным для успешного внедрения governance?',options:['Покупка дорогого ПО','Организационное управление изменениями (OCM) и поддержка руководства','Наём внешних консультантов','Немедленное достижение Level 5'],correct:1,explanation:'DMBOK подчёркивает необходимость OCM и спонсорства C-level руководителя.'},
 {type:'single',question:'Что отличает Level 4 (Managed) от Level 3 (Defined)?',options:['Наличие документации','Количественное измерение процессов','Наличие ролей','Использование облака'],correct:1,explanation:'Managed = Defined + процессы измеряются количественно и контролируются.'}
 ]}
 ]},
@@ -566,7 +583,7 @@ checkQuestions:[
 objectives:['Understand data architecture definition and goals','Know Enterprise Architecture domains','Know key architecture artifacts (DFD, CRUD, catalog)','Understand As-Is / To-Be and roadmaps','Know TOGAF and Zachman frameworks'],
 sections:[
 {title:'1. Определение и место в Enterprise Architecture',content:`
-<div class="def-block"><strong>Архитектура данных / Data Architecture</strong> — совокупность спецификаций, описывающих структуру данных организации, их связь с бизнес-процессами и приложениями, а также планы по управлению данными. Архитектура данных отвечает на вопросы: <strong>какие данные</strong> нужны, <strong>где</strong> они хранятся, <strong>как</strong> перемещаются и <strong>как связаны</strong> с бизнесом.</div>
+<div class="def-block"><strong>Архитектура данных / Data Architecture</strong> — определение потребностей организации в данных (независимо от структуры) и проектирование/поддержание <span class="term">мастер-чертежей / <span class="term-en">master blueprints</span></span> для удовлетворения этих потребностей. Мастер-чертежи используются для управления интеграцией данных, контроля данных как активов и согласования инвестиций в данные с бизнес-стратегией.</div>
 
 <h4>Enterprise Architecture (EA)</h4>
 <p>Data Architecture является одним из четырёх доменов <span class="term">корпоративной архитектуры / Enterprise Architecture</span>:</p>
@@ -633,14 +650,15 @@ checkQuestions:[
 
 <h4>Subject Area Model</h4>
 <p>Высокоуровневая модель, показывающая ключевые <span class="term">предметные области / subject areas</span> организации и их связи: клиенты, продукты, заказы, финансы, поставщики.</p>
-
-<h4>Принцип SSOT</h4>
-<div class="def-block"><strong>Single Source of Truth (SSOT)</strong> / Единый источник правды — принцип, согласно которому каждый элемент данных имеет <strong>один авторитетный источник</strong>, из которого берутся все копии. Это устраняет проблему «у нас 5 систем с разными данными о клиенте — какие правильные?»</div>
 <figure class="figure-box"><img src="img/ch4_fig24_subject_area.jpg" alt="Figure 24 — Subject Area Model Example. Три предметные области: Product Design, Commercial Offer, Sales с сущностями и связями"><figcaption><strong>Figure 24 —</strong> Subject Area Model Example. Три предметные области: Product Design, Commercial Offer, Sales с сущностями и связями</figcaption></figure>
 
-<figure class="figure-box"><img src="img/ch4_fig25_data_flow_matrix.jpg" alt="Figure 25 — Data Flow Matrix (CRUD). Процессы × сущности — какие данные создаются (●) и читаются (○) каким процессом"><figcaption><strong>Figure 25 —</strong> Data Flow Matrix (CRUD). Процессы × сущности — какие данные создаются (●) и читаются (○) каким процессом</figcaption></figure>
+<h4>Data Flow Diagram и Data Flow Matrix</h4>
+<figure class="figure-box"><img src="img/ch4_fig25_data_flow_matrix.jpg" alt="Figure 25 — Data Flow Depicted in a Matrix. Процессы × сущности — какие данные создаются (●) и используются (○) каким процессом"><figcaption><strong>Figure 25 —</strong> Data Flow Depicted in a Matrix. Процессы × сущности — закрашенный круг (●) = Create, открытый круг (○) = Read/Use</figcaption></figure>
 
 <figure class="figure-box"><img src="img/ch4_fig26_data_flow.jpg" alt="Figure 26 — System Data Flow Diagram. Потоки данных между PDM, CRM, Sales, Manufacturing и Aftermarket системами"><figcaption><strong>Figure 26 —</strong> System Data Flow Diagram. Потоки данных между PDM, CRM, Sales, Manufacturing и Aftermarket системами</figcaption></figure>
+
+<h4>Авторитетный источник данных / System of Record</h4>
+<div class="def-block"><strong>System of Record</strong> (авторитетный источник данных, часто называемый <span class="term">Single Source of Truth / SSOT</span>) — принцип, согласно которому каждый элемент данных имеет <strong>один авторитетный источник</strong>, из которого берутся все копии. DMBOK использует термин «system of record or other authoritative data». Это устраняет проблему «у нас 5 систем с разными данными о клиенте — какие правильные?»</div>
 
 `,
 checkQuestions:[
@@ -674,8 +692,8 @@ checkQuestions:[
 
 <h4>Фреймворки архитектуры</h4>
 <ul>
-<li><span class="term">TOGAF</span> (The Open Group Architecture Framework) — <strong>наиболее распространённый</strong> фреймворк корпоративной архитектуры. Определяет ADM (Architecture Development Method) — пошаговый метод разработки архитектуры.</li>
-<li><span class="term">Zachman Framework</span> — матричный подход, сопоставляющий 6 вопросов (что, как, где, кто, когда, зачем) с 6 уровнями абстракции (от контекста до деталей). Помогает организовать архитектурные знания.</li>
+<li><span class="term">Zachman Framework</span> — <strong>наиболее известный</strong> фреймворк корпоративной архитектуры (по DMBOK). Матричный подход, сопоставляющий 6 вопросов (что, как, где, кто, когда, зачем) с 6 <strong>перспективами</strong> (<span class="term-en">perspectives</span>): Executive, Business Management, Architect, Engineer, Technician, Enterprise. Помогает организовать архитектурные знания.</li>
+<li><span class="term">TOGAF</span> (The Open Group Architecture Framework) — широко применяемый фреймворк корпоративной архитектуры. Определяет ADM (Architecture Development Method) — пошаговый метод разработки архитектуры.</li>
 </ul>
 
 <h4>Типичные вызовы архитектуры данных</h4>
@@ -690,7 +708,7 @@ checkQuestions:[
 checkQuestions:[
 {type:'single',question:'Roadmap архитектуры данных — это:',options:['Список серверов','План перехода от As-Is к To-Be','Каталог СУБД','Бюджет IT'],correct:1,explanation:'Roadmap = план перехода от текущего к целевому состоянию.'},
 {type:'single',question:'Shadow IT — это:',options:['Теневые серверы','Системы, созданные подразделениями без координации с IT','Шифрование данных','Резервные копии'],correct:1,explanation:'Shadow IT = неконтролируемые системы, созданные бизнесом самостоятельно.'},
-{type:'single',question:'TOGAF — это:',options:['Тип СУБД','Наиболее распространённый фреймворк EA','Язык программирования','Метод шифрования'],correct:1,explanation:'TOGAF = The Open Group Architecture Framework — самый популярный EA-фреймворк.'}
+{type:'single',question:'Какой фреймворк EA DMBOK называет наиболее известным (most well-known)?',options:['TOGAF','Zachman Framework','FEAF','ArchiMate'],correct:1,explanation:'DMBOK: «The most well-known enterprise architectural framework, the Zachman Framework, was developed by John A. Zachman in the 1980s.»'}
 ]}
 ]},
 // ==================== MODULE 4: DATA MODELING & DESIGN ====================
@@ -698,14 +716,19 @@ checkQuestions:[
 objectives:['Know entities, attributes, relationships, constraints','Distinguish CDM, LDM, PDM','Understand cardinality and keys','Know normalization (1NF, 2NF, 3NF)','Understand Star and Snowflake schemas'],
 sections:[
 {title:'1. Основы моделирования: сущности, атрибуты, связи',content:`
-<div class="def-block"><strong>Моделирование данных / Data Modeling</strong> — процесс создания визуального представления структуры данных организации или системы. Модель данных описывает: какие данные хранятся, как они связаны и какие правила к ним применяются.</div>
+<div class="def-block"><strong>Моделирование данных / Data Modeling</strong> — процесс обнаружения, анализа и определения требований к данным (<span class="term-en">discovering, analyzing, and scoping data requirements</span>), а затем представления и передачи этих требований в точной форме, называемой <span class="term">моделью данных / data model</span>.</div>
 
 <h4>Четыре основных элемента модели данных</h4>
-
+<ul>
+<li><strong>Entities / Сущности</strong> — объекты, о которых хранятся данные (Клиент, Заказ)</li>
+<li><strong>Relationships / Связи</strong> — как сущности связаны друг с другом</li>
+<li><strong>Attributes / Атрибуты</strong> — свойства сущностей (имя, дата, цена)</li>
+<li><strong>Domains / Домены</strong> — допустимые множества значений для атрибутов (тип данных, ограничения)</li>
+</ul>
 
 <figure class="figure-box"><img src="img/ch5_fig28_modeling_context.jpg" alt="Figure 28 — Context Diagram: Data Modeling and Design. Активности: Plan, Build (CDM/LDM/PDM), Review, Maintain data models"><figcaption><strong>Figure 28 —</strong> Context Diagram: Data Modeling and Design. Активности: Plan, Build (CDM/LDM/PDM), Review, Maintain data models</figcaption></figure>
 
-<figure class="figure-box"><img src="img/ch5_fig46_conceptual.jpg" alt="Figure 46 — Relational Conceptual Data Model. Пример CDM: Student — Attendance — Course с подсущностями"><figcaption><strong>Figure 46 —</strong> Relational Conceptual Data Model. Пример CDM: Student — Attendance — Course с подсущностями</figcaption></figure>
+<figure class="figure-box"><img src="img/ch5_fig46_conceptual.jpg" alt="Figure 46 — Relational Conceptual Data Model. Пример CDM: School — Student — Application с основными связями"><figcaption><strong>Figure 46 —</strong> Relational Conceptual Data Model. Пример CDM: School — Student — Application с основными связями</figcaption></figure>
 
 
 <h4>Три уровня моделей данных</h4>
@@ -747,11 +770,11 @@ checkQuestions:[
 </ul>
 
 <h4>Нормализация / Normalization</h4>
-<div class="def-block"><strong>Нормализация</strong> — процесс организации данных для устранения избыточности и обеспечения целостности. Данные разделяются на связанные таблицы по определённым правилам (нормальным формам).</div>
+<div class="def-block"><strong>Нормализация</strong> — процесс применения правил для организации бизнес-сложности в стабильные структуры данных (<span class="term-en">stable data structures</span>). Основная цель — хранить каждый атрибут только в одном месте, устраняя избыточность и возможные несоответствия.</div>
 
 <table class="info-table">
 <tr><th>Форма</th><th>Требование</th><th>Пример нарушения</th></tr>
-<tr><td><strong>1NF</strong></td><td>Атомарность: одно значение на поле</td><td>Поле «Телефоны» = «+7-999-111, +7-999-222»</td></tr>
+<tr><td><strong>1NF</strong></td><td>Атомарность атрибутов, наличие валидного PK, устранение повторяющихся групп и связей M:N</td><td>Поле «Телефоны» = «+7-999-111, +7-999-222»</td></tr>
 <tr><td><strong>2NF</strong></td><td>1NF + каждый неключевой атрибут зависит от <em>всего</em> PK</td><td>Частичная зависимость от составного ключа</td></tr>
 <tr><td><strong>3NF</strong></td><td>2NF + нет транзитивных зависимостей</td><td>Город зависит от индекса, а не от PK</td></tr>
 </table>
@@ -761,9 +784,9 @@ checkQuestions:[
 <h4>Схемы хранилищ данных</h4>
 
 
-<figure class="figure-box"><img src="img/ch5_fig49_snowflake.jpg" alt="Figure 49 — Dimensional LDM (Snowflake Schema). Admissions fact в центре, нормализованные dimensions: Country→Region→Zone, School→SchoolLevel, Semester→Year"><figcaption><strong>Figure 49 —</strong> Dimensional LDM (Snowflake Schema). Admissions fact в центре, нормализованные dimensions: Country→Region→Zone, School→SchoolLevel, Semester→Year</figcaption></figure>
+<figure class="figure-box"><img src="img/ch5_fig49_snowflake.jpg" alt="Figure 49 — Dimensional Logical Data Model. Admissions fact в центре, dimensions не свёрнуты (Snowflake): Country→Region→Zone, School→SchoolLevel, Semester→Year"><figcaption><strong>Figure 49 —</strong> Dimensional Logical Data Model. Dimensions не свёрнуты — такая структура называется Snowflake Schema</figcaption></figure>
 
-<figure class="figure-box"><img src="img/ch5_fig51_star.jpg" alt="Figure 51 — Dimensional PDM (Star Schema). Тот же домен, но dimensions денормализованы — сравните с Snowflake выше"><figcaption><strong>Figure 51 —</strong> Dimensional PDM (Star Schema). Тот же домен, но dimensions денормализованы — сравните с Snowflake выше</figcaption></figure>
+<figure class="figure-box"><img src="img/ch5_fig51_star.jpg" alt="Figure 51 — Dimensional Physical Data Model. Тот же домен, но dimensions свёрнуты (Star Schema) — сравните с Figure 49"><figcaption><strong>Figure 51 —</strong> Dimensional Physical Data Model. Dimensions свёрнуты в единые таблицы — такая структура называется Star Schema</figcaption></figure>
 
 
 <ul>
@@ -775,7 +798,7 @@ checkQuestions:[
 <ul>
 <li><span class="term">IE (Information Engineering)</span> — нотация с символом «crow's foot» (воронья лапка) для обозначения «многие». <strong>Наиболее распространена</strong>.</li>
 <li><span class="term">UML</span> (Unified Modeling Language) — универсальный язык, используется для диаграмм классов</li>
-<li><span class="term">IDEF1X</span> — стандарт NIST для моделирования данных</li>
+<li><span class="term">IDEF1X</span> (<span class="term-en">Integration Definition for Information Modeling</span>) — нотация реляционного моделирования, принятая как стандарт FIPS</li>
 </ul>
 `,
 checkQuestions:[
@@ -809,8 +832,18 @@ sections:[
 </ul>
 <p>Примеры RDBMS: Oracle, PostgreSQL, MySQL, SQL Server.</p>
 
+<h4>BASE — альтернатива ACID для распределённых систем</h4>
+<p>DMBOK описывает <span class="term">BASE</span> как противоположность ACID, применяемую в распределённых и NoSQL системах:</p>
+<ul>
+<li><strong>Basically Available</strong> — система всегда доступна, даже если часть узлов недоступна</li>
+<li><strong>Soft State</strong> — состояние системы может меняться со временем даже без новых входных данных (из-за процессов синхронизации)</li>
+<li><strong>Eventually Consistent</strong> — система достигает согласованности в конечном итоге, но не гарантирует мгновенную согласованность</li>
+</ul>
+
+<div class="info-block"><strong>ACID vs BASE:</strong> ACID приоритизирует согласованность (consistency), BASE — доступность (availability). Выбор зависит от требований: банковская транзакция требует ACID, лента социальной сети допускает BASE.</div>
+
 <h4>NoSQL СУБД</h4>
-<p>Семейство СУБД, не использующих реляционную модель. Четыре основных типа:</p>
+<p>Семейство СУБД, не использующих реляционную модель. DMBOK классифицирует нереляционные базы данных по нескольким категориям (Column-oriented, Key-Value, Spatial, Object/Multi-media, Flat File, Triplestore), при этом Document и Graph базы рассматриваются как подвиды Key-Value. На практике наиболее распространены четыре типа:</p>
 
 <table class="info-table">
 <tr><th>Тип</th><th>Модель данных</th><th>Пример</th><th>Когда использовать</th></tr>
@@ -860,6 +893,7 @@ checkQuestions:[
 <div class="example-block"><strong>Пример:</strong> RPO = 1 час означает, что при сбое допустима потеря данных максимум за последний час (нужны бэкапы каждый час). RTO = 30 минут означает, что система должна быть восстановлена в течение 30 минут после сбоя.</div>
 
 <h4>Облачные модели / Cloud Models</h4>
+<p>DMBOK обсуждает виртуализацию и облачные платформы, упоминая Database-as-a-Service (DaaS). Ниже — общепринятая классификация облачных сервисов:</p>
 <table class="info-table">
 <tr><th>Модель</th><th>Что предоставляется</th><th>Пример</th></tr>
 <tr><td><strong>IaaS</strong></td><td>Infrastructure as a Service — серверы, хранение, сеть</td><td>AWS EC2, Azure VMs</td></tr>
@@ -884,8 +918,8 @@ checkQuestions:[
 objectives:['Understand data integration and interoperability','Know ETL vs ELT approaches','Understand integration patterns (point-to-point, hub-spoke, ESB)','Know canonical data model and MDM','Distinguish batch, real-time, and stream processing'],
 sections:[
 {title:'1. Определение, ETL vs ELT и виртуализация',content:`
-<div class="def-block"><strong>Интеграция данных / Data Integration</strong> — процессы объединения данных из разных источников для предоставления потребителям согласованного и единого набора данных (unified view).</div>
-<div class="def-block"><strong>Интероперабельность / Data Interoperability</strong> — способность систем и организаций обмениваться данными и использовать полученные данные без дополнительных усилий.</div>
+<div class="def-block"><strong>Интеграция данных / Data Integration</strong> — процессы, связанные с перемещением и консолидацией данных внутри и между хранилищами данных, приложениями и организациями (<span class="term-en">movement and consolidation of data within and between data stores, applications and organizations</span>). Интеграция консолидирует данные в согласованные формы — как физические, так и виртуальные.</div>
+<div class="def-block"><strong>Интероперабельность / Data Interoperability</strong> — способность нескольких систем обмениваться данными (<span class="term-en">the ability for multiple systems to communicate</span>).</div>
 
 <p><strong>Integration</strong> фокусируется на <em>объединении</em> данных. <strong>Interoperability</strong> — на <em>способности обмениваться</em>.</p>
 
@@ -922,11 +956,11 @@ sections:[
 
 <p><strong>Data Virtualization</strong> — без физического перемещения, через виртуальный слой. Данные остаются в источниках.</p>
 
-<p><strong>API Integration:</strong></p>
+<p><strong>API Integration</strong> — DMBOK упоминает API и RESTful API в контексте сервис-ориентированной архитектуры (SOA). Основные подходы на практике:</p>
 <ul>
-<li><strong>REST API</strong> — наиболее распространённый стандарт для веб-интеграций</li>
-<li><strong>SOAP</strong> — более строгий, XML-основанный протокол</li>
-<li><strong>GraphQL</strong> — гибкий язык запросов для API (клиент определяет, какие данные нужны)</li>
+<li><strong>REST API</strong> — наиболее распространённый стандарт для веб-интеграций (упоминается в DMBOK)</li>
+<li><strong>SOAP</strong> — более строгий, XML-основанный протокол (дополнительный материал)</li>
+<li><strong>GraphQL</strong> — гибкий язык запросов для API (дополнительный материал)</li>
 </ul>
 `,
 checkQuestions:[
@@ -943,9 +977,9 @@ checkQuestions:[
 
 
 <ul>
-<li><strong>Point-to-Point</strong> — прямые связи между системами. Просто для 2-3 систем, но при масштабировании количество связей растёт как <strong>n×(n-1)/2</strong> — неуправляемо.</li>
+<li><strong>Point-to-Point</strong> — прямые связи между системами. Просто для 2-3 систем, но при масштабировании количество интерфейсов приближается к <strong>s²</strong> (квадрату числа систем, по DMBOK) — неуправляемо.</li>
 <li><strong>Hub-and-Spoke</strong> — центральный узел (хаб), через который проходит весь обмен. Упрощает управление.</li>
-<li><strong>ESB (Enterprise Service Bus)</strong> — промежуточный слой с маршрутизацией, преобразованием и мониторингом обмена данными.</li>
+<li><strong>ESB (Enterprise Service Bus)</strong> — система-посредник между приложениями, передающая сообщения между ними. Приложения отправляют и получают сообщения или файлы через ESB и инкапсулированы от других процессов.</li>
 <li><strong>Pub-Sub (Publish-Subscribe)</strong> — источник публикует данные/события, подписчики получают. Обеспечивает <span class="term">loose coupling</span> — слабую связанность.</li>
 </ul>
 
@@ -953,25 +987,28 @@ checkQuestions:[
 <div class="def-block"><strong>Canonical Data Model</strong> — единый промежуточный формат обмена данными. Каждая система маппится только в/из канонического формата, вместо создания маппингов между каждой парой систем. При N системах: без канонической модели — N×(N-1) маппингов. С канонической — только 2×N маппингов.</div>
 
 <h4>MDM (Master Data Management)</h4>
+<div class="info-block"><strong>Примечание:</strong> MDM подробно рассматривается в <strong>главе 10</strong> DAMA DMBOK (Reference and Master Data). Здесь — краткое введение, т.к. MDM тесно связан с интеграцией данных.</div>
 <p><span class="term">Управление мастер-данными / MDM</span> — дисциплина, обеспечивающая единое и согласованное представление ключевых бизнес-сущностей (клиенты, продукты, поставщики) во всей организации. Определяет <span class="term">golden record / золотую запись</span> — авторитетную версию каждой сущности.</p>
 
 <div class="example-block"><strong>Пример:</strong> Клиент «Иванов» записан в CRM как «Иванов И.И.», в ERP как «Ivanov Ivan», а в маркетинговой системе как «ivan@mail.ru». MDM создаёт единую «золотую запись» с полной и согласованной информацией.</div>
 
-<h4>Типы обмена данными</h4>
+<h4>Типы обмена данными по задержке (латентности)</h4>
+<p>DMBOK описывает спектр от пакетной обработки до потоковой:</p>
 <table class="info-table">
 <tr><th>Тип</th><th>Описание</th><th>Когда использовать</th></tr>
-<tr><td><strong>Batch Processing</strong></td><td>Порциями по расписанию (ежечасно, ежедневно)</td><td>Аналитика, загрузка DWH, отчёты</td></tr>
-<tr><td><strong>Real-Time</strong></td><td>Мгновенно при поступлении</td><td>Операционные процессы, уведомления</td></tr>
-<tr><td><strong>Stream Processing</strong></td><td>Непрерывный поток событий</td><td>Мониторинг, fraud detection, IoT</td></tr>
+<tr><td><strong>Batch</strong></td><td>Порциями по расписанию (ежечасно, ежедневно)</td><td>Аналитика, загрузка DWH, отчёты</td></tr>
+<tr><td><strong>Change Data Capture (CDC)</strong></td><td>Захват только изменённых данных из источника</td><td>Инкрементальная загрузка, репликация</td></tr>
+<tr><td><strong>Near-Real-Time / Event-Driven</strong></td><td>Обработка событий с минимальной задержкой</td><td>Операционные процессы, уведомления</td></tr>
+<tr><td><strong>Real-Time Synchronous</strong></td><td>Синхронный запрос-ответ в реальном времени</td><td>Транзакционные системы, API-вызовы</td></tr>
+<tr><td><strong>Low Latency / Streaming</strong></td><td>Непрерывный поток событий с минимальной задержкой</td><td>Мониторинг, fraud detection, IoT</td></tr>
 </table>
-<p>Технологии потоковой обработки: Apache Kafka, Apache Flink, Apache Spark Streaming.</p>
 
 <div class="warn-block"><strong>Типичная ошибка:</strong> Выбирать Point-to-Point для большого числа систем. С ростом числа систем количество связей растёт квадратично. Используйте Hub-and-Spoke, ESB или событийную архитектуру (Pub-Sub).</div>
 
 <div class="info-block"><strong>Для бизнес-аналитика:</strong> Интеграция данных — одна из самых частых задач. «Нам нужно видеть данные из CRM, ERP и маркетинговой системы в одном отчёте» — это задача интеграции. Ваша роль — определить <strong>какие данные</strong> нужны, <strong>откуда</strong> они берутся и <strong>какие правила преобразования</strong> применить.</div>
 `,
 checkQuestions:[
-{type:'single',question:'Point-to-Point создаёт проблемы при:',options:['2 системах','Большом числе систем','Облачном хранении','Использовании API'],correct:1,explanation:'Количество связей растёт как n×(n-1)/2 — неуправляемо.'},
+{type:'single',question:'Point-to-Point создаёт проблемы при:',options:['2 системах','Большом числе систем','Облачном хранении','Использовании API'],correct:1,explanation:'Количество интерфейсов приближается к s² (по DMBOK) — неуправляемо.'},
 {type:'fillin',question:'Как называется авторитетная версия мастер-данных в MDM?',correct:['golden record','Golden Record'],explanation:'Golden Record = «золотая запись», единая авторитетная версия.'},
 {type:'single',question:'Pub-Sub обеспечивает:',options:['Жёсткую связанность','Loose coupling','Отсутствие обмена','Синхронный вызов'],correct:1,explanation:'Publish-Subscribe = слабая связанность: источник не зависит от получателей.'},
 {type:'single',question:'Canonical Data Model уменьшает маппинги с N×(N-1) до:',options:['N','2×N','N²','N/2'],correct:1,explanation:'С канонической моделью каждая система маппится только в/из канонического формата = 2×N.'}
@@ -1001,9 +1038,9 @@ m1: [
 {id:'m1_12',topic:'asset',type:'single',question:'What is the BEST argument for investing in data management?',options:['Competitors do it','IT wants new servers','Data is an asset — investment increases its value','Regulation requires it'],correct:2,explanation:'The "data as asset" argument: investment increases value and enables better decisions.'},
 {id:'m1_13',topic:'asset',type:'single',question:'Intangible в контексте данных означает:',options:['Ценные','Нематериальные','Зашифрованные','Устаревшие'],correct:1,explanation:'Intangible = нематериальные. Данные не имеют физической формы, но имеют реальную ценность.'},
 // topic: lifecycle
-{id:'m1_14',topic:'lifecycle',type:'single',question:'Which stage of the data lifecycle involves transferring data to long-term storage?',options:['Store','Share','Archive','Purge'],correct:2,explanation:'Archive = moving data to long-term storage for retention.'},
-{id:'m1_15',topic:'lifecycle',type:'single',question:'What is the correct order of data lifecycle stages?',options:['Create, Use, Store, Share, Archive, Purge','Create, Store, Use, Share, Archive, Purge','Store, Create, Use, Archive, Share, Purge','Create, Store, Share, Use, Purge, Archive'],correct:1,explanation:'Create → Store → Use → Share → Archive → Purge.'},
-{id:'m1_16',topic:'lifecycle',type:'single',question:'The "Purge" stage of the data lifecycle refers to:',options:['Backing up data','Moving data to the cloud','Deleting data that has exceeded its retention period','Encrypting sensitive data'],correct:2,explanation:'Purge/Destroy = permanent removal when retention period expires.'},
+{id:'m1_14',topic:'lifecycle',type:'single',question:'Which DAMA DMBOK lifecycle stage focuses on improving data quality through cleansing and enrichment?',options:['Store / Maintain','Use','Enhance','Create / Obtain'],correct:2,explanation:'Enhance = improving data quality: cleansing, enrichment, integration, standardization.'},
+{id:'m1_15',topic:'lifecycle',type:'single',question:'What is the correct order of data lifecycle stages per DAMA DMBOK?',options:['Create, Use, Store, Share, Archive, Purge','Plan, Design & Enable, Create/Obtain, Store/Maintain, Use, Enhance (+ Dispose of)','Store, Create, Use, Archive, Share, Purge','Create, Store, Share, Use, Purge, Archive'],correct:1,explanation:'Per DMBOK Figure 2: Plan → Design & Enable → Create/Obtain → Store/Maintain → Use → Enhance, with Dispose of as a branch.'},
+{id:'m1_16',topic:'lifecycle',type:'single',question:'The "Dispose of" stage of the data lifecycle refers to:',options:['Backing up data','Moving data to the cloud','Archiving or permanently deleting data when no longer needed','Encrypting sensitive data'],correct:2,explanation:'Dispose of = archival or permanent removal when data is no longer needed.'},
 {id:'m1_17',topic:'lifecycle',type:'truefalse',question:'Validation is a distinct stage in the DAMA data lifecycle.',options:['True','False'],correct:1,explanation:'Validation is a data quality activity, not a lifecycle stage.'},
 {id:'m1_18',topic:'lifecycle',type:'single',question:'A BA should ask about data lifecycle because:',options:['It determines programming languages','It affects requirements for storage, retention, and deletion','It sets server hardware specs','It defines the UI design'],correct:1,explanation:'Understanding lifecycle helps formulate requirements for creation, storage, retention, and disposal.'},
 {id:'m1_19',topic:'lifecycle',type:'fillin',question:'What lifecycle stage involves data being read, processed, or analyzed?',correct:['use','Use'],explanation:'Use = the stage where data is read, processed, and analyzed.'},
@@ -1012,7 +1049,7 @@ m1: [
 {id:'m1_21',topic:'dama_structure',type:'single',question:'Which knowledge area occupies the center of the DAMA Wheel?',options:['Data Quality','Data Architecture','Data Governance','Data Security'],correct:2,explanation:'Data Governance is at the center, coordinating all other areas.'},
 {id:'m1_22',topic:'dama_structure',type:'single',question:'DAMA DMBOK is BEST described as:',options:['An ISO standard','An Agile methodology','A body of knowledge / framework','A software product'],correct:2,explanation:'DMBOK is a framework / body of knowledge, not a standard or methodology.'},
 {id:'m1_23',topic:'dama_structure',type:'truefalse',question:'DAMA DMBOK prescribes a specific implementation sequence.',options:['True','False'],correct:1,explanation:'DMBOK describes practices but does not prescribe a specific implementation order.'},
-{id:'m1_24',topic:'dama_structure',type:'single',question:'Each DAMA knowledge area is described using a context diagram that includes:',options:['Only goals and tools','Definition, goals, activities, roles, practices, tools, metrics','Only technical specifications','Only organizational charts'],correct:1,explanation:'The standard template covers definition, goals, activities, I/O, roles, practices, tools, metrics.'},
+{id:'m1_24',topic:'dama_structure',type:'single',question:'Each DAMA knowledge area is described using a context diagram that includes:',options:['Only goals and tools','Definition, goals, activities, roles, techniques, tools, metrics','Only technical specifications','Only organizational charts'],correct:1,explanation:'The standard template covers definition, goals, activities (PDOC), inputs, deliverables, suppliers/participants/consumers, roles, techniques, tools, metrics.'},
 {id:'m1_25',topic:'dama_structure',type:'fillin',question:'What is the visual diagram that shows all DAMA knowledge areas called?',correct:['dama wheel','DAMA Wheel','dama Wheel'],explanation:'The DAMA Wheel shows all 11 knowledge areas with Data Governance at center.'},
 {id:'m1_26',topic:'dama_structure',type:'single',question:'Which is NOT a DAMA DMBOK knowledge area?',options:['Data Quality','Data Security','Data DevOps','Metadata'],correct:2,explanation:'Data DevOps is not a DAMA knowledge area. DMBOK has 11 defined areas.'},
 // topic: principles
@@ -1032,19 +1069,19 @@ m1: [
 {id:'m1_39',topic:'roles',type:'single',question:'DAMA DMBOK2 was published in:',options:['2009','2014','2017','2021'],correct:2,explanation:'DMBOK2 (second edition) was published in 2017.'},
 {id:'m1_40',topic:'dikw',type:'single',question:'A CEO decides to expand into a new market based on analyzed customer trends. This is:',options:['Data','Information','Knowledge','Wisdom'],correct:3,explanation:'Applying knowledge to make a strategic decision = Wisdom.'},
 {id:'m1_41',topic:'asset',type:'single',question:'Zero marginal cost of reproduction means:',options:['Data cannot be copied','Copying data is virtually free','Data has no value','Storage is free'],correct:1,explanation:'Data can be copied at near-zero cost — unlike physical assets.'},
-{id:'m1_42',topic:'lifecycle',type:'matching',question:'Match lifecycle stages to descriptions:',pairs:[{left:'Create'},{left:'Store'},{left:'Archive'},{left:'Purge'}],rightOptions:['Data originates or is received','Data is saved in systems','Data moves to long-term storage','Data is permanently removed'],correct:[0,1,2,3],explanation:'Each stage serves a distinct purpose in the data lifecycle.'},
+{id:'m1_42',topic:'lifecycle',type:'matching',question:'Match DMBOK lifecycle stages to descriptions:',pairs:[{left:'Plan'},{left:'Create / Obtain'},{left:'Enhance'},{left:'Dispose of'}],rightOptions:['Define data requirements and strategy','Data originates or is received','Improve data quality through cleansing','Archive or permanently remove data'],correct:[0,1,2,3],explanation:'Each stage serves a distinct purpose in the DMBOK data lifecycle.'},
 {id:'m1_43',topic:'dama_structure',type:'single',question:'Data Governance sits at the center of the DAMA Wheel because:',options:['It is the most technical area','It coordinates and directs all other areas','It was created first','It is the largest area'],correct:1,explanation:'Governance coordinates all other knowledge areas — hence the central position.'},
 {id:'m1_44',topic:'principles',type:'single',question:'Which principle emphasizes that data management is a team sport?',options:['Data is an asset','Leadership commitment','Cross-functional collaboration','Strategic approach'],correct:2,explanation:'Cross-functional = collaboration between business and IT is essential.'},
 {id:'m1_45',topic:'roles',type:'truefalse',question:'A Data Owner and a Data Steward have the same responsibilities.',options:['True','False'],correct:1,explanation:'Owner = strategic decisions. Steward = operational management. Different levels.'},
 {id:'m1_46',topic:'dikw',type:'single',question:'Which DIKW level involves recognizing patterns and trends?',options:['Data','Information','Knowledge','Wisdom'],correct:2,explanation:'Knowledge = understanding patterns, trends, and cause-effect relationships.'},
 {id:'m1_47',topic:'asset',type:'multiple',question:'Select ALL properties of data as an asset:',options:['Non-depletable','Tangible','Easily replicated','Depreciates over time','Physical wear'],correct:[0,2,3],explanation:'Data is non-depletable, replicable, and can depreciate. It is NOT tangible and has no physical wear.'},
-{id:'m1_48',topic:'lifecycle',type:'single',question:'Which lifecycle stage involves sharing data across systems?',options:['Create','Use','Share','Archive'],correct:2,explanation:'Share = transferring data between systems and users.'},
+{id:'m1_48',topic:'lifecycle',type:'single',question:'Which DMBOK lifecycle stage comes FIRST, before any data is created?',options:['Create / Obtain','Use','Plan','Enhance'],correct:2,explanation:'Plan is the first stage — defining data requirements and developing strategy before data creation.'},
 {id:'m1_49',topic:'dama_structure',type:'single',question:'DAMA International is:',options:['A software vendor','A government agency','An international data management professional association','A database'],correct:2,explanation:'DAMA International = international association of data management professionals.'},
 {id:'m1_50',topic:'roles',type:'single',question:'Technical Data Steward focuses on:',options:['Business rules and definitions','Profiling, monitoring, and technical implementation','Executive strategy','Legal compliance'],correct:1,explanation:'Technical Steward = technical implementation (profiling, monitoring) vs Business Steward = business rules.'},
 {id:'m1_51',topic:'principles',type:'truefalse',question:'Data management strategy should be derived from business strategy.',options:['True','False'],correct:0,explanation:'True. Data management strategy must support and align with business strategy.'},
 {id:'m1_52',topic:'dikw',type:'single',question:'"42 customer applications received yesterday" represents:',options:['Data','Information','Knowledge','Wisdom'],correct:1,explanation:'A fact placed in context (42 = applications, yesterday) = Information.'},
 {id:'m1_53',topic:'asset',type:'single',question:'An organization should treat data as an asset because:',options:['IT requests it','Data has measurable business value','Competitors have data too','Regulations require it'],correct:1,explanation:'Data has measurable value — managing it well increases business value.'},
-{id:'m1_54',topic:'lifecycle',type:'truefalse',question:'The Share stage comes after the Use stage in the data lifecycle.',options:['True','False'],correct:0,explanation:'True. Order: Create → Store → Use → Share → Archive → Purge.'},
+{id:'m1_54',topic:'lifecycle',type:'truefalse',question:'The DMBOK data lifecycle includes a "Design & Enable" stage before data creation.',options:['True','False'],correct:0,explanation:'True. Per Figure 2: Plan → Design & Enable → Create/Obtain → Store/Maintain → Use → Enhance.'},
 {id:'m1_55',topic:'dama_structure',type:'single',question:'Which element is NOT part of the DAMA knowledge area context diagram?',options:['Goals','Metrics','Budget','Roles'],correct:2,explanation:'Budget is not part of the standard context diagram template.'},
 {id:'m1_56',topic:'roles',type:'single',question:'The Coordinating Data Steward:',options:['Replaces the Data Owner','Coordinates a team of stewards in large organizations','Manages IT infrastructure','Reports to the DBA'],correct:1,explanation:'Coordinating Steward = manages and coordinates a group of stewards.'},
 {id:'m1_57',topic:'principles',type:'single',question:'The PRIMARY goal of data management is:',options:['Minimize storage costs','Maximize the value of data for decision-making','Automate all processes','Replace manual data entry'],correct:1,explanation:'Core goal = maximize the value of data and information assets for the organization.'},
@@ -1052,12 +1089,12 @@ m1: [
 {id:'m1_59',topic:'dama_structure',type:'truefalse',question:'DAMA DMBOK contains exactly 10 knowledge areas.',options:['True','False'],correct:1,explanation:'False. It contains 11: Data Governance (center) + 10 surrounding areas.'},
 {id:'m1_60',topic:'roles',type:'single',question:'In a centralized data management model:',options:['Each department manages its own data','A single team manages all data','There are no data standards','Standards are optional'],correct:1,explanation:'Centralized = one central team manages all organizational data.'},
 {id:'m1_61',topic:'dikw',type:'single',question:'Converting raw numbers into a meaningful sales report transforms:',options:['Wisdom into Knowledge','Data into Information','Knowledge into Data','Information into Data'],correct:1,explanation:'Adding context (sales report format) converts Data into Information.'},
-{id:'m1_62',topic:'lifecycle',type:'single',question:'An organization keeps transaction records for 7 years then deletes them. This policy governs which lifecycle stages?',options:['Create and Store only','Store, Archive, and Purge','Only Purge','Share and Use'],correct:1,explanation:'Retention policy spans Store (keeping), Archive (long-term), and Purge (deletion).'},
+{id:'m1_62',topic:'lifecycle',type:'single',question:'An organization keeps transaction records for 7 years then deletes them. This policy primarily governs which lifecycle stages?',options:['Create/Obtain and Use only','Store/Maintain and Dispose of','Only Enhance','Plan and Design & Enable'],correct:1,explanation:'Retention policy spans Store/Maintain (keeping data) and Dispose of (archival or deletion).'},
 {id:'m1_63',topic:'principles',type:'single',question:'Without leadership commitment, data management initiatives:',options:['Succeed faster','Are likely to fail','Become more innovative','Need less budget'],correct:1,explanation:'Leadership commitment is essential — without it, initiatives lack authority and resources.'},
 {id:'m1_64',topic:'asset',type:'fillin',question:'What English word describes the property of data having no physical form?',correct:['intangible','Intangible'],explanation:'Intangible = not having physical substance, yet possessing real value.'},
 {id:'m1_65',topic:'roles',type:'single',question:'Who should a BA consult to understand data access rules?',options:['Data Architect','Data Owner','Marketing Manager','External auditor'],correct:1,explanation:'Data Owner decides on access, usage policies, and who can use the data.'},
 {id:'m1_66',topic:'dama_structure',type:'single',question:'The DAMA Wheel places Data Governance at the center to symbolize:',options:['Governance is the newest area','Governance coordinates all other areas','Governance has the largest budget','Governance is optional'],correct:1,explanation:'Central position = governance coordinates and directs all knowledge areas.'},
-{id:'m1_67',topic:'lifecycle',type:'single',question:'Which question is MOST relevant to the Archive stage?',options:['Who creates this data?','How long must we retain this data?','Who uses this data daily?','What format should reports be in?'],correct:1,explanation:'Archive stage is driven by retention requirements — how long to keep data.'},
+{id:'m1_67',topic:'lifecycle',type:'single',question:'Which question is MOST relevant to the Dispose of stage?',options:['Who creates this data?','When should data be archived or deleted and what are regulatory requirements?','Who uses this data daily?','What format should reports be in?'],correct:1,explanation:'Dispose of is driven by retention requirements — when to archive or delete data.'},
 {id:'m1_68',topic:'dikw',type:'truefalse',question:'Knowledge requires analysis and experience, not just data collection.',options:['True','False'],correct:0,explanation:'True. Knowledge = information enriched with experience, analysis, and pattern recognition.'},
 {id:'m1_69',topic:'principles',type:'single',question:'A data management initiative should start with:',options:['Buying ETL tools','Hiring a DBA','Defining business goals and building a strategy','Auditing all databases'],correct:2,explanation:'Start with business goals. Tools and hiring follow from strategy.'},
 {id:'m1_70',topic:'roles',type:'single',question:'Data Steward differs from Data Owner PRIMARILY in:',options:['Salary level','Operational vs strategic responsibility','Technical vs business skills','Seniority'],correct:1,explanation:'Steward = operational (daily). Owner = strategic (decisions). Key distinction.'},
@@ -1070,8 +1107,8 @@ m2: [
 {id:'m2_05',topic:'gov_def',type:'single',question:'Which statement about Data Governance is FALSE?',options:['It is an organizational function','It coordinates other data management areas','It is purely a technical process','It defines accountability for data'],correct:2,explanation:'Governance is organizational/managerial, NOT purely technical.'},
 {id:'m2_06',topic:'gov_def',type:'fillin',question:'What English term means clear assignment of responsibility for data?',correct:['accountability','Accountability'],explanation:'Accountability = clear assignment of responsibility for data assets.'},
 {id:'m2_07',topic:'gov_def',type:'single',question:'Well-implemented governance PRIMARILY:',options:['Slows down operations','Reduces uncertainty by clarifying rules and roles','Increases IT headcount','Creates more paperwork'],correct:1,explanation:'Good governance accelerates work by removing ambiguity.'},
-{id:'m2_08',topic:'gov_components',type:'single',question:'The highest governing body in a Data Governance program is typically:',options:['Data Steward','Data Governance Council','DBA team','IT Helpdesk'],correct:1,explanation:'DGC = the highest body, setting strategy and policies.'},
-{id:'m2_09',topic:'gov_components',type:'single',question:'Data Management Office (DMO) serves as:',options:['A server room','The coordinating unit for all governance activities','An external audit firm','A software vendor'],correct:1,explanation:'DMO/DGO coordinates all governance activities across the organization.'},
+{id:'m2_08',topic:'gov_components',type:'single',question:'The highest authority in a Data Governance program is typically:',options:['Data Steward','Data Governance Steering Committee','DBA team','IT Helpdesk'],correct:1,explanation:'The Steering Committee = highest authority, responsible for oversight, support, and funding of DG.'},
+{id:'m2_09',topic:'gov_components',type:'single',question:'Data Governance Office (DGO) serves as:',options:['A server room','The coordinating unit for all governance activities','An external audit firm','A software vendor'],correct:1,explanation:'DGO coordinates all governance activities across the organization.'},
 {id:'m2_10',topic:'gov_components',type:'single',question:'Which document sets high-level rules for data handling?',options:['Data Standard','Data Policy','SQL Script','User Manual'],correct:1,explanation:'Data Policy = high-level rules. Data Standard = detailed specifications.'},
 {id:'m2_11',topic:'gov_components',type:'single',question:'Data Retention Policy defines:',options:['Query performance targets','How long data must be kept and when it can be deleted','Naming conventions','API specifications'],correct:1,explanation:'Retention Policy = storage duration, archiving rules, deletion schedules.'},
 {id:'m2_12',topic:'gov_components',type:'matching',question:'Match policy types to their focus:',pairs:[{left:'Data Quality Policy'},{left:'Data Security Policy'},{left:'Data Retention Policy'},{left:'Data Usage Policy'}],rightOptions:['Quality standards and validation','Access control and classification','Storage duration and deletion','Acceptable use of data'],correct:[0,1,2,3],explanation:'Each policy type addresses a specific aspect of data management.'},
@@ -1095,7 +1132,7 @@ m2: [
 {id:'m2_30',topic:'gov_roles',type:'single',question:'Data Trustee is an alternative name for:',options:['Data Steward','Data Owner','Data Custodian','Data Analyst'],correct:1,explanation:'Data Trustee = alternative name for Data Owner in some organizations.'},
 {id:'m2_31',topic:'maturity',type:'single',question:'An organization with ad hoc, inconsistent data processes is at level:',options:['0','1','2','3'],correct:1,explanation:'Level 1 (Initial) = ad hoc, individual initiatives, no consistency.'},
 {id:'m2_32',topic:'compliance',type:'single',question:'Governance coordinates Data Quality by:',options:['Automatically fixing errors','Defining standards, metrics, and accountability for quality','Replacing quality checks','Ignoring quality'],correct:1,explanation:'Governance defines quality standards, metrics, and who is responsible.'},
-{id:'m2_33',topic:'gov_components',type:'single',question:'Data Change Management in governance controls:',options:['Employee promotions','Modifications to data and metadata','Office furniture changes','Marketing campaigns'],correct:1,explanation:'Data Change Management = controlled modifications to data and metadata.'},
+{id:'m2_33',topic:'gov_components',type:'single',question:'Organizational Change Management (OCM) in governance ensures:',options:['Employee promotions','Adoption of governance practices through communication, training, and overcoming resistance','Office furniture changes','Marketing campaigns'],correct:1,explanation:'OCM = driving organizational adoption of governance through training, communication, and change management.'},
 {id:'m2_34',topic:'gov_roles',type:'single',question:'The Combined approach to governance implementation means:',options:['Only top-down','Only bottom-up','Executive support + practical implementation from teams','No formal approach'],correct:2,explanation:'Combined = top-down authority + bottom-up practical execution.'},
 {id:'m2_35',topic:'maturity',type:'single',question:'At which level are processes repeatable but not yet standardized?',options:['Level 1','Level 2','Level 3','Level 4'],correct:1,explanation:'Level 2 (Repeatable) = basic processes exist but not fully standardized.'},
 {id:'m2_36',topic:'gov_def',type:'single',question:'Governance ensures that data decisions are made through:',options:['Individual intuition','Formal processes and policies','Random selection','Technical defaults'],correct:1,explanation:'Governance = formal, transparent processes for data decisions.'},
@@ -1124,7 +1161,7 @@ m2: [
 {id:'m2_59',topic:'gov_roles',type:'single',question:'Governance Council vs Governance Committee:',options:['Council = strategy, Committee = execution','They are the same','Committee is higher than Council','Council is technical, Committee is business'],correct:0,explanation:'Council = sets strategy/policies. Committee = working group executing decisions.'},
 {id:'m2_60',topic:'compliance',type:'truefalse',question:'Compliance only matters for financial institutions.',options:['True','False'],correct:1,explanation:'False. GDPR, HIPAA, and other regulations apply across many industries.'},
 {id:'m2_61',topic:'gov_def',type:'single',question:'The relationship between Governance and Quality is:',options:['Unrelated','Governance defines quality standards and accountability','Quality replaces Governance','Governance only handles security'],correct:1,explanation:'Governance coordinates quality efforts: standards, metrics, accountability.'},
-{id:'m2_62',topic:'gov_components',type:'single',question:'Which process handles controlled modifications to data definitions?',options:['Data Issue Management','Data Change Management','Data Backup','Data Encryption'],correct:1,explanation:'Data Change Management = controlled modifications to data and metadata.'},
+{id:'m2_62',topic:'gov_components',type:'single',question:'Which process handles identification and resolution of data problems?',options:['Data Issue Management','Organizational Change Management','Data Backup','Data Encryption'],correct:0,explanation:'Data Issue Management = systematic process for identifying, documenting, and resolving data problems.'},
 {id:'m2_63',topic:'maturity',type:'fillin',question:'At which maturity level are processes standardized? (English level name)',correct:['defined','Defined'],explanation:'Level 3 = Defined = standardized and documented processes.'},
 {id:'m2_64',topic:'gov_roles',type:'single',question:'In governance, "escalation" means:',options:['Increasing server capacity','Elevating unresolved issues to higher authority','Encrypting data','Deleting old records'],correct:1,explanation:'Escalation = passing unresolved issues to a higher decision-making level.'},
 {id:'m2_65',topic:'compliance',type:'single',question:'Governance ensures data practices comply with:',options:['Fashion trends','Regulatory requirements and internal policies','Social media trends','Competitor strategies'],correct:1,explanation:'Governance ensures compliance with laws, regulations, and internal policies.'},
@@ -1155,7 +1192,7 @@ m3: [
 {id:'m3_18',topic:'as_is',type:'truefalse',question:'You should create To-Be architecture without analyzing As-Is first.',options:['True','False'],correct:1,explanation:'Always start with As-Is. Target architecture without understanding reality is not viable.'},
 {id:'m3_19',topic:'frameworks',type:'single',question:'TOGAF stands for:',options:['The Open Group Architecture Framework','Total Operations Government And Finance','Technical Operations Guide for Applications','The Oracle Global Architecture Format'],correct:0,explanation:'TOGAF = The Open Group Architecture Framework.'},
 {id:'m3_20',topic:'frameworks',type:'single',question:'Zachman Framework uses:',options:['A linear approach','A matrix approach (questions × abstraction levels)','A circular approach','A random approach'],correct:1,explanation:'Zachman = matrix with questions (what, how, where, who, when, why) × levels.'},
-{id:'m3_21',topic:'frameworks',type:'single',question:'The MOST widely used EA framework is:',options:['ITIL','TOGAF','COBIT','PMBOK'],correct:1,explanation:'TOGAF = most widely adopted Enterprise Architecture framework.'},
+{id:'m3_21',topic:'frameworks',type:'single',question:'According to DMBOK, the MOST well-known EA framework is:',options:['ITIL','Zachman Framework','COBIT','PMBOK'],correct:1,explanation:'DMBOK states: "The most well-known enterprise architectural framework, the Zachman Framework."'},
 {id:'m3_22',topic:'frameworks',type:'single',question:'Shadow IT refers to:',options:['Dark server rooms','Systems built by departments without IT coordination','Encrypted systems','Backup systems'],correct:1,explanation:'Shadow IT = unauthorized systems created by business units.'},
 {id:'m3_23',topic:'frameworks',type:'single',question:'Technical Debt in architecture means:',options:['Money owed to vendors','Accumulated architectural compromises that hinder evolution','Employee training costs','License fees'],correct:1,explanation:'Technical Debt = past shortcuts/compromises that make future changes harder.'},
 {id:'m3_24',topic:'arch_def',type:'single',question:'Which EA domain covers business processes and strategy?',options:['Data Architecture','Technology Architecture','Business Architecture','Application Architecture'],correct:2,explanation:'Business Architecture = processes, organization, strategy.'},
@@ -1188,7 +1225,7 @@ m3: [
 {id:'m3_51',topic:'arch_def',type:'single',question:'An organization without Data Architecture typically suffers from:',options:['Too much clarity','Data silos, redundancy, and integration challenges','Excessive documentation','Over-governed data'],correct:1,explanation:'Without architecture: silos, redundancy, unclear data flows, integration difficulties.'},
 {id:'m3_52',topic:'artifacts',type:'single',question:'Which artifact provides a single-page overview of major data domains?',options:['PDM','Subject Area Model','Index page','Git log'],correct:1,explanation:'Subject Area Model = high-level, single-page view of major data domains.'},
 {id:'m3_53',topic:'as_is',type:'single',question:'Gap analysis in architecture compares:',options:['Two database vendors','As-Is state with To-Be state','Two programming languages','Employee counts'],correct:1,explanation:'Gap analysis = comparing current (As-Is) and target (To-Be) to identify gaps.'},
-{id:'m3_54',topic:'frameworks',type:'fillin',question:'What is the most widely used Enterprise Architecture framework?',correct:['TOGAF','togaf'],explanation:'TOGAF = The Open Group Architecture Framework — most widely adopted.'},
+{id:'m3_54',topic:'frameworks',type:'fillin',question:'According to DMBOK, what is the most well-known EA framework?',correct:['Zachman','zachman','Zachman Framework','zachman framework'],explanation:'DMBOK: Zachman Framework is "the most well-known enterprise architectural framework."'},
 {id:'m3_55',topic:'arch_def',type:'multiple',question:'Which are domains of Enterprise Architecture?',options:['Business','Data','Application','Marketing','Technology'],correct:[0,1,2,4],explanation:'EA = Business + Data + Application + Technology. Marketing is not an EA domain.'},
 {id:'m3_56',topic:'artifacts',type:'single',question:'To find where customer data originates, a BA should consult:',options:['CRUD Matrix or DFD','Employee directory','Marketing plan','Financial statements'],correct:0,explanation:'CRUD Matrix or DFD shows data origins, flows, and consumers.'},
 {id:'m3_57',topic:'as_is',type:'single',question:'A well-defined Roadmap reduces risk by:',options:['Eliminating all change','Providing clear phases and dependencies','Avoiding documentation','Skipping testing'],correct:1,explanation:'Roadmap = clear phases, dependencies, and prioritization = reduced risk.'},
@@ -1398,11 +1435,11 @@ const FINAL_BANK = [
 {id:'f08',topic:'m1',type:'fillin',question:'What role provides technical storage and backup for data?',correct:['data custodian','Data Custodian'],explanation:'Data Custodian = technical role for storage and infrastructure.'},
 {id:'f09',topic:'m1',type:'single',question:'Information = Data +:',options:['Encryption','Context','Compression','Backup'],correct:1,explanation:'Information = Data + Context.'},
 {id:'f10',topic:'m1',type:'single',question:'DMBOK stands for:',options:['Data Management Book of Knowledge','Data Management Body of Knowledge','Database Management Book','Data Modeling Body of Knowledge'],correct:1,explanation:'DMBOK = Data Management Body of Knowledge.'},
-{id:'f11',topic:'m1',type:'single',question:'Data lifecycle stage for permanent removal:',options:['Archive','Store','Purge','Share'],correct:2,explanation:'Purge = permanent removal/destruction of data.'},
+{id:'f11',topic:'m1',type:'single',question:'DMBOK lifecycle stage for archiving or permanently removing data:',options:['Enhance','Store / Maintain','Dispose of','Plan'],correct:2,explanation:'Dispose of = archival or permanent removal of data when no longer needed.'},
 {id:'f12',topic:'m1',type:'single',question:'Cross-functional principle means:',options:['Multi-platform','Business and IT must collaborate on data','Cross-selling','Multi-language'],correct:1,explanation:'Cross-functional = collaboration between business and IT.'},
 // M2: Data Governance
 {id:'f13',topic:'m2',type:'single',question:'Data Governance determines:',options:['Database schemas','Who makes data decisions and how they are controlled','Server hardware','Programming languages'],correct:1,explanation:'Governance = decision rights, accountability, and control.'},
-{id:'f14',topic:'m2',type:'single',question:'DGC is:',options:['Database Generation Center','Data Governance Council','Digital Government Compliance','Data Grid Controller'],correct:1,explanation:'DGC = Data Governance Council — top governance body.'},
+{id:'f14',topic:'m2',type:'single',question:'DGC is:',options:['Database Generation Center','Data Governance Council','Digital Government Compliance','Data Grid Controller'],correct:1,explanation:'DGC = Data Governance Council — manages governance initiatives, issues, and escalations.'},
 {id:'f15',topic:'m2',type:'single',question:'Executive Sponsor is critical because:',options:['They write code','They provide authority and resources','They design databases','They manage backups'],correct:1,explanation:'Without sponsor = no authority, no resources, program fails.'},
 {id:'f16',topic:'m2',type:'single',question:'Maturity Level 3 (Defined) means:',options:['Chaos','Ad hoc processes','Standardized processes','Optimized processes'],correct:2,explanation:'Defined = standardized and documented processes.'},
 {id:'f17',topic:'m2',type:'single',question:'Data Policy vs Data Standard:',options:['Same thing','Policy = high-level rules, Standard = detailed specifications','Standard is broader','Policy is more detailed'],correct:1,explanation:'Policy = high-level. Standard = detailed specs.'},
@@ -1478,7 +1515,7 @@ const FINAL_BANK = [
 {id:'f82',topic:'m5',type:'single',question:'Cassandra is:',options:['RDBMS','Column-family store','Graph DB','Document store'],correct:1,explanation:'Cassandra = column-family NoSQL database.'},
 {id:'f83',topic:'m6',type:'single',question:'API stands for:',options:['Advanced Programming Integration','Application Programming Interface','Automated Process Implementation','Application Protocol Index'],correct:1,explanation:'API = Application Programming Interface.'},
 {id:'f84',topic:'m1',type:'truefalse',question:'DAMA DMBOK prescribes a mandatory implementation sequence.',options:['True','False'],correct:1,explanation:'False. DMBOK is a framework — no mandatory sequence.'},
-{id:'f85',topic:'m2',type:'single',question:'Data Change Management controls:',options:['Employee transfers','Modifications to data and metadata','Office moves','Budget changes'],correct:1,explanation:'Data Change Management = controlled changes to data/metadata.'},
+{id:'f85',topic:'m2',type:'single',question:'OCM in governance context focuses on:',options:['Employee transfers','Overcoming resistance and ensuring adoption of governance practices','Office moves','Budget changes'],correct:1,explanation:'OCM = Organizational Change Management — driving behavioral change to adopt governance.'},
 {id:'f86',topic:'m3',type:'single',question:'Subject Area Model is:',options:['A detailed physical schema','A high-level view of business domains','A network diagram','A code module'],correct:1,explanation:'Subject Area Model = high-level business domain overview.'},
 {id:'f87',topic:'m4',type:'single',question:'3NF eliminates:',options:['All data','Transitive dependencies','Primary keys','All relationships'],correct:1,explanation:'3NF = no transitive dependencies between non-key attributes.'},
 {id:'f88',topic:'m5',type:'single',question:'SLA stands for:',options:['Server Load Average','Service Level Agreement','Storage Limit Alert','System Log Archive'],correct:1,explanation:'SLA = Service Level Agreement.'},
@@ -1490,7 +1527,7 @@ const FINAL_BANK = [
 {id:'f94',topic:'m5',type:'single',question:'Differential backup covers:',options:['Everything','Changes since last FULL backup','Changes since last incremental','Only metadata'],correct:1,explanation:'Differential = all changes since last full backup.'},
 {id:'f95',topic:'m6',type:'single',question:'SOAP is:',options:['A cleaning product reference','A strict, XML-based web service protocol','A database','A backup tool'],correct:1,explanation:'SOAP = strict, XML-based web service protocol.'},
 {id:'f96',topic:'m1',type:'single',question:'Data Custodian is a:',options:['Business role','Technical role for storage and infrastructure','Strategy role','Marketing role'],correct:1,explanation:'Custodian = technical: storage, backups, infrastructure.'},
-{id:'f97',topic:'m2',type:'single',question:'DMO stands for:',options:['Data Marketing Office','Data Management Office','Digital Media Operations','Database Migration Office'],correct:1,explanation:'DMO = Data Management Office — coordination center.'},
+{id:'f97',topic:'m2',type:'single',question:'DGO stands for:',options:['Data Marketing Office','Data Governance Office','Digital Media Operations','Database Migration Office'],correct:1,explanation:'DGO = Data Governance Office — coordination center for governance activities.'},
 {id:'f98',topic:'m3',type:'fillin',question:'What English term describes the current state of architecture?',correct:['as-is','As-Is','as is'],explanation:'As-Is = current state of the architecture.'},
 {id:'f99',topic:'m4',type:'single',question:'Natural Key example:',options:['Auto-increment ID','Tax ID or email','Random UUID','Hash value'],correct:1,explanation:'Natural Key = based on real business data like tax ID.'},
 {id:'f100',topic:'m5',type:'single',question:'IaaS stands for:',options:['Integration as a Service','Infrastructure as a Service','Information as a Service','Interface as a Service'],correct:1,explanation:'IaaS = Infrastructure as a Service.'},
@@ -1501,7 +1538,7 @@ const FINAL_BANK = [
 {id:'f105',topic:'m6',type:'single',question:'Stream Processing example technology:',options:['Excel','Apache Kafka','Word','Paint'],correct:1,explanation:'Kafka = platform for stream processing.'},
 {id:'f106',topic:'m2',type:'fillin',question:'What governance process handles unresolved issues by passing them up?',correct:['escalation','Escalation'],explanation:'Escalation = elevating unresolved issues to higher authority.'},
 {id:'f107',topic:'m3',type:'single',question:'Data Architecture provides foundation for:',options:['HR hiring','Data Integration','Marketing ads','Legal contracts'],correct:1,explanation:'Architecture defines flows and integration points.'},
-{id:'f108',topic:'m1',type:'single',question:'Share stage of data lifecycle:',options:['Creates data','Transfers data between systems and users','Deletes data','Archives data'],correct:1,explanation:'Share = transferring data between systems and people.'},
+{id:'f108',topic:'m1',type:'single',question:'Design & Enable stage of the DMBOK lifecycle:',options:['Creates raw data','Designs data structures and prepares infrastructure','Deletes data','Measures data quality'],correct:1,explanation:'Design & Enable = modeling data, designing structures, creating infrastructure.'},
 {id:'f109',topic:'m4',type:'truefalse',question:'Crow\'s foot symbol represents "many" in IE notation.',options:['True','False'],correct:0,explanation:'True. Crow\'s foot (bird foot shape) = "many" side of relationship.'},
 {id:'f110',topic:'m5',type:'single',question:'Key-Value stores are:',options:['The most complex NoSQL','The simplest NoSQL model','Always ACID-compliant','Only for graphs'],correct:1,explanation:'Key-Value = simplest NoSQL: key → value pairs.'},
 {id:'f111',topic:'m6',type:'single',question:'Unified view from integration means:',options:['One monitor','Consistent combined data from multiple sources','Deleting duplicates only','A single table'],correct:1,explanation:'Unified view = consistent picture from multiple data sources.'},
@@ -1516,7 +1553,7 @@ const FINAL_BANK = [
 {id:'f120',topic:'m6',type:'single',question:'Loose coupling means:',options:['Systems are tightly dependent','Systems operate with minimal dependency on each other','No communication','Shared database'],correct:1,explanation:'Loose coupling = minimal inter-system dependency.'},
 {id:'f121',topic:'m3',type:'single',question:'Gap analysis compares:',options:['Two vendors','As-Is and To-Be states','Two programming languages','Two employees'],correct:1,explanation:'Gap analysis = difference between current and target state.'},
 {id:'f122',topic:'m4',type:'single',question:'An Attribute is:',options:['A table','A characteristic of an entity','A server','A network cable'],correct:1,explanation:'Attribute = property/characteristic of an entity (name, date, price).'},
-{id:'f123',topic:'m1',type:'single',question:'Create → Store → Use → Share → Archive → ?',options:['Create','Purge','Store','Use'],correct:1,explanation:'Final lifecycle stage = Purge (permanent removal).'},
+{id:'f123',topic:'m1',type:'single',question:'In the DMBOK lifecycle, what happens to data that is no longer needed?',options:['It is Enhanced','It is Disposed of (archived or deleted)','It goes back to Plan stage','It stays in Store / Maintain indefinitely'],correct:1,explanation:'Dispose of = branch from the lifecycle for data that is no longer needed.'},
 {id:'f124',topic:'m6',type:'single',question:'ELT is popular with:',options:['Mainframes','Cloud data warehouses like Snowflake','Paper records','Floppy disks'],correct:1,explanation:'ELT leverages powerful cloud DWH compute for transformations.'},
 {id:'f125',topic:'m2',type:'single',question:'GDPR concerns:',options:['Network speed','Personal data protection in the EU','Database design','Server hardware'],correct:1,explanation:'GDPR = EU regulation for personal data protection.'},
 {id:'f126',topic:'m4',type:'single',question:'PK stands for:',options:['Private Key','Primary Key','Public Key','Process Key'],correct:1,explanation:'PK = Primary Key = unique record identifier.'},
@@ -1538,7 +1575,7 @@ const GLOSSARY=[
 {ru:'Стюард данных',en:'Data Steward',def:'Операционное управление качеством и правилами'},
 {ru:'Распорядитель данных',en:'Data Custodian',def:'Техническая роль: хранение, бэкапы, инфраструктура'},
 {ru:'Главный директор по данным',en:'CDO',def:'Chief Data Officer — стратегическое руководство данными'},
-{ru:'Жизненный цикл данных',en:'Data Lifecycle',def:'Create → Store → Use → Share → Archive → Purge'},
+{ru:'Жизненный цикл данных',en:'Data Lifecycle',def:'Plan → Design & Enable → Create/Obtain → Store/Maintain → Use → Enhance (+ Dispose of)'},
 {ru:'Политика данных',en:'Data Policy',def:'Высокоуровневые правила обращения с данными'},
 {ru:'Стандарт данных',en:'Data Standard',def:'Детальные правила и нормы (формат даты, naming)'},
 {ru:'Метаданные',en:'Metadata',def:'Данные о данных: структура, происхождение, контекст'},
@@ -1587,7 +1624,7 @@ const GLOSSARY=[
 {ru:'API',en:'Application Programming Interface',def:'Программный интерфейс обмена данными'},
 {ru:'SLA',en:'Service Level Agreement',def:'Соглашение об уровне обслуживания'},
 {ru:'Колесо DAMA',en:'DAMA Wheel',def:'Визуальная диаграмма 11 областей знаний DAMA'},
-{ru:'Совет по управлению данными',en:'DGC',def:'Data Governance Council — высший орган governance'},
+{ru:'Совет по управлению данными',en:'DGC',def:'Data Governance Council — управляет инициативами, проблемами и эскалациями governance'},
 {ru:'Принятие решений на данных',en:'Data-Driven',def:'Решения на основе анализа данных'},
 ];
 
